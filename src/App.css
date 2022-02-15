@@ -1,7 +1,6 @@
 .App {
-  background-color: rgb(197, 247, 216);
-  
-  height:100vh;
+  background-image: linear-gradient(to bottom right,#67d596,#33607c);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,8 +8,8 @@
 }
 
 .rsc .rsc-container {
-  width: 540px;
-  height: 740px;
+  width: 380px;
+  height: 440px;
 }
 
 .rsc .rsc-content {
@@ -20,8 +19,6 @@
   padding-top: 6px;
 }
 
-
-
 .rsc .rsc-footer {
   position:absolute;
   left: 0;
@@ -29,17 +26,8 @@
   width: 100%;
   
 }
-/* .App-header-chat {} */
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
