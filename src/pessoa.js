@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 
 function Pessoa(props){
   
-    const [state, setState] = useState({ nome: '', idade: ''});
+    const [state, setState] = useState({ nome: '', idade: '', objetivosFinanceirosImediatos: ''});
 
     useEffect(() => {
       const { steps } = props;
-      const { nome, idade } = steps;
-      setState({ nome, idade});
+      const { nome, idade, objetivosFinanceirosImediatos} = steps;
+      setState({ nome, idade, objetivosFinanceirosImediatos});
     }, [props])
 
     
-    const { nome, idade } = state;
+    const { nome, idade, objetivosFinanceirosImediatos } = state;
 
-    //console.log('Dados Pessoais: ', state)
+    console.log('Dados Pessoais: ', state)
 
     return (
         
@@ -29,6 +29,10 @@ function Pessoa(props){
             <tr>
               <td>Idade: </td>
               <td>{idade.value}</td>
+            </tr>
+            <tr>
+              <td>Objetivos Financeiros: </td>
+              <td>{objetivosFinanceirosImediatos.value}</td>
             </tr>
           </tbody>
         </table>

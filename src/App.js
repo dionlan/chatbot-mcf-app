@@ -3,6 +3,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
 import Pessoa from './pessoa';
+import SelecionaMultiplasRespostas from './selecionaMultiplasRespostas';
 
 function App() {
   const theme = {
@@ -32,7 +33,7 @@ function App() {
             
             steps={[
               {
-                id: '1',
+                id: 'q1',
                 message: 'Vamos lá, qual o seu nome?',
                 trigger: 'nome',
               },
@@ -47,20 +48,25 @@ function App() {
                   }
                  },
                 //trigger: ({value}) => value.toLowerCase() === '1' ? '2' : '2'
-                trigger: '2',
+                trigger: 'q2',
               },
               {
-                id: '2',
-                 message: 'Olá, {previousValue}, qual sua idade?', 
-                 trigger: 'idade'
+                id: 'q2',
+                message: 'Olá, {previousValue}, qual sua idade?', 
+                trigger: 'idade'
               },
               {
                 id: 'idade',
                 user: true,
-                trigger: '3',
-              },  
+                trigger: 'objetivosFinanceirosImediatos'
+              },
               {
-                id: '3',
+                id: 'objetivosFinanceirosImediatos',
+                component: <SelecionaMultiplasRespostas />,
+                asMessage: true,
+              }, 
+              {
+                id: 'resumo',
                 message: 'Ótimo! Confira o resumo.',
                 trigger: 'pessoa',
               },
@@ -68,7 +74,6 @@ function App() {
                 id: 'pessoa',
                 component: <Pessoa />,
                 asMessage: true,
-                trigger: 'update',
               },
               {
                 id: 'update',
@@ -98,13 +103,13 @@ function App() {
               {
                 id: 'update-nome',
                 update: 'nome',
-                trigger: '3',
+                trigger: 'resumo',
  
               },
               {
                 id: 'update-idade',
                 update: 'idade',
-                trigger: 'pessoa',
+                trigger: 'resumo',
               },
               {
                 id: 'end-message',
