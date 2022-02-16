@@ -15,6 +15,14 @@ function App() {
     userBubbleColor: '#fff',
     userFontColor: '#4a4a4a',
   };
+
+  /*
+  const CustomStep = ({ triggerNextStep }) => {
+    console.log('TRIGGER NEXT STEP: ', triggerNextStep)
+    return (
+        <button onClick={() => triggerNextStep({ trigger: '3' })}>Next</button>
+    );
+}; */
   
   return (
     <div className="App">
@@ -43,7 +51,8 @@ function App() {
               },
               {
                 id: '2',
-                 message: 'Olá, {previousValue}, qual sua idade?', trigger: 'idade'
+                 message: 'Olá, {previousValue}, qual sua idade?', 
+                 trigger: 'idade'
               },
               {
                 id: 'idade',
@@ -52,10 +61,9 @@ function App() {
               },  
               {
                 id: '3',
-                message: 'Valor anterios: {previousValue}, passsos {step}',
+                message: 'Ótimo! Confira o resumo.',
                 trigger: 'pessoa',
               },
-
               {
                 id: 'pessoa',
                 component: <Pessoa />,
@@ -64,19 +72,19 @@ function App() {
               },
               {
                 id: 'update',
-                message: 'Would you like to update some field?',
+                message: 'Gostaria de atualizar algo?',
                 trigger: 'update-question',
               },
               {
                 id: 'update-question',
                 options: [
-                  { value: 'yes', label: 'Yes', trigger: 'update-yes' },
-                  { value: 'no', label: 'No', trigger: 'end-message' },
+                  { value: 'yes', label: 'Sim', trigger: 'update-yes' },
+                  { value: 'no', label: 'Não', trigger: 'end-message' },
                 ],
               },
               {
                 id: 'update-yes',
-                message: 'What field would you like to update?',
+                message: 'Qual campo gostaria de atualizar?',
                 trigger: 'update-fields',
               },
               {
@@ -89,22 +97,21 @@ function App() {
 
               {
                 id: 'update-nome',
-                message: 'Informe o nome correto.',
-                trigger: 'nome',
+                update: 'nome',
+                trigger: '3',
+ 
               },
               {
                 id: 'update-idade',
                 update: 'idade',
-                trigger: '3',
+                trigger: 'pessoa',
               },
               {
                 id: 'end-message',
-                message: 'Thanks! Your data was submitted successfully!',
+                message: 'Obrigado! Sucesso!',
                 end: true,
               },
-
             ]}
-            
  
           />
 

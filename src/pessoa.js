@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 function Pessoa(props){
+  
+    const [state, setState] = useState({ nome: '', idade: ''});
 
-    let pessoaDados = {
-        nome: '',
-        idade: ''
-    } 
-    pessoaDados = props;
+    useEffect(() => {
+      const { steps } = props;
+      const { nome, idade } = steps;
+      setState({ nome, idade});
+    }, [props])
 
-    console.log('Dados Pessoais: ', pessoaDados)
+    
+    const { nome, idade } = state;
+
+    //console.log('Dados Pessoais: ', state)
 
     return (
         
@@ -18,14 +24,22 @@ function Pessoa(props){
           <tbody>
             <tr>
               <td>Nome: </td>
-              <td>{pessoaDados.nome}</td>
+              <td>{nome.value}</td>
             </tr>
             <tr>
               <td>Idade: </td>
-              <td>{pessoaDados.idade}</td>
+              <td>{idade.value}</td>
             </tr>
           </tbody>
         </table>
       </div>
     )
-}export default Pessoa;
+}
+Pessoa.propTypes = {
+  steps: PropTypes.object,
+};
+
+Pessoa.defaultProps = {
+  steps: undefined,
+};
+export default Pessoa;
