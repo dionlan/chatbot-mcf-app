@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { toppings } from "./utils/toppings";
+import { objetivosFinanceiros } from "./utils/objetivosFinanceiros";
 import './App.css';
 
-const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+const getFormattedNota = (nota) => `$${nota.toFixed(2)}`;
 
-const getFormattedNames = (name) => `${JSON.stringify(name)}`;
+const getFormattedObjetivos = (objetivo) => `${JSON.stringify(objetivo)}`;
 
 export default function SelecionaMultiplasRespostas (props) {
   const [checkedState, setCheckedState] = useState(
-    new Array(toppings.length).fill(false)
+    new Array(objetivosFinanceiros.length).fill(false)
   );
 
   const [total, setTotal] = useState(0);
 
-  const [names, setNames] = useState([]);
+  const [names, setObjetivos] = useState([]);
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -22,29 +22,29 @@ export default function SelecionaMultiplasRespostas (props) {
 
     setCheckedState(updatedCheckedState);
 
-    const totalPrice = updatedCheckedState.reduce(
+    const totalNota = updatedCheckedState.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
-          return sum + toppings[index].price;
+          return sum + objetivosFinanceiros[index].nota;
         }
         return sum;
       },
       0
     );
 
-    const totalNames = updatedCheckedState.reduce(
+    const totalObjetivos = updatedCheckedState.reduce(
         (names, currentState, index) => {
           if (currentState === true) {
-            return names + toppings[index].name;
+            return names + objetivosFinanceiros[index].objetivo;
           }
           return names;
         },
         0
       );
 
-    console.log('NOMES SELECIONADOS: ', totalNames)
-    setNames(totalNames);
-    setTotal(totalPrice);
+    console.log('NOMES SELECIONADOS: ', totalObjetivos)
+    setObjetivos(totalObjetivos);
+    setTotal(totalNota);
   };
 
   return (
@@ -52,25 +52,25 @@ export default function SelecionaMultiplasRespostas (props) {
     <div>
       <h3>Objetivos Financeiros Imediatos</h3>
       <ul>
-        {toppings.map(({ name }, index) => {
+        {objetivosFinanceiros.map(({ objetivo }, index) => {
           return (
             <li key={index}>
                   <input
                     type="checkbox"
                     id={`custom-checkbox-${index}`}
-                    name={name}
-                    value={name}
+                    objetivo={objetivo}
+                    value={objetivo}
                     checked={checkedState[index]}
                     onChange={() => handleOnChange(index)}
                   />
-                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                  <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
             </li>
           );
         })}
         <li>
             <div>Total:</div>
-            <div>{getFormattedPrice(total)}</div>
-            <div>{getFormattedNames(JSON.stringify(names))}</div>
+            <div>{getFormattedNota(total)}</div>
+            <div>{getFormattedObjetivos(JSON.stringify(names))}</div>
             <button onClick={() => props.triggerNextStep({id: 'objetivosFinanceirosImediatos', value: names, trigger: 'resumo' })}>Next</button>
         </li>
       </ul>
