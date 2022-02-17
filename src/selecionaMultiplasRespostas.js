@@ -4,8 +4,6 @@ import './App.css';
 
 const getFormattedNota = (nota) => `${nota.toFixed(2)}`;
 
-const getFormattedObjetivos = (objetivo) => `${objetivo}`;
-
 export default function SelecionaMultiplasRespostas (props) {
   const [checkedState, setCheckedState] = useState(
     new Array(objetivosFinanceiros.length).fill(false)
@@ -22,7 +20,6 @@ export default function SelecionaMultiplasRespostas (props) {
     );
     
     const totalObjetivos = updatedCheckedState.reduce(
-      
       (obj, currentState, index) => {
         if (currentState === true) {
           console.log(index)
@@ -32,10 +29,9 @@ export default function SelecionaMultiplasRespostas (props) {
       }
     );
     
-    setObjetivos(totalObjetivos)
     setCheckedState(updatedCheckedState);
+    setObjetivos(totalObjetivos)
 
-/*
     const totalNota = updatedCheckedState.reduce(
       (obj, currentState, index) => {
         if (currentState === true) {
@@ -44,8 +40,8 @@ export default function SelecionaMultiplasRespostas (props) {
         return obj;
       },
       0
-    ); */
-    //setTotal(totalNota);
+    ); 
+    setTotal(totalNota);
     
   };
 
@@ -70,9 +66,11 @@ export default function SelecionaMultiplasRespostas (props) {
           );
         })}
         <li>
-            {/* <div>{getFormattedNota(total)}</div> */}
-            <div>Selecionado(s): {objetivos}</div>
-            <button onClick={() => props.triggerNextStep({id: 'objetivosFinanceirosImediatos', value: objetivos, trigger: 'resumo' })}>Next</button>
+            <div><strong>Selecionado(s):</strong> {objetivos}</div>
+            <div><strong>Nota acumulada:</strong> {getFormattedNota(total)}</div>
+            <button type="button" className="btn btn-success" onClick={() => props.triggerNextStep({id: 'objetivosFinanceirosImediatos', value: objetivos, trigger: 'resumo' })}>
+              Prosseguir
+            </button>
         </li>
       </ul>
     </div>
