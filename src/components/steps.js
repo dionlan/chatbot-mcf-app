@@ -1,6 +1,7 @@
-import Pessoa from '../pessoa';
-import SelecionaMultiplasRespostas from '../selecionaMultiplasRespostas';
-export const Steps = [
+import ResumoPessoa from './resumoPessoa';
+import SelecionaMultiplasRespostas from './selecionaMultiplasRespostas';
+
+const Steps = [
     {
       id: 'q1',
       message: 'Vamos lá, qual o seu nome?',
@@ -41,7 +42,7 @@ export const Steps = [
     },
     {
       id: 'pessoa',
-      component: <Pessoa />,
+      component: <ResumoPessoa />,
       asMessage: true,
     },
     {
@@ -86,3 +87,4 @@ export const Steps = [
       end: true,
     },
 ]
+export default Steps

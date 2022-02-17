@@ -1,4 +1,4 @@
-export const objetivosFinanceiros = [
+const ObjetivosFinanceiros = [
     {
       objetivo: "Aumentar as receitas",
       nota: 1.2
@@ -51,6 +51,5 @@ export const objetivosFinanceiros = [
       objetivo: "Outros",
       nota: 2.0
     }
-
   ];
-  
+  export default ObjetivosFinanceiros

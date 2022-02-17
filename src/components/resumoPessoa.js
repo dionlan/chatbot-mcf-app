@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
-function Pessoa(props){
+function ResumoPessoa(props){
   
     const [state, setState] = useState({ nome: '', idade: '', objetivosFinanceirosImediatos: ''});
 
@@ -39,11 +38,4 @@ function Pessoa(props){
       </div>
     )
 }
-Pessoa.propTypes = {
-  steps: PropTypes.object,
-};
-
-Pessoa.defaultProps = {
-  steps: undefined,
-};
-export default Pessoa;
+export default ResumoPessoa;
