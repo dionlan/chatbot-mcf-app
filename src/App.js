@@ -2,6 +2,9 @@ import ChatBot from 'react-simple-chatbot';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
+import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
+import 'primereact/resources/primereact.min.css'; //core css
+import 'primeicons/primeicons.css';               //icons
 import { Steps } from './components/steps'
 
 function App() {
@@ -18,7 +21,6 @@ function App() {
 
   return (
     <div className="App">
-      
       <ThemeProvider theme={theme}>
         <ChatBot headerTitle="Meu Diagnóstico Financeiro" placeholder="Vamos conversar..." 
         steps={Steps}
@@ -26,6 +28,7 @@ function App() {
         customDelay={500}
 
         />
+        
       </ThemeProvider>
     </div>
   );

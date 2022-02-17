@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from 'primereact/button';
 import { objetivosFinanceiros } from "./utils/objetivosFinanceiros";
 import './App.css';
 
@@ -48,31 +49,48 @@ export default function SelecionaMultiplasRespostas (props) {
   return (
     
     <div>
+      
       <h3>Objetivos Financeiros Imediatos</h3>
       <ul>
         {objetivosFinanceiros.map(({ objetivo }, index) => {
+          console.log(objetivo)
           return (
+            
             <li key={index}>
                   <input
-                    type="checkbox"
+                    type={objetivo === 'Outros' ? 'text' : 'checkbox'}
                     id={`custom-checkbox-${index}`}
                     objetivo={objetivo}
-                    value={objetivo}
+                    value={objetivo !== 'Outros' ? objetivo : ''}
                     checked={checkedState[index]}
                     onChange={() => handleOnChange(index)}
                   />
                   <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
             </li>
+            
           );
         })}
-        <li>
-            <div><strong>Selecionado(s):</strong> {objetivos}</div>
-            <div><strong>Nota acumulada:</strong> {getFormattedNota(total)}</div>
-            <button type="button" className="btn btn-success" onClick={() => props.triggerNextStep({id: 'objetivosFinanceirosImediatos', value: objetivos, trigger: 'resumo' })}>
-              Prosseguir
-            </button>
-        </li>
+ 
       </ul>
+      <br/>
+
+      <div>
+        <strong>Selecionado(s):</strong> {objetivos}
+      </div>
+      
+      <div>
+        <strong>Nota acumulada:</strong> {getFormattedNota(total)}
+      </div>
+      <br/>
+      <div>
+        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'objetivosFinanceirosImediatos', 
+            value: objetivos, trigger: 'resumo' })}>
+            Prosseguir
+          </Button>
+
+      </div>
+      
     </div>
+
   );
 }
