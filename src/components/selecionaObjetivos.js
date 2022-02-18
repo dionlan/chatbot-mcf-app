@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from 'primereact/button';
 import ObjetivosFinanceiros from "../utils/objetivosFinanceiros";
+import { Checkbox } from 'primereact/checkbox';
+import { InputText } from 'primereact/inputtext';
 import './components.css'
 
 function SelecionaObjetivos (props) {
@@ -8,10 +10,17 @@ function SelecionaObjetivos (props) {
     new Array(ObjetivosFinanceiros.length).fill(false)
   );
 
+  const [state, setState] = useState({ outros: ''})
+
+  const handleInputChange = (event) => {
+    setState((prevProps) => ({
+      ...prevProps,
+      [event.target.name]: event.target.value
+    }));
+  };
+
   const [listaObjetivos, setListaObjetivos] = useState([]);
   const [notaFinal, setNotaFinal] = useState([]);
-
-  let state = [];
 
   const handleOnChange = ( position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -22,7 +31,7 @@ function SelecionaObjetivos (props) {
     const totalObjetivos = updatedCheckedState.reduce(
       (obj, currentState, index) => {
         if (currentState === true) {
-          return obj += ObjetivosFinanceiros[index].objetivo;
+          return obj += ObjetivosFinanceiros[index].objetivo + ' ';
         }
         return obj
       },
@@ -41,24 +50,28 @@ function SelecionaObjetivos (props) {
       0
     );
     setNotaFinal(notaFinalAtualizada);
-  
   };
   return (
     <div>
       <h3>Objetivos Financeiros Imediatos</h3>
       <ul>
-        {ObjetivosFinanceiros.map(({ objetivo }, index) => {
+        {ObjetivosFinanceiros.map(({ objetivo, nota }, index) => {
           return (
             <li key={index}>
-                  <input
+              {objetivo !== 'Outros' ?
+                <>
+                  <Checkbox
                     type={'checkbox'}
                     id={`custom-checkbox-${index}`}
-                    objetivo={objetivo}
                     value={objetivo}
                     checked={checkedState[index]}
                     onChange={() => handleOnChange(index)}
                   />
                   <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
+                </>
+              : 
+              <InputText type="text" name="outros" value={state.outros} className="p-inputtext-sm" onChange={handleInputChange} placeholder="Outros objetivos" />
+              }
             </li>
           );
         })}
@@ -72,7 +85,7 @@ function SelecionaObjetivos (props) {
       <br/>
       <div>
         <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'objetivosFinanceirosImediatos', 
-            value: listaObjetivos, trigger: 'resumo' })}>
+            value: listaObjetivos + state.outros, trigger: 'resumo' })}>
             Prosseguir
         </Button>
       </div>
