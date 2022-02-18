@@ -1,5 +1,5 @@
 import ResumoPessoa from './resumoPessoa';
-import SelecionaMultiplasRespostas from './selecionaMultiplasRespostas';
+import SelecionaObjetivos from './selecionaObjetivos';
 
 const Steps = [
     {
@@ -32,7 +32,7 @@ const Steps = [
     },
     {
       id: 'objetivosFinanceirosImediatos',
-      component: <SelecionaMultiplasRespostas />,
+      component: <SelecionaObjetivos />,
       asMessage: true,
     }, 
     {
