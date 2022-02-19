@@ -10,6 +10,10 @@
   padding-top: 6px;
 }
 
+.rsc .rsc-content .rsc-ts-bubble {
+  max-width: 70%
+}
+
 .rsc .rsc-footer {
   bottom: 0;
   width: 100%;
