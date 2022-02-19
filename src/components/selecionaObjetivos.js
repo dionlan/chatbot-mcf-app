@@ -26,7 +26,7 @@ function SelecionaObjetivos (props) {
   const [listaObjetivos, setListaObjetivos] = useState([ {
     objetivos: ''
   }]);
-  const [notaFinal, setNotaFinal] = useState([]);
+  const [notaFinal, setNotaFinal] = useState(0);
 
   const handleOnChange = ( position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -102,7 +102,7 @@ function SelecionaObjetivos (props) {
           {console.log(JSON.stringify(listaObjetivos))}
         </div>
         <div>
-          <label><strong>Nota Final: </strong>{notaFinal}</label>
+          <label><strong>Nota Final: </strong>{`${notaFinal.toFixed(2)}`}</label> { /** código javascript em HTML {`${javascript}`} */}
         </div>
       </ul>
       <br/>
