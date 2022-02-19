@@ -14,6 +14,8 @@ function SelecionaObjetivos (props) {
     outros: []
   })
 
+  const [stateObjetivo, setStateObjetivo] = useState([])
+
   const handleInputChange = (event) => {
     setState((prevProps) => ({
       ...prevProps,
@@ -21,7 +23,9 @@ function SelecionaObjetivos (props) {
     }));
   };
 
-  const [listaObjetivos, setListaObjetivos] = useState([]);
+  const [listaObjetivos, setListaObjetivos] = useState([ {
+    objetivos: ''
+  }]);
   const [notaFinal, setNotaFinal] = useState([]);
 
   const handleOnChange = ( position) => {
@@ -33,14 +37,24 @@ function SelecionaObjetivos (props) {
     const totalObjetivos = updatedCheckedState.reduce(
       (obj, currentState, index) => {
         if (currentState === true) {
-          return obj += ObjetivosFinanceiros[index].objetivo + ' ';
+          //let newArr = setListaObjetivos({...obj, [listaObjetivos.objetivo]: ObjetivosFinanceiros[index].objetivo})
+          let newArr = [...obj, ObjetivosFinanceiros[index].objetivo]
+          return newArr
+          /*return setStateObjetivo((prevProps) => ({
+            ...prevProps,
+            [prevProps]: obj + ObjetivosFinanceiros[index].objetivo
+          })); */
+          //return obj += ObjetivosFinanceiros[index].objetivo + ' ';
         }
         return obj
       },
       ''
     );
-
-    setListaObjetivos(totalObjetivos)
+    //console.log('total objetivos: ', JSON.stringify(totalObjetivos))
+    setListaObjetivos({objetivos: totalObjetivos})
+    //console.log('total objetivos: ', JSON.stringify(totalObjetivos))
+    //console.log('setObjetivo: ', stateObjetivo)
+    
 
     const notaFinalAtualizada = updatedCheckedState.reduce(
       (obj, currentState, index) => {
@@ -58,28 +72,34 @@ function SelecionaObjetivos (props) {
       <div className="card">
       <h3>Objetivos Financeiros Imediatos</h3>
       <ul>
-        {ObjetivosFinanceiros.map(({ objetivo, nota }, index) => {
+        {ObjetivosFinanceiros.map(({ objetivo }, index) => {
           return (
             <li key={index}>
               {objetivo !== 'Outros' ?
               <>
                 <Checkbox
-                  type={'checkbox'}
                   id={`custom-checkbox-${index}`}
                   value={objetivo}
+                  type={'checkbox'}
                   checked={checkedState[index]}
                   onChange={() => handleOnChange(index)}
                 />
                 <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
               </>
               : 
-              <InputText type="text" name="outros" value={state.outros} className="p-inputtext-sm" onChange={handleInputChange} placeholder="Outros objetivos" />
+              <InputText type="text" 
+                name="outros" 
+                value={state.outros} 
+                className="p-inputtext-sm" 
+                onChange={handleInputChange} 
+                placeholder="Outros objetivos" />
               }
             </li>
           );
         })}
         <div>
-          <label><strong>Objetivos Selecionados:  </strong>{listaObjetivos}</label>
+          <label><strong>Objetivos Selecionados:  </strong>{JSON.stringify(listaObjetivos)}</label>
+          {console.log(JSON.stringify(listaObjetivos))}
         </div>
         <div>
           <label><strong>Nota Final: </strong>{notaFinal}</label>
