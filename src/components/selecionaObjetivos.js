@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { Button } from 'primereact/button';
-import ObjetivosFinanceiros from "../utils/objetivosFinanceiros";
+import ObjetivosFinanceiros from '../utils/objetivosFinanceiros';
 import { Checkbox } from 'primereact/checkbox';
 import { InputText } from 'primereact/inputtext';
 import './components.css'
@@ -55,7 +55,6 @@ function SelecionaObjetivos (props) {
     //console.log('total objetivos: ', JSON.stringify(totalObjetivos))
     //console.log('setObjetivo: ', stateObjetivo)
     
-
     const notaFinalAtualizada = updatedCheckedState.reduce(
       (obj, currentState, index) => {
         if (currentState === true) {
@@ -67,6 +66,7 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
+
   return (
     <div>
       <div className="card">
@@ -87,12 +87,12 @@ function SelecionaObjetivos (props) {
                 <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
               </>
               : 
-              <InputText type="text" 
-                name="outros" 
-                value={state.outros} 
-                className="p-inputtext-sm" 
-                onChange={handleInputChange} 
-                placeholder="Outros objetivos" />
+                <InputText type="text" 
+                  name="outros" 
+                  value={state.outros} 
+                  className="p-inputtext-sm" 
+                  onChange={handleInputChange} 
+                  placeholder="Outros objetivos" />
               }
             </li>
           );
@@ -108,14 +108,10 @@ function SelecionaObjetivos (props) {
       <br/>
       <div>
         <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({value: listaObjetivos + state.outros, 
-                                                                                               trigger: 'resumo' })}>
-            Prosseguir
-        </Button>
+        trigger: 'resumo' })}> Prosseguir </Button>
       </div>
     </div>
-
     </div>
   );
-  
 }
 export default SelecionaObjetivos

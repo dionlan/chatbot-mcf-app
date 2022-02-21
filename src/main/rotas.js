@@ -9,9 +9,9 @@ function Rotas(){
         <Router>
             <Routes>
                 <Route path='/' element={ <Chatbot/> }/>
-                <Route path='/teste/testeCheckbox' element={ <TesteCheckbox /> }/>
-                <Route path='/teste/testeMultiSelect' element={ <TesteMultiSelect /> }/>
                 <Route path='/chat' element={ <Chatbot /> } />
+                <Route path='/teste/testeCheckbox' element={ <TesteCheckbox /> }/>
+                <Route path='/teste/testeMultiSelect' element={ <TesteMultiSelect /> }/> 
             </Routes>
         </Router>
     )

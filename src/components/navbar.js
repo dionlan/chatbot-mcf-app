@@ -1,13 +1,5 @@
 import NavbarItem from "./navbarItem";
-/*
-const deslogar = () => {
-    AuthService.removerUsuarioAutenticado();
-}
 
-const isUsuarioAutenticado = () => {
-    return AuthService.isUsuarioAutenticado();
-}
-*/
 function Navbar({ props }){
     return(
         <div className="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
