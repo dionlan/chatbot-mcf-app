@@ -73,7 +73,7 @@ function SelecionaObjetivos (props) {
               : 
                 <InputText type="text" 
                   className="p-inputtext-sm" 
-                  onChange={e=> setState(e.target.value) } 
+                  onChange={e=> setState({outros: e.target.value }) } 
                   placeholder="Outros objetivos" />
               }
             </li>
