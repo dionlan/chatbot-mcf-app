@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { Button } from 'primereact/button';
 import ObjetivosFinanceiros from '../utils/objetivosFinanceiros';
 import { Checkbox } from 'primereact/checkbox';
@@ -10,22 +10,9 @@ function SelecionaObjetivos (props) {
     new Array(ObjetivosFinanceiros.length).fill(false)
   );
 
-  const [state, setState] = useState({ 
-    outros: []
-  })
+  const [state, setState] = useState('')
 
-  const [stateObjetivo, setStateObjetivo] = useState([])
-
-  const handleInputChange = (event) => {
-    setState((prevProps) => ({
-      ...prevProps,
-      [event.target.name]: event.target.value
-    }));
-  };
-
-  const [listaObjetivos, setListaObjetivos] = useState([ {
-    objetivos: ''
-  }]);
+  const [listaObjetivos, setListaObjetivos] = useState([]);
   const [notaFinal, setNotaFinal] = useState(0);
 
   const handleOnChange = ( position) => {
@@ -33,7 +20,6 @@ function SelecionaObjetivos (props) {
       index === position ? !item : item,
     );
     setCheckedState(updatedCheckedState);
-
     const totalObjetivos = updatedCheckedState.reduce(
       (obj, currentState, index) => {
         if (currentState === true) {
@@ -50,11 +36,9 @@ function SelecionaObjetivos (props) {
       },
       ''
     );
-    //console.log('total objetivos: ', JSON.stringify(totalObjetivos))
-    setListaObjetivos({objetivos: totalObjetivos})
-    //console.log('total objetivos: ', JSON.stringify(totalObjetivos))
-    //console.log('setObjetivo: ', stateObjetivo)
-    
+
+    setListaObjetivos(totalObjetivos)
+
     const notaFinalAtualizada = updatedCheckedState.reduce(
       (obj, currentState, index) => {
         if (currentState === true) {
@@ -66,11 +50,10 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
-
+  
   return (
-    <div>
-      <div className="card">
-      <h3>Objetivos Financeiros Imediatos</h3>
+    <>
+      <h4>Objetivos Financeiros Imediatos</h4>
       <ul>
         {ObjetivosFinanceiros.map(({ objetivo }, index) => {
           return (
@@ -83,15 +66,14 @@ function SelecionaObjetivos (props) {
                   type={'checkbox'}
                   checked={checkedState[index]}
                   onChange={() => handleOnChange(index)}
+                  autoFocus={true}
                 />
                 <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
               </>
               : 
                 <InputText type="text" 
-                  name="outros" 
-                  value={state.outros} 
                   className="p-inputtext-sm" 
-                  onChange={handleInputChange} 
+                  onChange={e=> setState(e.target.value) } 
                   placeholder="Outros objetivos" />
               }
             </li>
@@ -99,7 +81,7 @@ function SelecionaObjetivos (props) {
         })}
         <div>
           <label><strong>Objetivos Selecionados:  </strong>{JSON.stringify(listaObjetivos)}</label>
-          {console.log(JSON.stringify(listaObjetivos))}
+          <label><strong>Outros:  </strong>{JSON.stringify(state)}</label>
         </div>
         <div>
           <label><strong>Nota Final: </strong>{`${notaFinal.toFixed(2)}`}</label> { /** código javascript em HTML {`${javascript}`} */}
@@ -107,11 +89,10 @@ function SelecionaObjetivos (props) {
       </ul>
       <br/>
       <div>
-        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({value: listaObjetivos + state.outros, 
+        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({value: listaObjetivos.concat(state), 
         trigger: 'resumo' })}> Prosseguir </Button>
       </div>
-    </div>
-    </div>
+    </>
   );
 }
 export default SelecionaObjetivos

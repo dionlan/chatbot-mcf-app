@@ -31,7 +31,8 @@ function ResumoPessoa(props){
             </tr>
             <tr>
               <td>Objetivos Financeiros: </td>
-              <td>{objetivosFinanceirosImediatos.value}</td>
+              <td> {JSON.stringify(objetivosFinanceirosImediatos.value)}
+              </td>
             </tr>
           </tbody>
         </table>
