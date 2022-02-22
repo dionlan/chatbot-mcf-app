@@ -34,6 +34,7 @@ const Steps = [
       id: 'objetivosFinanceirosImediatos',
       component: <SelecionaObjetivos />,
       asMessage: true,
+      waitAction: true,
     }, 
     {
       id: 'resumo',
@@ -44,6 +45,7 @@ const Steps = [
       id: 'pessoa',
       component: <ResumoPessoa />,
       asMessage: true,
+      trigger: 'update',
     },
     {
       id: 'update',
@@ -67,6 +69,7 @@ const Steps = [
       options: [
         { value: 'nome', label: 'Nome', trigger: 'update-nome' },
         { value: 'idade', label: 'Idade', trigger: 'update-idade' },
+        { value: 'objetivosFinanceirosImediatos', label: 'Objetivos Financeiros', trigger: 'update-objetivos-financeiros' },
       ],
     },
 
@@ -79,6 +82,11 @@ const Steps = [
     {
       id: 'update-idade',
       update: 'idade',
+      trigger: 'resumo',
+    },
+    {
+      id: 'update-objetivos-financeiros',
+      update: 'objetivosFinanceirosImediatos',
       trigger: 'resumo',
     },
     {
