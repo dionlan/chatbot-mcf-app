@@ -90,7 +90,7 @@ function SelecionaObjetivos (props) {
       <br/>
       <div>
         <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({value: listaObjetivos.concat(state), 
-        trigger: 'resumo' })}> Prosseguir </Button>
+        trigger: 'resumo', message: 'Testando' })}> Prosseguir </Button>
       </div>
     </>
   );

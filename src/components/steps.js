@@ -23,6 +23,14 @@ const Steps = [
     {
       id: 'q2',
       message: 'Olá, {previousValue}, qual sua idade?', 
+      validator: (value) => {
+        if (isNaN(value)) {
+          return 'Informe a idade em números';
+        }else if (value < 0 && value > 100) {
+          return 'A idade deve estar entre 0 e 100'
+        }
+        return true;
+      },
       trigger: 'idade'
     },
     {
