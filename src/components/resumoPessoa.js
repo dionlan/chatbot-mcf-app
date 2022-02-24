@@ -4,6 +4,7 @@ function ResumoPessoa(props){
   
     const [state, setState] = useState({ nome: '', idade: '', objetivosFinanceirosImediatos: ''});
 
+    console.log(JSON.stringify(props))
     useEffect(() => {
       const { steps } = props;
       const { nome, idade, objetivosFinanceirosImediatos} = steps;
@@ -13,7 +14,7 @@ function ResumoPessoa(props){
     
     const { nome, idade, objetivosFinanceirosImediatos } = state;
 
-    console.log('Dados Pessoais: ', state)
+    //console.log('Dados Pessoais: ', state)
 
     return (
         
