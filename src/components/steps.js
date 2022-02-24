@@ -61,13 +61,13 @@ const Steps = [
     {
       id:'renda_mensal',
       options: [
-        { value: 1, label: 'até 2 mil', trigger: 'q5' },
-        { value: 2, label: 'de 2 a 6 mil', trigger: 'q5' },
-        { value: 3, label: 'de 6 a 12 mil', trigger: 'q5' },
-        { value: 4, label: 'de 12 a 20 mil', trigger: 'q5' },
-        { value: 5, label: 'acima de 20 mil', trigger: 'q5' },
+        { value: 1, label: 'até 2 mil', trigger: 'q29' },
+        { value: 2, label: 'de 2 a 6 mil', trigger: 'q29' },
+        { value: 3, label: 'de 6 a 12 mil', trigger: 'q29' },
+        { value: 4, label: 'de 12 a 20 mil', trigger: 'q29' },
+        { value: 5, label: 'acima de 20 mil', trigger: 'q29' },
       ],
-    },
+    }, /*
     {
       id: 'q5',
       message: 'Como está o seu orçamento mensal com relação as receitas e despesas?',
@@ -402,7 +402,7 @@ const Steps = [
         { value: 3, label: 'média', trigger: 'q29' },
         { value: 4, label: 'muita', trigger: 'q29' },
       ],
-    },
+    }, */
     {
       id: 'q29',
       component: <SelecionaObjetivos />,
@@ -422,10 +422,10 @@ const Steps = [
         { value: 3, label: 'Facebook', trigger: 'q31' },
         { value: 4, label: 'LinkedIn', trigger: 'q31' },
         { value: 5, label: 'Google', trigger: 'q31' },
-        { value: 5, label: 'Conhecidos', trigger: 'q31' },
-        { value: 5, label: 'Convênios com associações', trigger: 'q31' },
-        { value: 5, label: 'Palestras e eventos', trigger: 'q31' },
-        { value: 5, label: 'Outro', trigger: 'q31' },
+        { value: 6, label: 'Conhecidos', trigger: 'q31' },
+        { value: 7, label: 'Convênios com associações', trigger: 'q31' },
+        { value: 8, label: 'Palestras e eventos', trigger: 'q31' },
+        { value: 9, label: 'Outro', trigger: 'q31' },
       ],
     },
     {
@@ -446,10 +446,16 @@ const Steps = [
     {
       id: 'gostaria_receber_contato_agendar_reuniao_gratuita',
       options: [
-        { value: 'sim', label: 'Sim', trigger: 'resumo' },
+        { value: 'sim', label: 'Sim', trigger: 'agendamento' },
         { value: 'nao', label: 'Não', trigger: 'resumo' },
       ],
     },
+    {
+      id: 'agendamento',
+      message: 'Agendamento realizado com sucesso, um especialista entrará em contato.',
+      trigger: 'resumo',
+    },
+    
     {
       id: 'resumo',
       message: 'Muito Obrigado! Aguarde que enviaremos em breve o resultado do seu Diagnóstico Financeiro.',
@@ -504,7 +510,7 @@ const Steps = [
     },
     {
       id: 'end-message',
-      message: 'Obrigado! Sucesso!',
+      message: 'Muito obrigado! Aguarde que enviaremos em breve o resultado do seu Diagnóstico Financeiro.',
       end: true,
     },
 ]

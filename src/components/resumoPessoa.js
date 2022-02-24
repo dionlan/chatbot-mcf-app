@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 function ResumoPessoa(props){
-  
-    const [state, setState] = useState({ nome: '', idade: '', objetivosFinanceirosImediatos: ''});
+/*
+    const [state, setState] = useState({});
 
-    console.log(JSON.stringify(props))
     useEffect(() => {
       const { steps } = props;
-      const { nome, idade, objetivosFinanceirosImediatos} = steps;
-      setState({ nome, idade, objetivosFinanceirosImediatos});
+      setState(steps);
     }, [props])
-
-    
-    const { nome, idade, objetivosFinanceirosImediatos } = state;
+ */
+    console.log(props)
 
     //console.log('Dados Pessoais: ', state)
 
@@ -20,6 +17,8 @@ function ResumoPessoa(props){
         
         <div style={{ width: '100%' }}>
         <h3>Resumo</h3>
+        
+        { /** 
         <table>
           <tbody>
             <tr>
@@ -37,6 +36,7 @@ function ResumoPessoa(props){
             </tr>
           </tbody>
         </table>
+        */}
       </div>
     )
 }
