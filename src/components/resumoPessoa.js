@@ -9,7 +9,8 @@ function ResumoPessoa(props){
       setState(steps);
     }, [props])
  */
-    console.log(props)
+
+    console.log(props.steps.value)
 
     //console.log('Dados Pessoais: ', state)
 

@@ -5,10 +5,10 @@ const Steps = [
     {
       id: 'q1',
       message: 'Vamos lá, qual o seu nome?',
-      trigger: 'nome',
+      trigger: 'r1',
     },
     {
-      id: 'nome',
+      id: 'r1',
       user: true,
       validator: (value) => {
         if (/^[A-Za-z]+$/.test(value)) {
@@ -23,10 +23,10 @@ const Steps = [
     {
       id: 'q2',
       message: 'Olá, {previousValue}, qual sua idade?', 
-      trigger: 'idade'
+      trigger: 'r2'
     },
     {
-      id: 'idade',
+      id: 'r2',
       user: true,
       validator: (value) => {
         if (isNaN(value)) {
@@ -41,10 +41,10 @@ const Steps = [
     {
       id: 'q3',
       message: 'Além de você, quantas pessoas dependem exclusivamente do seu dinheiro?',
-      trigger: 'qtd_dependentes',
+      trigger: 'r3',
     },
     {
-      id:'qtd_dependentes',
+      id:'r3',
       options: [
         { value: 1, label: '4 a mais pessoas', trigger: 'q4' },
         { value: 2, label: '3 pessoas', trigger: 'q4' },
@@ -56,25 +56,25 @@ const Steps = [
     {
       id: 'q4',
       message: 'Qual a sua faixa de renda mensal?',
-      trigger: 'renda_mensal',
+      trigger: 'r4',
     },
     {
-      id:'renda_mensal',
+      id:'r4',
       options: [
-        { value: 1, label: 'até 2 mil', trigger: 'q29' },
-        { value: 2, label: 'de 2 a 6 mil', trigger: 'q29' },
-        { value: 3, label: 'de 6 a 12 mil', trigger: 'q29' },
-        { value: 4, label: 'de 12 a 20 mil', trigger: 'q29' },
-        { value: 5, label: 'acima de 20 mil', trigger: 'q29' },
+        { value: 1, label: 'até 2 mil', trigger: 'q5' },
+        { value: 2, label: 'de 2 a 6 mil', trigger: 'q5' },
+        { value: 3, label: 'de 6 a 12 mil', trigger: 'q5' },
+        { value: 4, label: 'de 12 a 20 mil', trigger: 'q5' },
+        { value: 5, label: 'acima de 20 mil', trigger: 'q5' },
       ],
-    }, /*
+    }, 
     {
       id: 'q5',
       message: 'Como está o seu orçamento mensal com relação as receitas e despesas?',
-      trigger: 'orcamento_mensal_receitas_despesas',
+      trigger: 'r5',
     },
     {
-      id:'orcamento_mensal_receitas_despesas',
+      id:'r5',
       options: [
         { value: 1, label: 'não possuo fonte de renda regular', trigger: 'q6' },
         { value: 2, label: 'gasto o que recebo e ainda mais de 25% desse valor', trigger: 'q6' },
@@ -87,17 +87,17 @@ const Steps = [
     {
       id: 'q6',
       message: 'Como classificaria o nível de estabilidade da sua fonte de renda principal?',
-      trigger: 'estabilidade_renda_principal',
+      trigger: 'r6',
     },
     {
-      id:'estabilidade_renda_principal',
+      id:'r6',
       options: [
-        { value: 1, label: 'nenhuma', trigger: 'q7' },
-        { value: 2, label: 'baixa', trigger: 'q7' },
-        { value: 3, label: 'média', trigger: 'q7' },
-        { value: 4, label: 'alta', trigger: 'q7' },
+        { value: 1, label: 'nenhuma', trigger: 'q29' },
+        { value: 2, label: 'baixa', trigger: 'q29' },
+        { value: 3, label: 'média', trigger: 'q29' },
+        { value: 4, label: 'alta', trigger: 'q29' },
       ],
-    },
+    },/*
     {
       id: 'q7',
       message: 'Possui fontes de rendas extras?',
@@ -412,10 +412,10 @@ const Steps = [
     {
       id: 'q30',
       message: 'Como conheceu o Meu Consultor Financeiro?',
-      trigger: 'como_conheceu_o_meu_consultor_financeiro',
+      trigger: 'r30',
     },
     {
-      id:'como_conheceu_o_meu_consultor_financeiro',
+      id:'r30',
       options: [
         { value: 1, label: 'Instagram', trigger: 'q31' },
         { value: 2, label: 'Site', trigger: 'q31' },
@@ -431,20 +431,20 @@ const Steps = [
     {
       id: 'q31',
       message: 'Conte-nos quaisquer informações complementares sobre sua atual realidade financeira, algum objetivo ou detalhamento que julgue importante sobre seu dinheiro.',
-      trigger: 'observacoes_cliente',
+      trigger: 'r31',
     },
     {
-      id: 'observacoes_cliente',
+      id: 'r31',
       user: true,
       trigger: 'q32',
     },
     {
       id: 'q32',
       message: 'Você gostaria de receber o contato de um profissional para agendar uma reunião gratuita com uma análise da sua situação financeira?',
-      trigger: 'gostaria_receber_contato_agendar_reuniao_gratuita',
+      trigger: 'r32',
     },
     {
-      id: 'gostaria_receber_contato_agendar_reuniao_gratuita',
+      id: 'r32',
       options: [
         { value: 'sim', label: 'Sim', trigger: 'agendamento' },
         { value: 'nao', label: 'Não', trigger: 'resumo' },

@@ -89,7 +89,7 @@ function SelecionaObjetivos (props) {
       </ul>
       <br/>
       <div>
-        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({value: listaObjetivos.concat(state), 
+        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', value: listaObjetivos.concat(state), 
         trigger: 'q30' })}> Prosseguir </Button>
       </div>
     </>
