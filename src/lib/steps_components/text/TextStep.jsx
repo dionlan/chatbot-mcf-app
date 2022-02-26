@@ -28,17 +28,28 @@ class TextStep extends Component {
   }
 
   getMessage = () => {
-    console.log('getMessage', this.props)
     const { previousValue, step } = this.props;
     const { message } = step;
-
     return message ? message.replace(/{previousValue}/g, previousValue) : '';
+  };
+
+  getResposta = () => {
+    const { step } = this.props;
+    const { id, value } = step;
+    if(value){
+      return ({
+        resposta: {
+          id: id,
+          value: value
+        }
+      })
+    }
+    return
   };
 
   renderMessage = () => {
     const { step, steps, previousStep, triggerNextStep, respostas } = this.props;
     const { component } = step;
-
     if (component) {
       return React.cloneElement(component, {
         step,
@@ -113,16 +124,10 @@ TextStep.propTypes = {
     PropTypes.object,
     PropTypes.array
   ]), 
-  respostas: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.array
-  ]),
   speak: PropTypes.func,
   step: PropTypes.objectOf(PropTypes.any).isRequired,
   steps: PropTypes.objectOf(PropTypes.any),
+  respostas: PropTypes.objectOf(PropTypes.any),
   triggerNextStep: PropTypes.func.isRequired
 };
 
@@ -130,7 +135,8 @@ TextStep.defaultProps = {
   previousStep: {},
   previousValue: '',
   speak: () => {},
-  steps: {}
+  steps: {},
+  respostas: {},
 };
 
 export default TextStep;

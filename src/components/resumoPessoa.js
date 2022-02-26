@@ -2,22 +2,24 @@ import React, { useState, useEffect } from 'react';
 
 function ResumoPessoa(props){
 
-  const {state, setState} = useState({
-    steps: {},
-    previousStep: {}
-  })
-  
-  console.log(props)
-  
-  //const steps =[ props.steps ]
+  const[respostas, setRespostas] = useState([])
 
-  //console.log(state) 
+  useEffect(() => {
+    const {respostas} = props
+    setRespostas(respostas)
+  }, [props])
+
+  console.log('respostas: ', JSON.stringify(props, null, 2))
 
   return (
       
       <div style={{ width: '100%' }}>
       <h3>Resumo</h3>
-  
+      <div>
+        {respostas}
+      </div>
+      
+
       { /** {JSON.stringify(steps, null, 2) } 
       <table>
         <tbody>

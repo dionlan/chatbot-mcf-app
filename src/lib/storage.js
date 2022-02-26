@@ -7,7 +7,6 @@ const getData = (params, callback) => {
   const renderedSteps = [steps[currentStep.id]];
   const previousSteps = [steps[currentStep.id]];
   const previousStep = {};
-  const repostas = {};
   const unParsedCache = localStorage.getItem(cacheName);
 
   if (cache && unParsedCache) {
