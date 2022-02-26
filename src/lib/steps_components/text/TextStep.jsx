@@ -49,6 +49,7 @@ class TextStep extends Component {
 
   renderMessage = () => {
     const { step, steps, previousStep, triggerNextStep, respostas } = this.props;
+    console.log('THIS PROPS: ', this.props)
     const { component } = step;
     if (component) {
       return React.cloneElement(component, {
@@ -56,7 +57,7 @@ class TextStep extends Component {
         steps,
         previousStep,
         triggerNextStep,
-        respostas
+        respostas,
       });
     }
 
