@@ -66,16 +66,15 @@ function SelecionaObjetivos (props) {
                     type={'checkbox'}
                     checked={checkedState[index]}
                     onChange={() => handleOnChange(index)}
-                    autoFocus={true}
-                  />
+                    autoFocus={true} />
+
                   <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
                 </>
                   : 
                 <InputText type="text" 
                   className="p-inputtext-sm" 
-                  onChange={e=> setState({outros: e.target.value }) } 
-                  placeholder="Outros objetivos" 
-                />
+                  onChange={ e => setState(e.target.value) } 
+                  placeholder="Outros objetivos" />
               }
             </li>
           );
@@ -90,7 +89,7 @@ function SelecionaObjetivos (props) {
       </ul>
       <br/>
       <div>
-        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos.concat(state), 
+        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos.concat('Outros: ', state), 
         trigger: 'q30' })}> Prosseguir </Button>
       </div>
     </>

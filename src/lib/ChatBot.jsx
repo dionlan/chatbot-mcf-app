@@ -272,6 +272,7 @@ class ChatBot extends Component {
     if (data && data.trigger) {
 
       if(typeof currentStep.component.type === 'function'){
+
         const resp = {
           id: idStep,
           value: data.value
