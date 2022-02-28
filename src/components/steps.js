@@ -405,9 +405,14 @@ const Steps = [
     }, */
     {
       id: 'q29',
+      message: 'Selecione agora seus objetivos financeiros imediatos.',
+      trigger: 'r29'
+    }, 
+    {
+      id: 'r29',
       component: <SelecionaObjetivos />,
-      asMessage: true,
       waitAction: true,
+      asMessage: true,
     }, 
     {
       id: 'q30',

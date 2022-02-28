@@ -6,6 +6,7 @@ import { InputText } from 'primereact/inputtext';
 import './components.css'
 
 function SelecionaObjetivos (props) {
+
   const [checkedState, setCheckedState] = useState(
     new Array(ObjetivosFinanceiros.length).fill(false)
   );
@@ -14,6 +15,8 @@ function SelecionaObjetivos (props) {
 
   const [listaObjetivos, setListaObjetivos] = useState([]);
   const [notaFinal, setNotaFinal] = useState(0);
+
+  console.log('triggerNextStep do seleção de objetivos: ', props)
 
   const handleOnChange = ( position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -50,7 +53,7 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
-  
+  //console.log('Objetivos selecionados: ', props)
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>
@@ -89,7 +92,7 @@ function SelecionaObjetivos (props) {
       </ul>
       <br/>
       <div>
-        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', value: listaObjetivos.concat(state), 
+        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos.concat(state), 
         trigger: 'q30' })}> Prosseguir </Button>
       </div>
     </>

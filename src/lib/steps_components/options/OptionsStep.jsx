@@ -8,7 +8,7 @@ import OptionsStepContainer from './OptionsStepContainer';
 class OptionsStep extends Component {
   onOptionClick = ({ value }) => {
     const { triggerNextStep } = this.props;
-
+    console.log('OPTION CLICCADO!')
     triggerNextStep({ value });
   };
 

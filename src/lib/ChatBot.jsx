@@ -255,12 +255,14 @@ class ChatBot extends Component {
 
   triggerNextStep = data => {
     const { enableMobileAutoFocus } = this.props;
-    const { defaultUserSettings, previousSteps, renderedSteps, steps } = this.state;
+    const { defaultUserSettings, previousSteps, renderedSteps, steps, listaRespostas } = this.state;
 
-    let { currentStep, previousStep } = this.state;
+    let { currentStep, previousStep, respostas } = this.state;
     const isEnd = currentStep.end;
-
+    const idStep = currentStep.id;
+    
     if (data && data.value) {
+      //console.log('data && data.value: ', data.value)
       currentStep.value = data.value;
     }
     if (data && data.hideInput) {
@@ -270,6 +272,19 @@ class ChatBot extends Component {
       currentStep.hideExtraControl = data.hideExtraControl;
     }
     if (data && data.trigger) {
+      console.log('currentStep: ', currentStep)
+      console.log('currentStep.typeof component: ', (typeof currentStep.component.type))
+
+      if(typeof currentStep.component.type === 'function'){
+        console.log('DENTRO DA FUNCTION!')
+        const resp = {
+          id: idStep,
+          value: data.value
+        };
+        respostas = Object.assign({}, respostas, resp);
+        listaRespostas.push(respostas)
+        this.getRespostasById();
+      }
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
     }
 
@@ -291,16 +306,20 @@ class ChatBot extends Component {
 
       renderedSteps.push(currentStep);
       previousSteps.push(currentStep);
+      listaRespostas.push(currentStep);
 
       this.setState({
         currentStep,
         renderedSteps,
         previousSteps,
+        listaRespostas,
       });
     } else if (currentStep.trigger) {
       if (currentStep.replace) {
         renderedSteps.pop();
       }
+      //se o passo atual possui message(lista_respostas) chama o getResultadoById para atribuir a lista de respostas ao step: respostas
+      //console.log(currentStep)
 
       const trigger = this.getTriggeredStep(currentStep.trigger, currentStep.value);
       let nextStep = Object.assign({}, steps[trigger]);
@@ -320,11 +339,14 @@ class ChatBot extends Component {
         }
       }
 
+      //console.log('CURRENT ANTES: ', currentStep)
       nextStep.key = Random(24);
-
+      //console.log('previousStep = ', previousStep, 'currentStep ', currentStep)
       previousStep = currentStep;
-      currentStep = nextStep;
 
+      //console.log('currentStep = ', currentStep, 'nextStep ', nextStep)
+      currentStep = nextStep;
+     //console.log('CURRENT depois: ', currentStep)
       this.setState({ renderedSteps, currentStep, previousStep }, () => {
         if (nextStep.user) {
           this.setState({ disabled: false }, () => {
@@ -335,9 +357,11 @@ class ChatBot extends Component {
             }
           });
         } else {
+          
           renderedSteps.push(nextStep);
           previousSteps.push(nextStep);
-
+          //listaRespostas.push(respostas)
+          //console.log('LISTA RESPOSTAS: ', listaRespostas)
           this.setState({ renderedSteps, previousSteps });
         }
       });
@@ -446,7 +470,7 @@ class ChatBot extends Component {
     const { speaking, recognitionEnable } = this.state;
 
     if ((this.isInputValueEmpty() || speaking) && recognitionEnable) {
-      this.recognition.speak();
+        this.recognition.speak();
       if (!speaking) {
         this.setState({ speaking: true });
       }
@@ -458,9 +482,8 @@ class ChatBot extends Component {
 
   submitUserMessage = () => {
     const { defaultUserSettings, inputValue, previousSteps, renderedSteps, listaRespostas } = this.state;
-    let { currentStep } = this.state;
-    let { respostas } = this.state;
-
+    let { currentStep, respostas } = this.state;
+    
     const isInvalid = currentStep.validator && this.checkInvalidInput();
     const idStep = currentStep.id;
 
@@ -476,9 +499,8 @@ class ChatBot extends Component {
       };
 
       currentStep = Object.assign({}, defaultUserSettings, currentStep, step);
-      respostas = Object.assign({}, respostas, resp);
 
-      console.log('LISTA respostasssssssss: ', listaRespostas)
+      respostas = Object.assign({}, respostas, resp);
 
       renderedSteps.push(currentStep);
       previousSteps.push(currentStep);
