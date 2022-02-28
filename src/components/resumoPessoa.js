@@ -8,36 +8,38 @@ function ResumoPessoa(props){
   const[respostas, setRespostas] = useState([])
   const [editingRows, setEditingRows] = useState({});
   const [listaEditada, setListaEditada] = useState(null);
+  const [resultado, setResultado] = useState([])
 
   useEffect(() => {
     setRespostas(props.respostas)
+    const _resultado = [...Object.values(respostas)]
+    setResultado(_resultado)
   }, [props])
-
-  const resultado = [...Object.values(respostas)]
-
+  
   console.log('resultado: ', resultado)
+
+  const onCellEditComplete = (e) => {
+    let { rowData, index, newValue, field, originalEvent: event } = e;
+    let _resultado = [...resultado];
+    if (newValue.trim().length > 0){
+      rowData[field] = newValue;
+      setResultado(_resultado, rowData[field]);
+      console.log('lista atualizada após edição: ', _resultado[index])
+    }else{
+      event.preventDefault();
+    } 
+  }
+
+
+  const onRowEditComplete = (e) => {
+    let _resultado = [...resultado];
+    let { newData, index } = e;
+    _resultado[index] = newData;
+    setResultado(_resultado);
+  }
 
   const onRowEditChange = (e) => {
     setEditingRows(e.data);
-  }
-
-  const onRowEditComplete = (e) => {
-    let _listaEditada = [...listaEditada];
-    let { newData, index } = e;
-
-    _listaEditada[index] = newData;
-
-    setListaEditada(_listaEditada);
-  }
-
-  const onCellEditComplete = (e) => {
-    let { rowData, newValue, field, originalEvent: event } = e;
-    console.log('Novo valor: ', newValue);
-      if (newValue.trim().length > 0) {
-        rowData[field] = newValue; 
-      } else {
-        event.preventDefault();
-      }
   }
 
   const cellEditor = (options) => {
@@ -67,11 +69,11 @@ function ResumoPessoa(props){
       <div>
         <h5>Resultado do Diagnóstico Financeiro</h5>
         <p>Para editar qualquer valor, clique no campo a ser corrigido.</p>
-          <DataTable value={resultado} editMode="cell" className="editable-cells-table" responsiveLayout="scroll">
+          <DataTable value={resultado} editMode="cell" editMode="cell" className="editable-cells-table" responsiveLayout="scroll">
+
             <Column field="id" header="Id" style={{ width: '1%' }}> </Column>
 
-            <Column field="value" header="Resposta" style={{ width: '25%' }} editor={(options) => cellEditor(options)}
-            onCellEditComplete={onCellEditComplete} />
+            <Column field="value" header="Resposta" style={{ width: '25%' }} editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} />
           
           </DataTable>
       </div>
