@@ -16,8 +16,6 @@ function SelecionaObjetivos (props) {
   const [listaObjetivos, setListaObjetivos] = useState([]);
   const [notaFinal, setNotaFinal] = useState(0);
 
-  console.log('triggerNextStep do seleção de objetivos: ', props)
-
   const handleOnChange = ( position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item,
@@ -53,7 +51,6 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
-  //console.log('Objetivos selecionados: ', props)
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>
@@ -74,10 +71,11 @@ function SelecionaObjetivos (props) {
                   <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
                 </>
                   : 
-                  <InputText type="text" 
-                    className="p-inputtext-sm" 
-                    onChange={e=> setState({outros: e.target.value }) } 
-                    placeholder="Outros objetivos" />
+                <InputText type="text" 
+                  className="p-inputtext-sm" 
+                  onChange={e=> setState({outros: e.target.value }) } 
+                  placeholder="Outros objetivos" 
+                />
               }
             </li>
           );

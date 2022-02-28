@@ -5,11 +5,11 @@ function ResumoPessoa(props){
   const[respostas, setRespostas] = useState([])
 
   useEffect(() => {
-    const {respostas} = props
+    const { respostas } = props
     setRespostas(JSON.stringify(respostas))
   }, [props])
 
- // console.log('respostas: ', respostas)
+  console.log('respostas: ', respostas)
 
   return (
       
