@@ -6,11 +6,8 @@ import { InputText } from 'primereact/inputtext';
 function ResumoPessoa(props){
 
   const[respostas, setRespostas] = useState([])
-
-  const columns = [
-    { field: 'id', header: 'Id da Questão ' },
-    { field: 'value', header: 'Resposta' },
-];
+  const [editingRows, setEditingRows] = useState({});
+  const [listaEditada, setListaEditada] = useState(null);
 
   useEffect(() => {
     setRespostas(props.respostas)
@@ -20,26 +17,38 @@ function ResumoPessoa(props){
 
   console.log('resultado: ', resultado)
 
+  const onRowEditChange = (e) => {
+    setEditingRows(e.data);
+  }
+
+  const onRowEditComplete = (e) => {
+    let _listaEditada = [...listaEditada];
+    let { newData, index } = e;
+
+    _listaEditada[index] = newData;
+
+    setListaEditada(_listaEditada);
+  }
+
+  const onCellEditComplete = (e) => {
+    let { rowData, newValue, field, originalEvent: event } = e;
+    console.log('Novo valor: ', newValue);
+      if (newValue.trim().length > 0) {
+        rowData[field] = newValue; 
+      } else {
+        event.preventDefault();
+      }
+  }
+
   const cellEditor = (options) => {
     return textEditor(options);
   }
 
   const textEditor = (options) => {
+    console.log('VALUR ATUALIZADO: ', options.value)
     return <InputText type="text" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;
   }
 
-  const onCellEditComplete = (e) => {
-    let { rowData, newValue, field, originalEvent: event } = e;
-
-  switch (field) {
-    default:
-      if (newValue.trim().length > 0)
-          rowData[field] = newValue;
-      else
-          event.preventDefault();
-      break;
-  }
-}
 
   return (
     <div className="datatable-editing-demo">
@@ -58,17 +67,14 @@ function ResumoPessoa(props){
       <div>
         <h5>Resultado do Diagnóstico Financeiro</h5>
         <p>Para editar qualquer valor, clique no campo a ser corrigido.</p>
-        <DataTable value={resultado} editMode="cell" className="editable-cells-table" responsiveLayout="scroll">
-          {
-            columns.map(({ field, header }) => {
-                return <Column key={field} field={field} header={header} style={{ width: '25%' }}
-                    editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete}/>
-            })
-          }
-        </DataTable>
-      </div>
-      
+          <DataTable value={resultado} editMode="cell" className="editable-cells-table" responsiveLayout="scroll">
+            <Column field="id" header="Id" style={{ width: '1%' }}> </Column>
 
+            <Column field="value" header="Resposta" style={{ width: '25%' }} editor={(options) => cellEditor(options)}
+            onCellEditComplete={onCellEditComplete} />
+          
+          </DataTable>
+      </div>
       
 
       {
