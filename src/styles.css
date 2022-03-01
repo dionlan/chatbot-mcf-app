@@ -16,3 +16,18 @@ body {
 h1, h2, h3, h4, h5 {
   color: #fff
 }
+.p-datatable-tbody >tr >td {
+  background: #45c49e;
+}
+
+.p-datatable .p-datatable-thead >tr >th{
+  background: #45c49e;
+}
+
+.p-datatable .p-datatable-thead >tr >th{
+  background: #45c49e;
+}
+
+.p-datatable .p-datatable-tbody >tr >td{
+  font-size: 1rem;
+}
