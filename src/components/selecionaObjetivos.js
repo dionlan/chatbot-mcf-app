@@ -60,7 +60,7 @@ function SelecionaObjetivos (props) {
             <li key={index}>
               {objetivo !== 'Outros' ?
                 <>
-                  <Checkbox
+                  <input
                     id={`custom-checkbox-${index}`}
                     value={objetivo}
                     type={'checkbox'}
@@ -71,7 +71,7 @@ function SelecionaObjetivos (props) {
                   <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
                 </>
                   : 
-                <InputText type="text" 
+                <input type="text" 
                   className="p-inputtext-sm" 
                   onChange={ e => setState(e.target.value) } 
                   placeholder="Outros objetivos" />
@@ -89,8 +89,8 @@ function SelecionaObjetivos (props) {
       </ul>
       <br/>
       <div>
-        <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos.concat('Outros: ', state), 
-        trigger: 'q30' })}> Prosseguir </Button>
+        <button  onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos.concat('Outros: ', state), 
+        trigger: 'q30' })}> Prosseguir </button>
       </div>
     </>
   );

@@ -272,13 +272,13 @@ class ChatBot extends Component {
     if (data && data.trigger) {
 
       if(typeof currentStep.component.type === 'function'){
-
         const resp = {
           id: idStep,
           value: data.value
         };
         respostas = Object.assign({}, respostas, resp);
         listaRespostas.push(respostas)
+        console.log('lista respostas: ', listaRespostas)
         this.getRespostasById();
       }
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
@@ -297,12 +297,20 @@ class ChatBot extends Component {
         message: option.label,
         trigger
       });
+
+      const resp = {
+        id: idStep,
+        value: data.value
+      };
+
+      respostas = Object.assign({}, respostas, resp);
+      
       renderedSteps.pop();
       previousSteps.pop();
 
       renderedSteps.push(currentStep);
       previousSteps.push(currentStep);
-      listaRespostas.push(currentStep);
+      listaRespostas.push(respostas);
 
       this.setState({
         currentStep,

@@ -441,7 +441,13 @@ const Steps = [
     {
       id: 'r31',
       user: true,
-      trigger: 'q32',
+      trigger: 'resumo',
+    },
+    {
+      id: 'resumo',
+      component: <ResumoPessoa />,
+      waitAction: true,
+      asMessage: true,
     },
     {
       id: 'q32',
@@ -452,26 +458,22 @@ const Steps = [
       id: 'r32',
       options: [
         { value: 'sim', label: 'Sim', trigger: 'agendamento' },
-        { value: 'nao', label: 'Não', trigger: 'resumo' },
+        { value: 'nao', label: 'Não', trigger: 'finaliza' },
       ],
     },
     {
       id: 'agendamento',
       message: 'Agendamento realizado com sucesso, um especialista entrará em contato.',
-      trigger: 'resumo',
+      trigger: 'finaliza',
     },
     
     {
-      id: 'resumo',
+      id: 'finaliza',
       message: 'Muito Obrigado! Aguarde que enviaremos em breve o resultado do seu Diagnóstico Financeiro.',
-      trigger: 'pessoa',
-    },
-    {
-      id: 'pessoa',
-      component: <ResumoPessoa />,
-      asMessage: true,
-      trigger: 'update',
-    },
+      end: true
+    }
+    /*,
+ 
     {
       id: 'update',
       message: 'Gostaria de atualizar algo?',
@@ -517,6 +519,6 @@ const Steps = [
       id: 'end-message',
       message: 'Muito obrigado! Aguarde que enviaremos em breve o resultado do seu Diagnóstico Financeiro.',
       end: true,
-    },
+    }, */
 ]
 export default Steps
