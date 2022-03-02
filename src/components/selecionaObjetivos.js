@@ -51,16 +51,16 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
+
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>
-      <ul>
         {ObjetivosFinanceiros.map(({ objetivo }, index) => {
           return (
             <li key={index}>
               {objetivo !== 'Outros' ?
                 <>
-                  <input
+                  <Checkbox
                     id={`custom-checkbox-${index}`}
                     value={objetivo}
                     type={'checkbox'}
@@ -71,7 +71,7 @@ function SelecionaObjetivos (props) {
                   <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
                 </>
                   : 
-                <input type="text" 
+                <InputText type="text" style={{ width: '100%' }}
                   className="p-inputtext-sm" 
                   onChange={ e => setState(e.target.value) } 
                   placeholder="Outros objetivos" />
@@ -86,12 +86,11 @@ function SelecionaObjetivos (props) {
         <div>
           <label><strong>Nota Final: </strong>{`${notaFinal.toFixed(2)}`}</label> { /** código javascript em HTML {`${javascript}`} */}
         </div>
-      </ul>
-      <br/>
-      <div>
-        <button  onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos.concat('Outros: ', state), 
-        trigger: 'q30' })}> Prosseguir </button>
-      </div>
+
+        <br/>
+        <Button  className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos.concat('Outros: ' + state), 
+        trigger: 'q30' })}> Prosseguir </Button>
+      
     </>
   );
 }

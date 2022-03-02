@@ -16,18 +16,27 @@ body {
 h1, h2, h3, h4, h5 {
   color: #fff
 }
-.p-datatable-tbody >tr >td {
+
+.p-datatable .p-datatable-thead > tr > th {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #dee2e6;
+  border-width: 0 0 1px 0;
+  color: #fff;
   background: #45c49e;
+  transition: box-shadow 0.2s;
 }
 
-.p-datatable .p-datatable-thead >tr >th{
+.p-datatable .p-datatable-tbody > tr > td{
   background: #45c49e;
+  color: #fff;
+  text-align: left;
+  border: 1px solid #dee2e6;
+  border-width: 0 0 1px 0;
+  padding: 0rem 0rem;
 }
 
-.p-datatable .p-datatable-thead >tr >th{
+.p-datatable .p-datatable-thead  {
   background: #45c49e;
-}
 
-.p-datatable .p-datatable-tbody >tr >td{
-  font-size: 1rem;
 }

@@ -270,6 +270,9 @@ class ChatBot extends Component {
       currentStep.hideExtraControl = data.hideExtraControl;
     }
     if (data && data.trigger) {
+      console.log('data: ', data)
+      console.log('currentStep: ', currentStep)
+      console.log('typeof currentStep.component.type: ', typeof currentStep.component.type)
 
       if(typeof currentStep.component.type === 'function'){
         const resp = {
