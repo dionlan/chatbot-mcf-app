@@ -66,14 +66,15 @@ function SelecionaObjetivos (props) {
                     type={'checkbox'}
                     checked={checkedState[index]}
                     onChange={() => handleOnChange(index)}
-                    autoFocus={true} />
+                    autoFocus={true} 
+                    className="p-checkbok-success p-checkox-sm"/>
 
-                  <label htmlFor={`custom-checkbox-${index}`}>{objetivo}</label>
+                  <label>{objetivo}</label>
                 </>
                   : 
                 <InputText type="text" style={{ width: '100%' }}
-                  className="p-inputtext-sm" 
                   onChange={ e => setState(e.target.value) } 
+                  className="p-inputtext-success p-inputtext-sm"
                   placeholder="Outros objetivos" />
               }
             </li>
