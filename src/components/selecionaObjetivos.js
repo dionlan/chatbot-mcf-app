@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button } from 'primereact/button';
 import ObjetivosFinanceiros from '../utils/objetivosFinanceiros';
 import { Checkbox } from 'primereact/checkbox';
@@ -7,24 +7,24 @@ import './components.css'
 
 function SelecionaObjetivos (props) {
 
-  useEffect(()  => {
-    console.log('steeppps: ', props)
-  }, [] )
-  
-
   const [checkedState, setCheckedState] = useState(
     new Array(ObjetivosFinanceiros.length).fill(false)
   );
 
-  const [state, setState] = useState('')
+  const [state, setState] = useState([])
 
   const [listaObjetivos, setListaObjetivos] = useState([]);
   const [notaFinal, setNotaFinal] = useState(0);
 
   const handleOnChange = ( position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item,
+      index === position ? !item : item
     );
+
+    /*
+      verificar se o inputText está true, depois pegar o position.target.value e setar no setState
+    */
+
     setCheckedState(updatedCheckedState);
     const totalObjetivos = updatedCheckedState.reduce(
       (obj, currentState, index) => {
@@ -42,8 +42,15 @@ function SelecionaObjetivos (props) {
       },
       ''
     );
-
-    setListaObjetivos(totalObjetivos)
+ 
+    if (position.target){
+      setState({
+        id: 18,
+        outros: position.target.value ? position.target.value : ''
+      })
+    }
+    
+    setListaObjetivos([...totalObjetivos, state])
 
     const notaFinalAtualizada = updatedCheckedState.reduce(
       (obj, currentState, index) => {
@@ -77,9 +84,9 @@ function SelecionaObjetivos (props) {
                   <label>{objetivo}</label>
                 </>
                   : 
-                <InputText type="text" style={{ width: '100%' }}
-                  onChange={ e => setState(e.target.value) } 
-                  className="p-inputtext-success p-inputtext-sm"
+                <InputText style={{ width: '100%' }}
+                  id="outros"
+                  onChange={ (e) => handleOnChange(e) } 
                   placeholder="Outros objetivos" />
               }
             </li>
@@ -94,7 +101,7 @@ function SelecionaObjetivos (props) {
         </div>
 
         <br/>
-        <Button  className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos.concat('Outros: ' + state), 
+        <Button  className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos, 
         trigger: 'q30' })}> Prosseguir </Button>
       
     </>

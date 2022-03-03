@@ -7,6 +7,8 @@ import './components.css'
 function ResumoPessoa(props){
 
   const[respostas, setRespostas] = useState([])
+  const [expandedRows, setExpandedRows] = useState(null);
+  
   console.log('props: ', props)
   useEffect(() => {
     const _respostas = [...Object.values(props.respostas)]
@@ -36,14 +38,49 @@ function ResumoPessoa(props){
     return <input type="text" value={options.value} style={{ width: '100%' }}  onChange={(e) => options.editorCallback(e.target.value)} />;
   }
 
+  const rowExpansionTemplate = (data) => {
+    console.log('data: ', data)
+    return (
+        <div className="orders-subtable">
+            <h5>Objetivos Financeiros Imediatos</h5>
+            <DataTable value={data.objetivo} responsiveLayout="scroll">
+                <Column field="id" header="Id" sortable></Column>
+                <Column field="objetivo" header="Objetivo" sortable></Column>
+            </DataTable>
+        </div>
+    );
+  }
+
+ // const value = respostas.filter(r => r.resposta).map(r => r.resposta);
+
+ 
+  
+
   return (
     <>
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <p>Para editar qualquer valor, clique no campo a ser corrigido.</p>
-        <DataTable value={respostas} editMode="cell" responsiveLayout="scroll">
-          <Column field="id" header="Id" style={{ width: '1%' }}> </Column>
-          <Column field="value" header="Resposta" style={{ width: '25%' }} editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} />
+        <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
+          {respostas.map(resposta => {
+            console.log('resposta: ', resposta)
+            return (
+              <div key={resposta.id}>
+
+                {Array.isArray(resposta.resposta) && resposta.resposta.map(objetivo => {
+                    <div key={objetivo.id}>
+                      { console.log('objetivos', objetivo.objetivo) }
+                    </div>
+                  })
+                }
+              </div>
+          )})}
+            
+          <Column field="idResposta" header="Id" style={{ width: '1%' }}> </Column>
+          
+          <Column field="idQuestao" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} 
+                  expander />
         </DataTable>
+
         <br/>
         <div>
           Respostas {JSON.stringify(respostas)} <br/>
