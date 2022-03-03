@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import ObjetivosFinanceiros from '../utils/objetivosFinanceiros';
 import { Checkbox } from 'primereact/checkbox';
@@ -6,6 +6,11 @@ import { InputText } from 'primereact/inputtext';
 import './components.css'
 
 function SelecionaObjetivos (props) {
+
+  useEffect(()  => {
+    console.log('steeppps: ', props)
+  }, [] )
+  
 
   const [checkedState, setCheckedState] = useState(
     new Array(ObjetivosFinanceiros.length).fill(false)
@@ -25,7 +30,7 @@ function SelecionaObjetivos (props) {
       (obj, currentState, index) => {
         if (currentState === true) {
           //let newArr = setListaObjetivos({...obj, [listaObjetivos.objetivo]: ObjetivosFinanceiros[index].objetivo})
-          let newArr = [...obj, ObjetivosFinanceiros[index].objetivo]
+          let newArr = [...obj, ObjetivosFinanceiros[index]]
           return newArr
           /*return setStateObjetivo((prevProps) => ({
             ...prevProps,
@@ -55,13 +60,13 @@ function SelecionaObjetivos (props) {
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>
-        {ObjetivosFinanceiros.map(({ objetivo }, index) => {
+        {ObjetivosFinanceiros.map(({ id, objetivo }, index) => {
           return (
             <li key={index}>
               {objetivo !== 'Outros' ?
                 <>
                   <Checkbox
-                    id={`custom-checkbox-${index}`}
+                    id={id}
                     value={objetivo}
                     type={'checkbox'}
                     checked={checkedState[index]}

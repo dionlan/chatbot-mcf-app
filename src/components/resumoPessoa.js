@@ -13,7 +13,7 @@ function ResumoPessoa(props){
     setRespostas(_respostas)
   }, [props])
   
-  console.log('respostas: ', respostas)
+  console.log('respostas: ', JSON.stringify(respostas, null, 2))
 
   const onCellEditComplete = (e) => {
     let { rowData, index, newValue, field, originalEvent: event } = e;

@@ -243,10 +243,11 @@ class ChatBot extends Component {
     const { listaRespostas } = this.state;
     const respostas = {};
     for (let i = 0, len = listaRespostas.length; i < len; i += 1) {
-      const { id, value } = listaRespostas[i];
-      respostas[id] = {
-        id, 
-        value,
+      const { idQuestao, idResposta, resposta } = listaRespostas[i];
+      respostas[idQuestao] = {
+        idQuestao,
+        idResposta, 
+        resposta,
       };
     }
     return respostas;
@@ -255,10 +256,10 @@ class ChatBot extends Component {
   triggerNextStep = data => {
     const { enableMobileAutoFocus } = this.props;
     const { defaultUserSettings, previousSteps, renderedSteps, steps, listaRespostas } = this.state;
-
     let { currentStep, previousStep, respostas } = this.state;
     const isEnd = currentStep.end;
-    const idStep = currentStep.id;
+    const idQuestao = previousStep.id
+    const idResposta = currentStep.id;
     
     if (data && data.value) {
       currentStep.value = data.value;
@@ -270,20 +271,19 @@ class ChatBot extends Component {
       currentStep.hideExtraControl = data.hideExtraControl;
     }
     if (data && data.trigger) {
-      console.log('data: ', data)
-      console.log('currentStep: ', currentStep)
-      console.log('typeof currentStep.component.type: ', typeof currentStep.component.type)
 
+      /*
       if(typeof currentStep.component.type === 'function'){
         const resp = {
-          id: idStep,
+          idQuestao: idQuestao,
+          idResposta: idResposta,
           value: data.value
         };
         respostas = Object.assign({}, respostas, resp);
         listaRespostas.push(respostas)
         console.log('lista respostas: ', listaRespostas)
         this.getRespostasById();
-      }
+      }*/
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
     }
 
@@ -300,35 +300,45 @@ class ChatBot extends Component {
         message: option.label,
         trigger
       });
-
+/*
       const resp = {
-        id: idStep,
+        idQuestao: idQuestao,
+        idResposta: idResposta,
         value: data.value
-      };
+      }; */
 
-      respostas = Object.assign({}, respostas, resp);
+      //respostas = Object.assign({}, respostas, resp);
       
       renderedSteps.pop();
       previousSteps.pop();
 
       renderedSteps.push(currentStep);
       previousSteps.push(currentStep);
-      listaRespostas.push(respostas);
+      //listaRespostas.push(respostas);
 
       this.setState({
         currentStep,
         renderedSteps,
         previousSteps,
-        listaRespostas,
       });
     } else if (currentStep.trigger) {
       if (currentStep.replace) {
         renderedSteps.pop();
       }
-
       const trigger = this.getTriggeredStep(currentStep.trigger, currentStep.value);
       let nextStep = Object.assign({}, steps[trigger]);
 
+      if (currentStep.value){
+        const resposta = {
+          idQuestao: idQuestao,
+          idResposta: idResposta,
+          resposta: currentStep.value
+        };
+        listaRespostas.push(resposta);
+        console.log('Lista Resposta: ', listaRespostas)
+      }
+
+      
       if (nextStep.message) {
         nextStep.message = this.getStepMessage(nextStep.message);
       } else if (nextStep.update) {
@@ -347,18 +357,18 @@ class ChatBot extends Component {
       nextStep.key = Random(24);
       previousStep = currentStep;
       currentStep = nextStep;
-
+      
       this.setState({ renderedSteps, currentStep, previousStep }, () => {
         if (nextStep.user) {
           this.setState({ disabled: false }, () => {
             if (enableMobileAutoFocus || !isMobile()) {
               if (this.input) {
+                
                 this.input.focus();
               }
             }
           });
         } else {
-          
           renderedSteps.push(nextStep);
           previousSteps.push(nextStep);
           this.setState({ renderedSteps, previousSteps });
@@ -374,6 +384,7 @@ class ChatBot extends Component {
           previousStep,
           previousSteps,
           renderedSteps,
+          listaRespostas
         });
       }, 300);
     }
@@ -482,8 +493,8 @@ class ChatBot extends Component {
   submitUserMessage = () => {
     const { defaultUserSettings, inputValue, previousSteps, renderedSteps, listaRespostas } = this.state;
     let { currentStep, respostas } = this.state;
-    
     const isInvalid = currentStep.validator && this.checkInvalidInput();
+
     const idStep = currentStep.id;
 
     if (!isInvalid) {
@@ -492,18 +503,20 @@ class ChatBot extends Component {
         value: inputValue
       };
 
+      /*
       const resp = {
-        id: idStep,
+        idQuestao: idQues,
+        idResposta: idStep,
         value: inputValue
-      };
+      };*/
 
       currentStep = Object.assign({}, defaultUserSettings, currentStep, step);
 
-      respostas = Object.assign({}, respostas, resp);
+      //respostas = Object.assign({}, respostas, resp);
 
       renderedSteps.push(currentStep);
       previousSteps.push(currentStep);
-      listaRespostas.push(respostas)
+      //listaRespostas.push(respostas)
       
       this.setState(
         {
