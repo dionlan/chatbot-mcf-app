@@ -53,9 +53,16 @@ function ResumoPessoa(props){
     );
   }
 
+  /*
+  adicionar essa lista dentro do campo reposta referente a lista de objetivos financeiros
+  ['Quitar as minhas dívidas', 'Juntar dinheiro para a minha aposentadoria', 'asdf']
+  OU montar a lista nesse formado vinda de selecionaObjetivos.js
+  */
+  const apenasRepostas = respostas.map(a => a.resposta).filter(b => Array.isArray(b))[0].map(o => o.objetivo)
+
   return (
     <>
-    {console.log('apenasRepostas: ', respostas)}
+    {console.log('apenasRepostas: ', apenasRepostas)}
     { /*console.log('objetivos financeiros selecionados: ', objetivosFinanceiros) */}
       <div className="orders-subtable">
           <h5>Objetivos Financeiros Imediatos</h5>
@@ -80,8 +87,10 @@ function ResumoPessoa(props){
           <Column field="idQuestao" header="Id Questão" editor={(options) => cellEditor(options)} 
             onCellEditComplete={onCellEditComplete} />
             
-          <Column field="idQuestao" header="Resposta" editor={(options) => cellEditor(options)} 
-            onCellEditComplete={onCellEditComplete} />
+          <Column values={objetivosFinanceiros} field="objetivo" header="Resposta" editor={(options) => cellEditor(options)} 
+            onCellEditComplete={onCellEditComplete}>
+            
+          </Column>
           
           {
             /*
