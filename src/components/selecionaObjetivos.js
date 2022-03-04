@@ -68,7 +68,7 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
-  console.log('Lista Resposta: ', listaObjetivos)
+  //console.log('Lista Resposta: ', listaObjetivos)
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>

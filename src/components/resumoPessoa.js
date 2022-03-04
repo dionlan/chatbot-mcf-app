@@ -16,7 +16,7 @@ function ResumoPessoa(props){
     setRespostas(_respostas)
   }, [props])
   
-  console.log('respostas: ', JSON.stringify(respostas, null, 2))
+  //console.log('respostas: ', JSON.stringify(respostas, null, 2))
 
   const onCellEditComplete = (e) => {
     let { rowData, index, newValue, field, originalEvent: event } = e;
@@ -39,17 +39,7 @@ function ResumoPessoa(props){
     return <input type="text" value={options.value} style={{ width: '100%' }}  onChange={(e) => options.editorCallback(e.target.value)} />;
   }
 
-  const value = respostas.map((r) => {
-    return (
-      Array.isArray(r.resposta) && r.resposta.map(obj => {
-        return (
-          obj.objetivo 
-        )
-        
-      
-    }))})
 
-  console.log(value)
     
   const rowExpansionTemplate = (value) => {
     console.log('data: ', value)
@@ -64,28 +54,49 @@ function ResumoPessoa(props){
     );
   }
 
-
-
+  const result = () => {
+    return (
+      respostas.map(a => a.resposta).filter(b => Array.isArray(b))[0]
+    )
+  }
+  
   return (
     <>
+    {console.log('resposta: ', respostas)}
+    {console.log('result: ', result())}
+      <div className="orders-subtable">
+          <h5>Objetivos Financeiros Imediatos</h5>
+          <DataTable value={result()} responsiveLayout="scroll">
+              <Column field="id" header="Id"></Column>
+              <Column field="objetivo" header="Objetivo"></Column>
+          </DataTable>
+      </div>
+ 
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <p>Para editar qualquer valor, clique no campo a ser corrigido.</p>
+        
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
           <Column field="idResposta" header="Id Resposta" style={{ width: '1%' }}> </Column>
           
           <Column field="idQuestao" header="Id Questão" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
             onCellEditComplete={onCellEditComplete} />
           {
-            console.log('valueeee: ', objFinanceiros)
+            //console.log('valueeee: ', objFinanceiros)
           }
           {
-            
+            /*
             objFinanceiros.length ? 
             <Column expander field="resposta" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
             onCellEditComplete={onCellEditComplete} dataKey="id" />
             :
             <Column field="resposta" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
-            onCellEditComplete={onCellEditComplete} dataKey="id" />
+            onCellEditComplete={onCellEditComplete} dataKey="id" /> */
           }
         
         </DataTable>
