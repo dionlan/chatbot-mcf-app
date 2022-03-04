@@ -9,7 +9,6 @@ function ResumoPessoa(props){
   const[respostas, setRespostas] = useState([])
   const [expandedRows, setExpandedRows] = useState(null);
   
-  console.log('props: ', props)
   useEffect(() => {
     const _respostas = [...Object.values(props.respostas)]
     setRespostas(_respostas)
@@ -53,28 +52,25 @@ function ResumoPessoa(props){
 
  // const value = respostas.filter(r => r.resposta).map(r => r.resposta);
 
- 
-  
-
   return (
     <>
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <p>Para editar qualquer valor, clique no campo a ser corrigido.</p>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
-          {respostas.map(resposta => {
-            console.log('resposta: ', resposta)
+          {respostas.map((r, id) => {
             return (
-              <div key={resposta.id}>
-
-                {Array.isArray(resposta.resposta) && resposta.resposta.map(objetivo => {
-                    <div key={objetivo.id}>
-                      { console.log('objetivos', objetivo.objetivo) }
+              <div key={id}>
+                {
+                  Array.isArray(r.resposta) && r.resposta.map(obj => {
+                    <div key={obj.id}>
+                      { console.log('objetivo: ', obj.objetivo) }
                     </div>
                   })
                 }
               </div>
-          )})}
-            
+            );
+          })}
+                      
           <Column field="idResposta" header="Id" style={{ width: '1%' }}> </Column>
           
           <Column field="idQuestao" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} 

@@ -46,7 +46,7 @@ function SelecionaObjetivos (props) {
     if (position.target){
       setState({
         id: 18,
-        outros: position.target.value ? position.target.value : ''
+        objetivo: position.target.value ? position.target.value : 'sem outros objetivos'
       })
     }
     
@@ -63,7 +63,7 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
-
+  console.log('Lista Resposta: ', listaObjetivos)
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>

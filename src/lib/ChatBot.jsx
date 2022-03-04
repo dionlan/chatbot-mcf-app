@@ -335,7 +335,7 @@ class ChatBot extends Component {
           resposta: currentStep.value
         };
         listaRespostas.push(resposta);
-        console.log('Lista Resposta: ', listaRespostas)
+
       }
 
       
