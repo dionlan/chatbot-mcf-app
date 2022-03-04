@@ -24,8 +24,8 @@ function SelecionaObjetivos (props) {
     /*
       verificar se o inputText está true, depois pegar o position.target.value e setar no setState
     */
-
     setCheckedState(updatedCheckedState);
+
     const totalObjetivos = updatedCheckedState.reduce(
       (obj, currentState, index) => {
         if (currentState === true) {
@@ -47,6 +47,11 @@ function SelecionaObjetivos (props) {
       setState({
         id: 18,
         objetivo: position.target.value ? position.target.value : 'sem outros objetivos'
+      })
+    }else{
+      setState({
+        id: 18,
+        objetivo: 'Sem outros objetivos.'
       })
     }
     

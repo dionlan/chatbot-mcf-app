@@ -8,6 +8,8 @@ function ResumoPessoa(props){
 
   const[respostas, setRespostas] = useState([])
   const [expandedRows, setExpandedRows] = useState(null);
+
+  const [objFinanceiros, setObjFinanceiros] = useState([])
   
   useEffect(() => {
     const _respostas = [...Object.values(props.respostas)]
@@ -37,50 +39,62 @@ function ResumoPessoa(props){
     return <input type="text" value={options.value} style={{ width: '100%' }}  onChange={(e) => options.editorCallback(e.target.value)} />;
   }
 
-  const rowExpansionTemplate = (data) => {
-    console.log('data: ', data)
+  const value = respostas.map((r) => {
     return (
-        <div className="orders-subtable">
-            <h5>Objetivos Financeiros Imediatos</h5>
-            <DataTable value={data.objetivo} responsiveLayout="scroll">
-                <Column field="id" header="Id" sortable></Column>
-                <Column field="objetivo" header="Objetivo" sortable></Column>
-            </DataTable>
-        </div>
+      Array.isArray(r.resposta) && r.resposta.map(obj => {
+        return (
+          obj.objetivo 
+        )
+        
+      
+    }))})
+
+  console.log(value)
+    
+  const rowExpansionTemplate = (value) => {
+    console.log('data: ', value)
+    return (
+      <div className="orders-subtable">
+          <h5>Objetivos Financeiros Imediatos</h5>
+          <DataTable value={value} responsiveLayout="scroll">
+              <Column field="id" header="Id" sortable></Column>
+              <Column field="objetivo" header="Objetivo" sortable></Column>
+          </DataTable>
+      </div>
     );
   }
 
- // const value = respostas.filter(r => r.resposta).map(r => r.resposta);
+
 
   return (
     <>
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <p>Para editar qualquer valor, clique no campo a ser corrigido.</p>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
-          {respostas.map((r, id) => {
-            return (
-              <div key={id}>
-                {
-                  Array.isArray(r.resposta) && r.resposta.map(obj => {
-                    <div key={obj.id}>
-                      { console.log('objetivo: ', obj.objetivo) }
-                    </div>
-                  })
-                }
-              </div>
-            );
-          })}
-                      
-          <Column field="idResposta" header="Id" style={{ width: '1%' }}> </Column>
+          <Column field="idResposta" header="Id Resposta" style={{ width: '1%' }}> </Column>
           
-          <Column field="idQuestao" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} 
-                  expander />
+          <Column field="idQuestao" header="Id Questão" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
+            onCellEditComplete={onCellEditComplete} />
+          {
+            console.log('valueeee: ', objFinanceiros)
+          }
+          {
+            
+            objFinanceiros.length ? 
+            <Column expander field="resposta" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
+            onCellEditComplete={onCellEditComplete} dataKey="id" />
+            :
+            <Column field="resposta" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
+            onCellEditComplete={onCellEditComplete} dataKey="id" />
+          }
+        
         </DataTable>
 
         <br/>
         <div>
           Respostas {JSON.stringify(respostas)} <br/>
-          <Button  className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'resumo', trigger: 'q32' })}> Prosseguir </Button>
+          <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'resumo', trigger: 'q32' })}> 
+            Prosseguir </Button>
         </div>
     </>
   )
