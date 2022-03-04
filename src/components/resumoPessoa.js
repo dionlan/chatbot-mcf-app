@@ -15,14 +15,14 @@ function ResumoPessoa(props){
     const _objetivosFinanceiros = _respostas.map(a => a.resposta).filter(b => Array.isArray(b))[0]
     setRespostas(_respostas)
     setObjetiosFinanceiros(_objetivosFinanceiros)
-  }, [props])
+  }, []) 
   
   //console.log('respostas: ', JSON.stringify(respostas, null, 2))
 
   const onCellEditComplete = (e) => {
     let { rowData, index, newValue, field, originalEvent: event } = e;
     let _respostas = [...respostas];
-    if (newValue.toString().trim().length > 0){
+    if (newValue.toString().trim().length > 0){ 
       rowData[field] = newValue;
       setRespostas(_respostas, rowData[field]);
       console.log('lista atualizada após edição: ', _respostas[index])
@@ -55,8 +55,8 @@ function ResumoPessoa(props){
 
   return (
     <>
-    {console.log('resposta: ', respostas)}
-    {console.log('objetivos financeiros selecionados: ', objetivosFinanceiros)}
+    {console.log('apenasRepostas: ', respostas)}
+    { /*console.log('objetivos financeiros selecionados: ', objetivosFinanceiros) */}
       <div className="orders-subtable">
           <h5>Objetivos Financeiros Imediatos</h5>
           <DataTable value={objetivosFinanceiros} responsiveLayout="scroll">
@@ -73,18 +73,16 @@ function ResumoPessoa(props){
 
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <p>Para editar qualquer valor, clique no campo a ser corrigido.</p>
-        
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
-          <Column field="idResposta" header="Id Resposta" style={{ width: '1%' }}> </Column>
           
-          <Column field="idQuestao" header="Id Questão" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
+          <Column field="idResposta" header="Id Resposta" > </Column>
+          
+          <Column field="idQuestao" header="Id Questão" editor={(options) => cellEditor(options)} 
             onCellEditComplete={onCellEditComplete} />
-          {
-            objetivosFinanceiros.length > 0 ?
-            console.log('objetivosFinanceiros: ', objetivosFinanceiros)
-            : 
-            console.log('sem objetivos financeiros')
-          }
+            
+          <Column field="idQuestao" header="Resposta" editor={(options) => cellEditor(options)} 
+            onCellEditComplete={onCellEditComplete} />
+          
           {
             /*
             objFinanceiros.length ? 
