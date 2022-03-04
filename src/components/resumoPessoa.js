@@ -7,13 +7,14 @@ import './components.css'
 function ResumoPessoa(props){
 
   const[respostas, setRespostas] = useState([])
-  const [expandedRows, setExpandedRows] = useState(null);
-
-  const [objFinanceiros, setObjFinanceiros] = useState([])
+  const[expandedRows, setExpandedRows] = useState(null);
+  const[objetivosFinanceiros, setObjetiosFinanceiros] = useState([]) 
   
   useEffect(() => {
     const _respostas = [...Object.values(props.respostas)]
+    const _objetivosFinanceiros = _respostas.map(a => a.resposta).filter(b => Array.isArray(b))[0]
     setRespostas(_respostas)
+    setObjetiosFinanceiros(_objetivosFinanceiros)
   }, [props])
   
   //console.log('respostas: ', JSON.stringify(respostas, null, 2))
@@ -38,8 +39,6 @@ function ResumoPessoa(props){
     console.log('VALUR ATUALIZADO: ', options.value)
     return <input type="text" value={options.value} style={{ width: '100%' }}  onChange={(e) => options.editorCallback(e.target.value)} />;
   }
-
-
     
   const rowExpansionTemplate = (value) => {
     console.log('data: ', value)
@@ -54,19 +53,13 @@ function ResumoPessoa(props){
     );
   }
 
-  const result = () => {
-    return (
-      respostas.map(a => a.resposta).filter(b => Array.isArray(b))[0]
-    )
-  }
-  
   return (
     <>
     {console.log('resposta: ', respostas)}
-    {console.log('result: ', result())}
+    {console.log('objetivos financeiros selecionados: ', objetivosFinanceiros)}
       <div className="orders-subtable">
           <h5>Objetivos Financeiros Imediatos</h5>
-          <DataTable value={result()} responsiveLayout="scroll">
+          <DataTable value={objetivosFinanceiros} responsiveLayout="scroll">
               <Column field="id" header="Id"></Column>
               <Column field="objetivo" header="Objetivo"></Column>
           </DataTable>
@@ -87,7 +80,10 @@ function ResumoPessoa(props){
           <Column field="idQuestao" header="Id Questão" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
             onCellEditComplete={onCellEditComplete} />
           {
-            //console.log('valueeee: ', objFinanceiros)
+            objetivosFinanceiros.length > 0 ?
+            console.log('objetivosFinanceiros: ', objetivosFinanceiros)
+            : 
+            console.log('sem objetivos financeiros')
           }
           {
             /*
