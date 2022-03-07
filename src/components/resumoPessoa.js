@@ -11,8 +11,8 @@ function ResumoPessoa(props){
   const[objetivosFinanceiros, setObjetiosFinanceiros] = useState([]) 
 
   useEffect(() => {
-    const _respostas = [...Object.values(props.respostas)]
-    const _objetivosFinanceiros = _respostas.map(a => a.resposta).filter(b => Array.isArray(b))[0]
+    const _respostas = [...Object.values(props.respostas).filter(b => !Array.isArray(b.resposta))]
+    const _objetivosFinanceiros = [...Object.values(props.respostas).map(a => a.resposta).filter(b => Array.isArray(b))[0]]
     setRespostas(_respostas)
     setObjetiosFinanceiros(_objetivosFinanceiros)
   }, []) 
@@ -37,7 +37,7 @@ function ResumoPessoa(props){
 
   const textEditor = (options) => {
     console.log('VALUR ATUALIZADO: ', options.value)
-    return <input type="text" value={options.value} style={{ width: '100%' }}  onChange={(e) => options.editorCallback(e.target.value)} />;
+    return <input type="text" value={options.value} style={{ width: '100%' }} onChange={(e) => options.editorCallback(e.target.value)} />;
   }
     
   const rowExpansionTemplate = (value) => {
@@ -58,18 +58,10 @@ function ResumoPessoa(props){
   ['Quitar as minhas dívidas', 'Juntar dinheiro para a minha aposentadoria', 'asdf']
   OU montar a lista nesse formado vinda de selecionaObjetivos.js
   */
- const indexArray = respostas.findIndex(a => Array.isArray(a.resposta))
-
- const removeArray = (index) => {
-    if (index > -1) {
-      return respostas.splice(index, 1);
-    }
-  }
 
   return (
     <>
-    { console.log('indexArray: ', indexArray) }
-    { console.log('respostas: ', removeArray(indexArray)) }
+    { console.log('respostas: ', respostas ) }
     { console.log('objetivosFinanceiros: ', objetivosFinanceiros) }
 
       <h5>Resultado do Diagnóstico Financeiro</h5>

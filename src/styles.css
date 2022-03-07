@@ -14,7 +14,9 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-  color: #fff
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0.1rem;
 }
 
 .p-datatable .p-datatable-thead > tr > th {
@@ -29,6 +31,7 @@ h1, h2, h3, h4, h5 {
 
 .p-datatable .p-datatable-tbody > tr > td{
   background: #45c49e;
+  font-size: 14px;
   color: #fff;
   text-align: left;
   border: 1px solid #dee2e6;
