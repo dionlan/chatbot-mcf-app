@@ -9,7 +9,7 @@ function ResumoPessoa(props){
   const[respostas, setRespostas] = useState([])
   const[expandedRows, setExpandedRows] = useState(null);
   const[objetivosFinanceiros, setObjetiosFinanceiros] = useState([]) 
-  
+
   useEffect(() => {
     const _respostas = [...Object.values(props.respostas)]
     const _objetivosFinanceiros = _respostas.map(a => a.resposta).filter(b => Array.isArray(b))[0]
@@ -58,50 +58,28 @@ function ResumoPessoa(props){
   ['Quitar as minhas dívidas', 'Juntar dinheiro para a minha aposentadoria', 'asdf']
   OU montar a lista nesse formado vinda de selecionaObjetivos.js
   */
-  const apenasRepostas = respostas.map(a => a.resposta).filter(b => Array.isArray(b))[0].map(o => o.objetivo)
+ const indexArray = respostas.findIndex(a => Array.isArray(a.resposta))
+
+ const removeArray = (index) => {
+    if (index > -1) {
+      return respostas.splice(index, 1);
+    }
+  }
 
   return (
     <>
-    {console.log('apenasRepostas: ', apenasRepostas)}
-    { /*console.log('objetivos financeiros selecionados: ', objetivosFinanceiros) */}
-      <div className="orders-subtable">
-          <h5>Objetivos Financeiros Imediatos</h5>
-          <DataTable value={objetivosFinanceiros} responsiveLayout="scroll">
-              <Column field="id" header="Id"></Column>
-              <Column field="objetivo" header="Objetivo"></Column>
-          </DataTable>
-      </div>
- 
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
+    { console.log('indexArray: ', indexArray) }
+    { console.log('respostas: ', removeArray(indexArray)) }
+    { console.log('objetivosFinanceiros: ', objetivosFinanceiros) }
 
       <h5>Resultado do Diagnóstico Financeiro</h5>
-        <p>Para editar qualquer valor, clique no campo a ser corrigido.</p>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
-          
           <Column field="idResposta" header="Id Resposta" > </Column>
-          
-          <Column field="idQuestao" header="Id Questão" editor={(options) => cellEditor(options)} 
-            onCellEditComplete={onCellEditComplete} />
-            
-          <Column values={objetivosFinanceiros} field="objetivo" header="Resposta" editor={(options) => cellEditor(options)} 
-            onCellEditComplete={onCellEditComplete}>
-            
-          </Column>
-          
-          {
-            /*
-            objFinanceiros.length ? 
-            <Column expander field="resposta" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
-            onCellEditComplete={onCellEditComplete} dataKey="id" />
-            :
-            <Column field="resposta" header="Resposta" style={{ width: '3em' }} editor={(options) => cellEditor(options)} 
-            onCellEditComplete={onCellEditComplete} dataKey="id" /> */
-          }
-        
+          <Column field="idQuestao" header="Id Questão" editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} />
+          <Column field="resposta" header="Resposta" editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} />
+        </DataTable>
+        <DataTable value={objetivosFinanceiros} responsiveLayout="scroll">
+            <Column field="objetivo" header="Objetivos Financeiros"></Column>
         </DataTable>
 
         <br/>

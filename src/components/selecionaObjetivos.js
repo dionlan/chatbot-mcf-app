@@ -45,13 +45,8 @@ function SelecionaObjetivos (props) {
  
     if (position.target){
       setState({
-        id: 18,
+        id: 13,
         objetivo: position.target.value ? position.target.value : 'sem outros objetivos'
-      })
-    }else{
-      setState({
-        id: 18,
-        objetivo: 'Sem outros objetivos.'
       })
     }
     
