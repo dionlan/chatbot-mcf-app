@@ -46,8 +46,8 @@ function ResumoPessoa(props){
       <div className="orders-subtable">
           <h5>Objetivos Financeiros Imediatos</h5>
           <DataTable value={value} responsiveLayout="scroll">
-              <Column field="id" header="Id" sortable></Column>
-              <Column field="objetivo" header="Objetivo" sortable></Column>
+              <Column field="id" header="Id" ></Column>
+              <Column field="objetivo" header="Objetivo" ></Column>
           </DataTable>
       </div>
     );
@@ -67,11 +67,11 @@ function ResumoPessoa(props){
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
           <Column field="idResposta" header="Id Resposta" > </Column>
-          <Column field="idQuestao" header="Id Questão" editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} />
+          <Column field="idQuestao" header="Id Questão" />
           <Column field="resposta" header="Resposta" editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} />
         </DataTable>
         <DataTable value={objetivosFinanceiros} responsiveLayout="scroll">
-            <Column field="objetivo" header="Objetivos Financeiros"></Column>
+            <Column field="objetivo" header="Objetivos Financeiros" editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} ></Column>
         </DataTable>
 
         <br/>
