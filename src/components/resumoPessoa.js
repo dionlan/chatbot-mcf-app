@@ -3,12 +3,13 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import './components.css'
+import DiagnisticoFinanceiroService from '../service/diagnosticoFinanceiroService';
 
 function ResumoPessoa(props){
 
   const[respostas, setRespostas] = useState([])
-  const[expandedRows, setExpandedRows] = useState(null);
   const[objetivosFinanceiros, setObjetiosFinanceiros] = useState([]) 
+  const service = new DiagnisticoFinanceiroService();
 
   useEffect(() => {
     const _respostas = [...Object.values(props.respostas).filter(b => !Array.isArray(b.resposta))]
@@ -16,8 +17,6 @@ function ResumoPessoa(props){
     setRespostas(_respostas)
     setObjetiosFinanceiros(_objetivosFinanceiros)
   }, []) 
-  
-  //console.log('respostas: ', JSON.stringify(respostas, null, 2))
 
   const onCellEditComplete = (e) => {
     let { rowData, index, newValue, field, originalEvent: event } = e;
@@ -39,30 +38,19 @@ function ResumoPessoa(props){
     console.log('VALUR ATUALIZADO: ', options.value)
     return <input type="text" value={options.value} style={{ width: '100%' }} onChange={(e) => options.editorCallback(e.target.value)} />;
   }
-    
-  const rowExpansionTemplate = (value) => {
-    console.log('data: ', value)
-    return (
-      <div className="orders-subtable">
-          <h5>Objetivos Financeiros Imediatos</h5>
-          <DataTable value={value} responsiveLayout="scroll">
-              <Column field="id" header="Id" ></Column>
-              <Column field="objetivo" header="Objetivo" ></Column>
-          </DataTable>
-      </div>
-    );
-  }
 
-  /*
-  adicionar essa lista dentro do campo reposta referente a lista de objetivos financeiros
-  ['Quitar as minhas dívidas', 'Juntar dinheiro para a minha aposentadoria', 'asdf']
-  OU montar a lista nesse formado vinda de selecionaObjetivos.js
-  */
+  function salvar() {
+    const resultadoDiagnostico = [...Object.values(props.respostas)]
+    service.cadastrarDiagnosticoFinanceiro(resultadoDiagnostico)
+    console.log('Diagnóstico cadastro com sucesso! ')
+    props.triggerNextStep({id: 'resumo', trigger: 'q32' })
+  }
+    
 
   return (
     <>
-    { console.log('respostas: ', respostas ) }
-    { console.log('objetivosFinanceiros: ', objetivosFinanceiros) }
+    { /*console.log('respostas: ', respostas ) */}
+    { /* console.log('objetivosFinanceiros: ', objetivosFinanceiros) */}
 
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
@@ -77,7 +65,7 @@ function ResumoPessoa(props){
         <br/>
         <div>
           Respostas {JSON.stringify(respostas)} <br/>
-          <Button className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'resumo', trigger: 'q32' })}> 
+          <Button className="p-button-success p-button-sm"  onClick={salvar}> 
             Prosseguir </Button>
         </div>
     </>

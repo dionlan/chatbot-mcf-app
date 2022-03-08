@@ -1,4 +1,4 @@
-import ApiService from './apiservice'
+import ApiService from './apiService'
 
 class DiagnisticoFinanceiroService extends ApiService{
     constructor(){
@@ -6,7 +6,8 @@ class DiagnisticoFinanceiroService extends ApiService{
     }
 
     cadastrarDiagnosticoFinanceiro (diagnosticoInput) {
-        return this.post('/salvar', diagnosticoInput)
+        console.log('SERVIÇO diagnóstico financeiro: ',  diagnosticoInput)
+        //return this.post('/salvar', diagnosticoInput)
     }
 }
 export default DiagnisticoFinanceiroService
