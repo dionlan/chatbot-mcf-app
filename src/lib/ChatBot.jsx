@@ -260,7 +260,7 @@ class ChatBot extends Component {
     const isEnd = currentStep.end;
     const question = previousStep.id
     const respostaId = currentStep.id;
-    
+ 
     if (data && data.value) {
       currentStep.value = data.value;
     }
@@ -271,6 +271,10 @@ class ChatBot extends Component {
       currentStep.hideExtraControl = data.hideExtraControl;
     }
     if (data && data.trigger) {
+
+      
+    console.log('DATA VALUE: ', data.value)
+    console.log('DATATRIGGER: ', data.trigger)
 
       /*
       if(typeof currentStep.component.type === 'function'){

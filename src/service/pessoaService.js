@@ -6,7 +6,7 @@ class PessoaService extends ApiService{
     }
 
     salvarPessoa (personInput) {
-        console.log('SERVIÇO => salvarPessoa: ',  personInput)
+        //console.log('SERVIÇO => salvarPessoa: ',  personInput)
         return this.post('/salvar', personInput)
     }
 }

@@ -40,10 +40,12 @@ function ResumoPessoa(props){
   }
 
   function salvar() {
+    console.log('Diagnóstico cadastro com sucesso! ')
+    /*
     const resultadoDiagnostico = [...Object.values(props.respostas)]
     service.cadastrarDiagnosticoFinanceiro(resultadoDiagnostico)
-    console.log('Diagnóstico cadastro com sucesso! ')
-    props.triggerNextStep({id: 'resumo', trigger: 'q32' })
+    props.triggerNextStep({id: 'resumo', trigger: 'q32' }) 
+    */
   }
     
 

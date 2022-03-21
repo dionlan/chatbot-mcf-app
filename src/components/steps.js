@@ -42,7 +42,8 @@ const Steps = [
     {
       id: 'salvaPessoa',
       component: <CadastraPessoa />,
-      waitAction: true,
+      asMessage: true,
+      //waitAction: true,
       trigger: 'q29',
     }, 
 
