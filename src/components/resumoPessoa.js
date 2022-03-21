@@ -54,8 +54,8 @@ function ResumoPessoa(props){
 
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
-          <Column field="idResposta" header="Id Resposta" > </Column>
-          <Column field="idQuestao" header="Id Questão" />
+          <Column field="respostaId" header="Id Resposta" > </Column>
+          <Column field="questionId" header="Id Questão" />
           <Column field="resposta" header="Resposta" editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} />
         </DataTable>
         <DataTable value={objetivosFinanceiros} responsiveLayout="scroll">

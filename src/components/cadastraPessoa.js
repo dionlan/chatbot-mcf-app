@@ -1,28 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PessoaService from '../service/pessoaService';
 
 function CadastraPessoa(props) {
 
-  const [nome, setNome] = React.useState('');
-  const [email, setEmail] = React.useState('');
-
   const pessoaService = new PessoaService();
 
-  console.log('DADOS PESSOAIS: ', Object.values(props))
+  console.log('DADOS PESSOAIS: ', Object.values(props.respostas))
+  const personInput = {
+    name: Object.values(props.respostas)[0].itemResponse,
+    email: Object.values(props.respostas)[1].itemResponse
+  }
 
-  const usuario = {
-    nome: nome,
-    email: email
-}
-  /*
-    service.salvar(usuario)
-    .then(response => {
-        mensagemSucesso('Usuário cadastrado com sucesso. Faça o login para acessar o sistema.')
-        navigate('/login')
-    }).catch(erro => {
-        mensagemErro(erro.response.data.detail)
-    })*/
-
+  console.log(personInput)
+  pessoaService.salvarPessoa(personInput)
+  .then(response => {
+    console.log('dados pessoais salvos com sucesso!', response)
+  }).catch(error => {
+    console.log(error)
+  })
 
   return (
     <>

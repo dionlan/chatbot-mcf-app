@@ -5,9 +5,9 @@ class PessoaService extends ApiService{
         super('/api/diagnostico')
     }
 
-    salvarPessoa (inputPessoa) {
-        console.log('SERVIÇO => salvarPessoa: ',  inputPessoa)
-        //return this.post('/salvar', diagnosticoInput)
+    salvarPessoa (personInput) {
+        console.log('SERVIÇO => salvarPessoa: ',  personInput)
+        return this.post('/salvar', personInput)
     }
 }
 export default PessoaService

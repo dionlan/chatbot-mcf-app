@@ -4,7 +4,7 @@ import SelecionaObjetivos from './selecionaObjetivos';
 
 const Steps = [
     {
-      id: 'q1',
+      id: '1',
       message: 'Vamos lá, qual o seu nome?',
       trigger: 'r1',
     },
@@ -19,10 +19,10 @@ const Steps = [
         }
        },
       //trigger: ({value}) => value.toLowerCase() === '1' ? '2' : '2'
-      trigger: 'q2',
+      trigger: '2',
     },
     {
-      id:'q2', 
+      id:'2', 
       message:'Qual seu melhor e-mail?', 
       trigger:'r2',
     },

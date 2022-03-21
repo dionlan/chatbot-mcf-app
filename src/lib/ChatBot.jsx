@@ -243,11 +243,11 @@ class ChatBot extends Component {
     const { listaRespostas } = this.state;
     const respostas = {};
     for (let i = 0, len = listaRespostas.length; i < len; i += 1) {
-      const { idQuestao, idResposta, resposta } = listaRespostas[i];
-      respostas[idQuestao] = {
-        idQuestao,
-        idResposta, 
-        resposta,
+      const { question, respostaId, itemResponse } = listaRespostas[i];
+      respostas[question] = {
+        question,
+        respostaId, 
+        itemResponse,
       };
     }
     return respostas;
@@ -258,8 +258,8 @@ class ChatBot extends Component {
     const { defaultUserSettings, previousSteps, renderedSteps, steps, listaRespostas } = this.state;
     let { currentStep, previousStep, respostas } = this.state;
     const isEnd = currentStep.end;
-    const idQuestao = previousStep.id
-    const idResposta = currentStep.id;
+    const question = previousStep.id
+    const respostaId = currentStep.id;
     
     if (data && data.value) {
       currentStep.value = data.value;
@@ -275,8 +275,8 @@ class ChatBot extends Component {
       /*
       if(typeof currentStep.component.type === 'function'){
         const resp = {
-          idQuestao: idQuestao,
-          idResposta: idResposta,
+          question: question,
+          respostaId: respostaId,
           value: data.value
         };
         respostas = Object.assign({}, respostas, resp);
@@ -302,8 +302,8 @@ class ChatBot extends Component {
       });
 /*
       const resp = {
-        idQuestao: idQuestao,
-        idResposta: idResposta,
+        question: question,
+        respostaId: respostaId,
         value: data.value
       }; */
 
@@ -330,9 +330,9 @@ class ChatBot extends Component {
 
       if (currentStep.value){
         const resposta = {
-          idQuestao: idQuestao,
-          idResposta: idResposta,
-          resposta: currentStep.value
+          question: question,
+          respostaId: respostaId,
+          itemResponse: currentStep.value
         };
         listaRespostas.push(resposta);
 
@@ -505,8 +505,8 @@ class ChatBot extends Component {
 
       /*
       const resp = {
-        idQuestao: idQues,
-        idResposta: idStep,
+        question: idQues,
+        respostaId: idStep,
         value: inputValue
       };*/
 
