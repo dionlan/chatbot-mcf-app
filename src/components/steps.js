@@ -1,4 +1,5 @@
 import ResumoPessoa from './resumoPessoa';
+import CadastraPessoa from './cadastraPessoa';
 import SelecionaObjetivos from './selecionaObjetivos';
 
 const Steps = [
@@ -11,20 +12,47 @@ const Steps = [
       id: 'r1',
       user: true,
       validator: (value) => {
-        if (/^[A-Za-z]+$/.test(value)) {
+        if (/^[A-Za-z][A-Za-z]+([A-Za-z][A-Za-z]+)*/.test(value)){
           return true
         } else {
           return 'Por favor, informe apenas caracteres.'
         }
        },
       //trigger: ({value}) => value.toLowerCase() === '1' ? '2' : '2'
-      trigger: 'q29',
+      trigger: 'q2',
     },
+    {
+      id:'q2', 
+      message:'Qual seu melhor e-mail?', 
+      trigger:'r2',
+    },
+    {
+      id: 'r2', 
+      user: true, 
+      validator: (value) => {
+        if (/.+@.+\.[A-Za-z]+$/.test(value)){
+          return true;
+        } else {
+          return'Por favor, informe um email.';
+        }
+      },
+      trigger: 'salvaPessoa',
+    },
+
+    {
+      id: 'salvaPessoa',
+      component: <CadastraPessoa />,
+      waitAction: true,
+      trigger: 'q29',
+    }, 
+
+/*
     {
       id: 'q2',
       message: 'Olá, {previousValue}, qual sua idade?', 
       trigger: 'r2'
     },
+
     {
       id: 'r2',
       user: true,
@@ -97,7 +125,7 @@ const Steps = [
         { value: 3, label: 'média', trigger: 'q29' },
         { value: 4, label: 'alta', trigger: 'q29' },
       ],
-    },/*
+    },
     {
       id: 'q7',
       message: 'Possui fontes de rendas extras?',

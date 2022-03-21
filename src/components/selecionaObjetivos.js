@@ -44,12 +44,13 @@ function SelecionaObjetivos (props) {
     );
  
     if (position.target){
+      console.log('position', position)
       setState({
-        id: 13,
-        objetivo: position.target.value ? position.target.value : 'sem outros objetivos'
+        id: position.target.id,
+        objetivo: position.target.value //? position.target.value : 'sem outros objetivos'
       })
     }
-    
+    console.log('objetivos: ', state)
     setListaObjetivos([...totalObjetivos, state])
 
     const notaFinalAtualizada = updatedCheckedState.reduce(
@@ -63,7 +64,7 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
-  //console.log('Lista Resposta: ', listaObjetivos)
+  //console.log('Lista Resposta: ', JSON.stringify(listaObjetivos, null, 2))
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>
@@ -85,7 +86,7 @@ function SelecionaObjetivos (props) {
                 </>
                   : 
                 <InputText style={{ width: '100%' }}
-                  id="outros"
+                  id={id}
                   onChange={ (e) => handleOnChange(e) } 
                   placeholder="Outros objetivos" />
               }

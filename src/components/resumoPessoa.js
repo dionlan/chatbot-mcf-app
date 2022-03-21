@@ -3,7 +3,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import './components.css'
-import DiagnisticoFinanceiroService from '../service/diagnosticoFinanceiroService';
+import DiagnisticoFinanceiroService from '../service/pessoaService';
 
 function ResumoPessoa(props){
 
@@ -49,8 +49,8 @@ function ResumoPessoa(props){
 
   return (
     <>
-    { /*console.log('respostas: ', respostas ) */}
-    { /* console.log('objetivosFinanceiros: ', objetivosFinanceiros) */}
+    { console.log('respostas: ', respostas ) }
+    { console.log('objetivosFinanceiros: ', objetivosFinanceiros) }
 
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
