@@ -1,10 +1,11 @@
 import ResumoPessoa from './resumoPessoa';
 import CadastraPessoa from './cadastraPessoa';
 import SelecionaObjetivos from './selecionaObjetivos';
+import CadastraRespostasFinanceiras from './cadastraRespostasFinanceiras';
 
 const Steps = [
     {
-      id: '1',
+      id: 'name',
       message: 'Vamos lá, qual o seu nome?',
       trigger: 'r1',
     },
@@ -19,10 +20,10 @@ const Steps = [
         }
        },
       //trigger: ({value}) => value.toLowerCase() === '1' ? '2' : '2'
-      trigger: '2',
+      trigger: 'email',
     },
     {
-      id:'2', 
+      id:'email', 
       message:'Qual seu melhor e-mail?', 
       trigger:'r2',
     },
@@ -36,15 +37,15 @@ const Steps = [
           return'Por favor, informe um email.';
         }
       },
-      trigger: 'salvaPessoa',
+      trigger: 'cadastraPessoa',
     },
 
     {
-      id: 'salvaPessoa',
+      id: 'cadastraPessoa',
       component: <CadastraPessoa />,
       asMessage: true,
       //waitAction: true,
-      trigger: 'q29',
+      trigger: '3',
     }, 
 
 /*
@@ -66,67 +67,80 @@ const Steps = [
         return true;
       },
       trigger: 'q3'
-    },
+    }, */
+
     {
-      id: 'q3',
+      id: '3',
       message: 'Além de você, quantas pessoas dependem exclusivamente do seu dinheiro?',
       trigger: 'r3',
     },
     {
       id:'r3',
       options: [
-        { value: 1, label: '4 a mais pessoas', trigger: 'q4' },
-        { value: 2, label: '3 pessoas', trigger: 'q4' },
-        { value: 3, label: '2 pessoas', trigger: 'q4' },
-        { value: 4, label: '1 pessoa', trigger: 'q4' },
-        { value: 5, label: 'Ninguém', trigger: 'q4' },
+        { value: 1, label: '4 a mais pessoas', trigger: '4' },
+        { value: 2, label: '3 pessoas', trigger: '4' },
+        { value: 3, label: '2 pessoas', trigger: '4' },
+        { value: 4, label: '1 pessoa', trigger: '4' },
+        { value: 5, label: 'Ninguém', trigger: '4' },
       ],
     },
     {
-      id: 'q4',
+      id: '4',
       message: 'Qual a sua faixa de renda mensal?',
       trigger: 'r4',
     },
     {
       id:'r4',
       options: [
-        { value: 1, label: 'até 2 mil', trigger: 'q5' },
-        { value: 2, label: 'de 2 a 6 mil', trigger: 'q5' },
-        { value: 3, label: 'de 6 a 12 mil', trigger: 'q5' },
-        { value: 4, label: 'de 12 a 20 mil', trigger: 'q5' },
-        { value: 5, label: 'acima de 20 mil', trigger: 'q5' },
+        { value: 1, label: 'até 2 mil', trigger: '5' },
+        { value: 2, label: 'de 2 a 6 mil', trigger: '5' },
+        { value: 3, label: 'de 6 a 12 mil', trigger: '5' },
+        { value: 4, label: 'de 12 a 20 mil', trigger: '5' },
+        { value: 5, label: 'acima de 20 mil', trigger: '5' },
       ],
     }, 
     {
-      id: 'q5',
+      id: '5',
       message: 'Como está o seu orçamento mensal com relação as receitas e despesas?',
       trigger: 'r5',
     },
     {
       id:'r5',
       options: [
-        { value: 1, label: 'não possuo fonte de renda regular', trigger: 'q6' },
-        { value: 2, label: 'gasto o que recebo e ainda mais de 25% desse valor', trigger: 'q6' },
-        { value: 3, label: 'gasto o que recebo e ainda até 25% desse valor', trigger: 'q6' },
-        { value: 4, label: 'gasto o que recebo, não sobra nada', trigger: 'q6' },
-        { value: 5, label: 'economizo até 25% do que recebo', trigger: 'q6' },
-        { value: 6, label: 'economizo mais de 25% do que recebo', trigger: 'q6' },
+        { value: 1, label: 'não possuo fonte de renda regular', trigger: '6' },
+        { value: 2, label: 'gasto o que recebo e ainda mais de 25% desse valor', trigger: '6' },
+        { value: 3, label: 'gasto o que recebo e ainda até 25% desse valor', trigger: '6' },
+        { value: 4, label: 'gasto o que recebo, não sobra nada', trigger: '6' },
+        { value: 5, label: 'economizo até 25% do que recebo', trigger: '6' },
+        { value: 6, label: 'economizo mais de 25% do que recebo', trigger: '6' },
       ],
     },
     {
-      id: 'q6',
+      id: '6',
       message: 'Como classificaria o nível de estabilidade da sua fonte de renda principal?',
       trigger: 'r6',
     },
     {
       id:'r6',
       options: [
-        { value: 1, label: 'nenhuma', trigger: 'q29' },
-        { value: 2, label: 'baixa', trigger: 'q29' },
-        { value: 3, label: 'média', trigger: 'q29' },
-        { value: 4, label: 'alta', trigger: 'q29' },
+        { value: 1, label: 'nenhuma', trigger: 'cadastraFinanceiro' },
+        { value: 2, label: 'baixa', trigger: 'cadastraFinanceiro' },
+        { value: 3, label: 'média', trigger: 'cadastraFinanceiro' },
+        { value: 4, label: 'alta', trigger: 'cadastraFinanceiro' },
       ],
-    },
+    }, 
+    
+    {
+      id: 'cadastraFinanceiro',
+      component: <CadastraRespostasFinanceiras />,
+      asMessage: true,
+      //waitAction: true,
+      trigger: 'q29',
+    }, 
+    
+    
+    
+    /*
     {
       id: 'q7',
       message: 'Possui fontes de rendas extras?',

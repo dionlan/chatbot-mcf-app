@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PessoaService from '../service/pessoaService';
 
-function CadastraPessoa(props) {
+function CadastraRespostasFinanceiras(props) {
 
   const pessoaService = new PessoaService();
 
-  const personInput = {
-    name: '', //Object.values(props.respostas)[0].itemResponse,
-    email: '' //Object.values(props.respostas)[1].itemResponse
-  }
+  console.log('PROPS CADASTRA RESPOSTAS FINANCEIRAS', props)
 
+  const responseInput = Object.values(props.respostas)
+
+  console.log('RESPONSES INPUT: ', responseInput)
+  /*
   useEffect(() => {
     pessoaService.salvarPessoa(personInput)
     .then(response => {
@@ -17,11 +18,11 @@ function CadastraPessoa(props) {
     }).catch(error => {
       console.log('ERRO!')
     }) 
-    console.log('props cadastra pessoa: ', props)
-    //console.log('personInput: ', personInput)
+
+    console.log('personInput: ', personInput)
   }, [])
 
-
+*/
 
   
   
@@ -39,9 +40,9 @@ function CadastraPessoa(props) {
   }) */
   return(
     <div>
-      Ótimo, {personInput.name} 👏
+      Ótimo! 👏
     </div>
   )
   
 }
-export default CadastraPessoa;
+export default CadastraRespostasFinanceiras;

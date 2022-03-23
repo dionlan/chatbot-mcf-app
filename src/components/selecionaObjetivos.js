@@ -64,7 +64,7 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
-  //console.log('Lista Resposta: ', JSON.stringify(listaObjetivos, null, 2))
+  console.log('Lista Resposta SELECIONA OBJETIVO: ', JSON.stringify(props, null, 2))
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>
