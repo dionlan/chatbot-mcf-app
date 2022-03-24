@@ -7,6 +7,8 @@ import './components.css'
 
 function SelecionaObjetivos (props) {
 
+  console.log('props SELECIONA OBJETIVOS: ', props.respostas)
+  
   const [checkedState, setCheckedState] = useState(
     new Array(ObjetivosFinanceiros.length).fill(false)
   );
@@ -64,7 +66,7 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
-  console.log('Lista Resposta SELECIONA OBJETIVO: ', JSON.stringify(props, null, 2))
+  
   return (
     <>
       <h4>Objetivos Financeiros Imediatos</h4>

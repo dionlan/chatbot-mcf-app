@@ -7,10 +7,10 @@ const Steps = [
     {
       id: 'name',
       message: 'Vamos lá, qual o seu nome?',
-      trigger: 'r1',
+      trigger: 'resposta_nome',
     },
     {
-      id: 'r1',
+      id: 'resposta_nome',
       user: true,
       validator: (value) => {
         if (/^[A-Za-z][A-Za-z]+([A-Za-z][A-Za-z]+)*/.test(value)){
@@ -25,10 +25,10 @@ const Steps = [
     {
       id:'email', 
       message:'Qual seu melhor e-mail?', 
-      trigger:'r2',
+      trigger:'resposta_email',
     },
     {
-      id: 'r2', 
+      id: 'resposta_email', 
       user: true, 
       validator: (value) => {
         if (/.+@.+\.[A-Za-z]+$/.test(value)){
@@ -45,7 +45,7 @@ const Steps = [
       component: <CadastraPessoa />,
       asMessage: true,
       //waitAction: true,
-      trigger: '3',
+      trigger: '1',
     }, 
 
 /*
@@ -70,58 +70,58 @@ const Steps = [
     }, */
 
     {
-      id: '3',
+      id: '1',
       message: 'Além de você, quantas pessoas dependem exclusivamente do seu dinheiro?',
+      trigger: 'r1',
+    },
+    {
+      id:'r1',
+      options: [
+        { value: 1, label: '4 a mais pessoas', trigger: '2' },
+        { value: 2, label: '3 pessoas', trigger: '2' },
+        { value: 3, label: '2 pessoas', trigger: '2' },
+        { value: 4, label: '1 pessoa', trigger: '2' },
+        { value: 5, label: 'Ninguém', trigger: '2' },
+      ],
+    },
+    {
+      id: '2',
+      message: 'Qual a sua faixa de renda mensal?',
+      trigger: 'r2',
+    },
+    {
+      id:'r2',
+      options: [
+        { value: 1, label: 'até 2 mil', trigger: '3' },
+        { value: 2, label: 'de 2 a 6 mil', trigger: '3' },
+        { value: 3, label: 'de 6 a 12 mil', trigger: '3' },
+        { value: 4, label: 'de 12 a 20 mil', trigger: '3' },
+        { value: 5, label: 'acima de 20 mil', trigger: '3' },
+      ],
+    }, 
+    {
+      id: '3',
+      message: 'Como está o seu orçamento mensal com relação as receitas e despesas?',
       trigger: 'r3',
     },
     {
       id:'r3',
       options: [
-        { value: 1, label: '4 a mais pessoas', trigger: '4' },
-        { value: 2, label: '3 pessoas', trigger: '4' },
-        { value: 3, label: '2 pessoas', trigger: '4' },
-        { value: 4, label: '1 pessoa', trigger: '4' },
-        { value: 5, label: 'Ninguém', trigger: '4' },
+        { value: 1, label: 'não possuo fonte de renda regular', trigger: '4' },
+        { value: 2, label: 'gasto o que recebo e ainda mais de 25% desse valor', trigger: '4' },
+        { value: 3, label: 'gasto o que recebo e ainda até 25% desse valor', trigger: '4' },
+        { value: 4, label: 'gasto o que recebo, não sobra nada', trigger: '4' },
+        { value: 5, label: 'economizo até 25% do que recebo', trigger: '4' },
+        { value: 6, label: 'economizo mais de 25% do que recebo', trigger: '4' },
       ],
     },
     {
       id: '4',
-      message: 'Qual a sua faixa de renda mensal?',
+      message: 'Como classificaria o nível de estabilidade da sua fonte de renda principal?',
       trigger: 'r4',
     },
     {
       id:'r4',
-      options: [
-        { value: 1, label: 'até 2 mil', trigger: '5' },
-        { value: 2, label: 'de 2 a 6 mil', trigger: '5' },
-        { value: 3, label: 'de 6 a 12 mil', trigger: '5' },
-        { value: 4, label: 'de 12 a 20 mil', trigger: '5' },
-        { value: 5, label: 'acima de 20 mil', trigger: '5' },
-      ],
-    }, 
-    {
-      id: '5',
-      message: 'Como está o seu orçamento mensal com relação as receitas e despesas?',
-      trigger: 'r5',
-    },
-    {
-      id:'r5',
-      options: [
-        { value: 1, label: 'não possuo fonte de renda regular', trigger: '6' },
-        { value: 2, label: 'gasto o que recebo e ainda mais de 25% desse valor', trigger: '6' },
-        { value: 3, label: 'gasto o que recebo e ainda até 25% desse valor', trigger: '6' },
-        { value: 4, label: 'gasto o que recebo, não sobra nada', trigger: '6' },
-        { value: 5, label: 'economizo até 25% do que recebo', trigger: '6' },
-        { value: 6, label: 'economizo mais de 25% do que recebo', trigger: '6' },
-      ],
-    },
-    {
-      id: '6',
-      message: 'Como classificaria o nível de estabilidade da sua fonte de renda principal?',
-      trigger: 'r6',
-    },
-    {
-      id:'r6',
       options: [
         { value: 1, label: 'nenhuma', trigger: 'cadastraFinanceiro' },
         { value: 2, label: 'baixa', trigger: 'cadastraFinanceiro' },

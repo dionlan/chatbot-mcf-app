@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PessoaService from '../service/pessoaService';
 
 function CadastraPessoa(props) {
 
   const pessoaService = new PessoaService();
 
-  const personInput = {
-    name: '', //Object.values(props.respostas)[0].itemResponse,
-    email: '' //Object.values(props.respostas)[1].itemResponse
-  }
+  const personInput = props.respostas
 
   useEffect(() => {
     pessoaService.salvarPessoa(personInput)
@@ -17,8 +14,7 @@ function CadastraPessoa(props) {
     }).catch(error => {
       console.log('ERRO!')
     }) 
-    console.log('props cadastra pessoa: ', props)
-    //console.log('personInput: ', personInput)
+    console.log('PROPS CADASTRA PESSOA: ', props.respostas)
   }, [])
 
 
@@ -39,7 +35,7 @@ function CadastraPessoa(props) {
   }) */
   return(
     <div>
-      Ótimo, {personInput.name} 👏
+      Ótimo 👏
     </div>
   )
   

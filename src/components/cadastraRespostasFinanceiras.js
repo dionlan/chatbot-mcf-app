@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PessoaService from '../service/pessoaService';
 
 function CadastraRespostasFinanceiras(props) {
 
   const pessoaService = new PessoaService();
-
-  console.log('PROPS CADASTRA RESPOSTAS FINANCEIRAS', props)
-
-  const responseInput = Object.values(props.respostas)
-
-  console.log('RESPONSES INPUT: ', responseInput)
-  /*
+  const responseInput = props.respostas
+  
   useEffect(() => {
-    pessoaService.salvarPessoa(personInput)
+    
+    pessoaService.salvarPessoa(responseInput)
     .then(response => {
       console.log('dados pessoais salvos com sucesso!')
     }).catch(error => {
       console.log('ERRO!')
     }) 
 
-    console.log('personInput: ', personInput)
+    console.log('PROPS CADASTRA RESPOSTAS FINANCEIRAS', responseInput)
   }, [])
 
-*/
 
   
   
@@ -40,7 +35,7 @@ function CadastraRespostasFinanceiras(props) {
   }) */
   return(
     <div>
-      Ótimo! 👏
+      Ótimo, {responseInput.name} 👏
     </div>
   )
   

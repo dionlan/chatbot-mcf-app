@@ -43,7 +43,7 @@ class ChatBot extends Component {
       renderedSteps: [],
       previousSteps: [],
       listaRespostas: [],
-      inputPerson: [],
+      personInput: [],
       currentStep: {},
       previousStep: {},
       steps: {},
@@ -129,7 +129,7 @@ class ChatBot extends Component {
       window.addEventListener('resize', this.onResize);
     }
 
-    const { currentStep, previousStep, previousSteps, renderedSteps } = storage.getData(
+    const { currentStep, previousStep, previousSteps, renderedSteps, respostas } = storage.getData(
       {
         cacheName,
         cache,
@@ -242,27 +242,42 @@ class ChatBot extends Component {
   };
 
   getRespostasById = () => {
-    const { listaRespostas, inputPerson } = this.state;
-    let respostas = {};
-    for (let i = 0, len = listaRespostas.length; i < len; i += 1) {
-      const { name, email, question, respostaId, itemResponse } = listaRespostas[i];
-        inputPerson.length ?
-          respostas = {
-            name,
-            email
-          }
-        : respostas = {
-          question,
-          respostaId, 
-          itemResponse,
-        }
+    const { listaRespostas, personInput } = this.state;
+    const name = personInput[0]
+    const email = personInput[1]
+    let respostas = {}
+/*
+    const financeiro = listaRespostas.map(step => {
+      const { question, respostaId, itemResponse } = step;
+      return {
+        question,
+        respostaId,
+        itemResponse,
+      };
+    }); */
+
+    const responses = [];
+    for (let i = 1, len = listaRespostas.length - 1; i <= len; i += 1) {
+      const { question, respostaId, itemResponse } = listaRespostas[i];
+      responses[question] = {
+        question,
+        respostaId,
+        itemResponse
+      };
     }
+
+    respostas = {
+      name, 
+      email,
+      responses
+    }
+
     return respostas;
   };
 
   triggerNextStep = data => {
     const { enableMobileAutoFocus } = this.props;
-    const { defaultUserSettings, previousSteps, renderedSteps, steps, listaRespostas, inputPerson } = this.state;
+    const { defaultUserSettings, previousSteps, renderedSteps, steps, listaRespostas, personInput } = this.state;
     let { currentStep, previousStep, respostas } = this.state;
     const isEnd = currentStep.end;
     const question = previousStep.id
@@ -278,7 +293,7 @@ class ChatBot extends Component {
       currentStep.hideExtraControl = data.hideExtraControl;
     }
     if (data && data.trigger) {
-
+      console.log('DATA && DATA.TRIGGER: ', data && data.trigger)
       /*
       if(typeof currentStep.component.type === 'function'){
         const resp = {
@@ -307,21 +322,14 @@ class ChatBot extends Component {
         message: option.label,
         trigger
       });
-      inputPerson.length = 0
-      const resposta= {
+      //personInput.length = 0
+      const resposta = {
         question: question,
         //respostaId: respostaId,
         itemResponse: currentStep.value
       };
       listaRespostas.push(resposta);
       console.log('LISTA RESPOSTAS MONTADA NO OPTIONS: ', listaRespostas)
-      
-/*
-      const resp = {
-        question: question,
-        respostaId: respostaId,
-        value: data.value
-      }; */
 
       //respostas = Object.assign({}, respostas, resp);
       
@@ -337,7 +345,7 @@ class ChatBot extends Component {
         renderedSteps,
         listaRespostas,
         respostas,
-        inputPerson,
+        personInput,
         previousSteps,
       });
     } else if (currentStep.trigger) {
@@ -352,13 +360,20 @@ class ChatBot extends Component {
 
       if(currentStep.trigger === 'cadastraPessoa'){
         const resposta = {
-          name: inputPerson[0], 
-          email: inputPerson[1]
+          name: personInput[0], 
+          email: personInput[1]
         };
       listaRespostas.push(resposta);
-      console.log('LISTA RESPOSTAS SUBMIT', listaRespostas)
+      //this.setState({respostas, listaRespostas})
+      //console.log('LISTA RESPOSTAS SUBMIT', listaRespostas)
       }
 
+      if(currentStep.trigger === 'cadastraFinanceiro'){
+        console.log('==========CADASTRO FINANCEIRO==========')
+        console.log('INPUPERSON', personInput)
+        console.log('LISTA RESPOSTAS', listaRespostas)
+      }
+      
       if (nextStep.message) {
         nextStep.message = this.getStepMessage(nextStep.message);
       } else if (nextStep.update) {
@@ -403,7 +418,7 @@ class ChatBot extends Component {
           currentStep,
           previousStep,
           listaRespostas,
-          inputPerson,
+          personInput,
           respostas,
           previousSteps,
           renderedSteps,
@@ -513,7 +528,7 @@ class ChatBot extends Component {
   };
 
   submitUserMessage = () => {
-    const { defaultUserSettings, inputValue, previousSteps, renderedSteps, inputPerson} = this.state;
+    const { defaultUserSettings, inputValue, previousSteps, renderedSteps, personInput} = this.state;
     let { currentStep } = this.state;
     const isInvalid = currentStep.validator && this.checkInvalidInput();
 
@@ -532,9 +547,9 @@ class ChatBot extends Component {
         value: inputValue
       };*/
 
-      inputPerson.push(inputValue)
+      personInput.push(inputValue)
 
-      //console.log('LISTA INPUTPERSON MONTADA NO submitUSER: ', inputPerson)
+      //console.log('LISTA INPUTPERSON MONTADA NO submitUSER: ', personInput)
 
       currentStep = Object.assign({}, defaultUserSettings, currentStep, step);
 
@@ -549,7 +564,7 @@ class ChatBot extends Component {
           currentStep,
           renderedSteps,
           previousSteps,
-          inputPerson,
+          personInput,
           disabled: true,
           inputValue: ''
         },
