@@ -6,8 +6,13 @@ class PessoaService extends ApiService{
     }
 
     salvarPessoa (personInput) {
-        //console.log('SERVIÇO => salvarPessoa: ',  personInput)
         return this.post('/salvar', personInput)
+    }
+
+    atualizarPessoa (personInput) {
+        console.log('PERSON EMAIL: ', personInput.email)
+        return this.put(`/${personInput.email}`, personInput)
+        //return this.put('/atualizar', personInput)
     }
 }
 export default PessoaService

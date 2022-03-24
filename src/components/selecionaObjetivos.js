@@ -52,7 +52,6 @@ function SelecionaObjetivos (props) {
         objetivo: position.target.value //? position.target.value : 'sem outros objetivos'
       })
     }
-    console.log('objetivos: ', state)
     setListaObjetivos([...totalObjetivos, state])
 
     const notaFinalAtualizada = updatedCheckedState.reduce(

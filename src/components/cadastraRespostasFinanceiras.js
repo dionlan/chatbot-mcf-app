@@ -8,11 +8,11 @@ function CadastraRespostasFinanceiras(props) {
   
   useEffect(() => {
     
-    pessoaService.salvarPessoa(responseInput)
+    pessoaService.atualizarPessoa(responseInput)
     .then(response => {
-      console.log('dados pessoais salvos com sucesso!')
+      console.log('Informações financeiras cadastradas com sucesso!')
     }).catch(error => {
-      console.log('ERRO!')
+      console.log('ERRO!', error)
     }) 
 
     console.log('PROPS CADASTRA RESPOSTAS FINANCEIRAS', responseInput)

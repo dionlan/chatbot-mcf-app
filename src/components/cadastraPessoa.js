@@ -10,7 +10,7 @@ function CadastraPessoa(props) {
   useEffect(() => {
     pessoaService.salvarPessoa(personInput)
     .then(response => {
-      console.log('dados pessoais salvos com sucesso!')
+      console.log('Informações pessoais cadastradas com sucesso!')
     }).catch(error => {
       console.log('ERRO!')
     }) 
