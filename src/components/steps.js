@@ -135,7 +135,7 @@ const Steps = [
       component: <CadastraRespostasFinanceiras />,
       asMessage: true,
       //waitAction: true,
-      trigger: 'q29',
+      trigger: '16',
     }, 
     
     
@@ -447,12 +447,12 @@ const Steps = [
       ],
     }, */
     {
-      id: 'q29',
+      id: '16',
       message: 'Selecione agora seus objetivos financeiros imediatos.',
-      trigger: 'r29'
+      trigger: 'selecionaObjetivos'
     }, 
     {
-      id: 'r29',
+      id: 'selecionaObjetivos',
       component: <SelecionaObjetivos />,
       waitAction: true,
       asMessage: true,

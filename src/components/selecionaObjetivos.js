@@ -6,8 +6,6 @@ import { InputText } from 'primereact/inputtext';
 import './components.css'
 
 function SelecionaObjetivos (props) {
-
-  console.log('props SELECIONA OBJETIVOS: ', props.respostas)
   
   const [checkedState, setCheckedState] = useState(
     new Array(ObjetivosFinanceiros.length).fill(false)
@@ -32,7 +30,7 @@ function SelecionaObjetivos (props) {
       (obj, currentState, index) => {
         if (currentState === true) {
           //let newArr = setListaObjetivos({...obj, [listaObjetivos.objetivo]: ObjetivosFinanceiros[index].objetivo})
-          let newArr = [...obj, ObjetivosFinanceiros[index]]
+          let newArr = [...obj, {itemObjetivo : ObjetivosFinanceiros[index].id}]
           return newArr
           /*return setStateObjetivo((prevProps) => ({
             ...prevProps,
@@ -45,13 +43,23 @@ function SelecionaObjetivos (props) {
       ''
     );
  
-    if (position.target){
+    if (position.target){ //para obter os valores inseridos pelo usuario no inputText "outros objetivos financeiros"
+
       console.log('position', position)
+      //pegar o valor da última posição da lista de objetivos e obter o valor correspondente "String outros objetivos digitados pelo usuario, ou manter: sem outros objetivos financeiros"
+
       setState({
-        id: position.target.id,
-        objetivo: position.target.value //? position.target.value : 'sem outros objetivos'
+        itemObjetivo: position.target.value //? position.target.value : 'sem outros objetivos'
       })
+      /*
+      setState({
+        id: parseInt(position.target.id),
+        objetivo: position.target.value //? position.target.value : 'sem outros objetivos'
+      })*/
     }
+
+    
+    //console.log('Objetivos: ', state)
     setListaObjetivos([...totalObjetivos, state])
 
     const notaFinalAtualizada = updatedCheckedState.reduce(
@@ -103,7 +111,7 @@ function SelecionaObjetivos (props) {
         </div>
 
         <br/>
-        <Button  className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'r29', message:'lista_respostas', value: listaObjetivos, 
+        <Button  className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'selecionaObjetivos', message:'lista_respostas', value: listaObjetivos, 
         trigger: 'q30' })}> Prosseguir </Button>
       
     </>

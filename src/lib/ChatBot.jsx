@@ -217,6 +217,11 @@ class ChatBot extends Component {
     return typeof trigger === 'function' ? trigger({ value, steps }) : trigger;
   };
 
+  getTriggeredRespostas = (trigger, value) => {
+    const respostas = this.getRespostasById();
+    return typeof trigger === 'function' ? trigger({ value, respostas }) : trigger;
+  };
+
   getStepMessage = message => {
     const { previousSteps } = this.state;
     const lastStepIndex = previousSteps.length > 0 ? previousSteps.length - 1 : 0;
@@ -282,8 +287,13 @@ class ChatBot extends Component {
     const isEnd = currentStep.end;
     const question = previousStep.id
     const respostaId = currentStep.id;
+
+    console.log('DATA: ', data)
+    console.log('CURRENTSTEP: ', currentStep)
  
+    //na seleção dos objetivos: pegar algo que identifique o componente, adicionar o resultado (data.value) à listaRespostas
     if (data && data.value) {
+      console.log('data.message: ', data.message)
       currentStep.value = data.value;
     }
     if (data && data.hideInput) {
@@ -291,6 +301,18 @@ class ChatBot extends Component {
     }
     if (data && data.hideExtraControl) {
       currentStep.hideExtraControl = data.hideExtraControl;
+    }
+    if(data && data.trigger && data.id === 'selecionaObjetivos' && data.message === 'lista_respostas'){
+      let itemResponses = {
+        question: question,
+        itemResponses: currentStep.value
+      }
+      console.log('==========SELEÇÃO DE OBJETIVOS==========')
+      console.log('LISTA RESPOSTAS NO SELEÇÃO OBJETIVOS ANTES', listaRespostas)
+      listaRespostas.push(itemResponses)
+      console.log('LISTA RESPOSTAS NO SELEÇÃO OBJETIVOS DEPOIS', listaRespostas)
+      currentStep.trigger = this.getTriggeredRespostas(data.trigger, data.value);
+      
     }
     if (data && data.trigger) {
       console.log('DATA && DATA.TRIGGER: ', data && data.trigger)
@@ -308,6 +330,7 @@ class ChatBot extends Component {
       }*/
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
     }
+  
 
     if (isEnd) {
       this.handleEnd();
