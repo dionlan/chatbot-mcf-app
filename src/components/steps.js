@@ -45,7 +45,7 @@ const Steps = [
       component: <CadastraPessoa />,
       asMessage: true,
       //waitAction: true,
-      trigger: '1',
+      //trigger: '1',
     }, 
 
 /*
@@ -134,8 +134,8 @@ const Steps = [
       id: 'cadastraFinanceiro',
       component: <CadastraRespostasFinanceiras />,
       asMessage: true,
-      //waitAction: true,
-      trigger: '16',
+      waitAction: true,
+      //trigger: '16',
     }, 
     
     

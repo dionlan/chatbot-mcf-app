@@ -4,6 +4,7 @@ import ObjetivosFinanceiros from '../utils/objetivosFinanceiros';
 import { Checkbox } from 'primereact/checkbox';
 import { InputText } from 'primereact/inputtext';
 import './components.css'
+import PessoaService from '../service/pessoaService';
 
 function SelecionaObjetivos (props) {
   
@@ -73,6 +74,22 @@ function SelecionaObjetivos (props) {
     );
     setNotaFinal(notaFinalAtualizada);
   };
+
+  const pessoaService = new PessoaService()
+
+  const personInput = props.respostas
+
+  function cadastar() {
+    pessoaService.atualizarPessoa(personInput)
+    .then(response => {
+      console.log('Informações financeiras cadastradas com sucesso!')
+      props.triggerNextStep({id: 'selecionaObjetivos', message:'lista_respostas', value: listaObjetivos, trigger: 'q30' })
+    }).catch(error => {
+      console.log('ERRO!', error)
+    }) 
+
+    console.log('PROPS CADASTRA OBJETIVOS FINANCEIROS', personInput)
+  }
   
   return (
     <>
@@ -111,8 +128,7 @@ function SelecionaObjetivos (props) {
         </div>
 
         <br/>
-        <Button  className="p-button-success p-button-sm" onClick={() => props.triggerNextStep({id: 'selecionaObjetivos', message:'lista_respostas', value: listaObjetivos, 
-        trigger: 'q30' })}> Prosseguir </Button>
+        <Button className="p-button-success p-button-sm" onClick={cadastar}> Prosseguir </Button>
       
     </>
   );

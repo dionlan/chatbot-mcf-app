@@ -11,15 +11,13 @@ function CadastraRespostasFinanceiras(props) {
     pessoaService.atualizarPessoa(responseInput)
     .then(response => {
       console.log('Informações financeiras cadastradas com sucesso!')
+      props.triggerNextStep({id: 'cadastraFinanceiro', message:'lista_financeiro', trigger: '16' })
     }).catch(error => {
       console.log('ERRO!', error)
     }) 
 
     console.log('PROPS CADASTRA RESPOSTAS FINANCEIRAS', responseInput)
   }, [])
-
-
-  
   
   //props.triggerNextStep({id: 'salvaPessoa', trigger: 'q29' })
   //props.triggerNextStep()

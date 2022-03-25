@@ -11,6 +11,7 @@ function CadastraPessoa(props) {
     pessoaService.salvarPessoa(personInput)
     .then(response => {
       console.log('Informações pessoais cadastradas com sucesso!')
+      props.triggerNextStep({id: 'cadastraPessoa', message:'cadastra_pessoa', trigger: '1' })
     }).catch(error => {
       console.log('ERRO!')
     }) 
