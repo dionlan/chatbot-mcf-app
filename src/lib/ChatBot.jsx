@@ -250,20 +250,10 @@ class ChatBot extends Component {
 
   getRespostasById = () => {
     const { listaRespostas, personInput, responseInput } = this.state;
-    //console.log('LISTAAAAAAAAAAAAAAAAAA respostas: ', listaRespostas)
     const name = personInput[0]
     const email = personInput[1]
     let respostas = []
     const responses = []
-/*
-    const financeiro = listaRespostas.map(step => {
-      const { question, respostaId, itemResponse } = step;
-      return {
-        question,
-        respostaId,
-        itemResponse,
-      };
-    }); */
 
     for (let i = 0, len = responseInput.length; i < len; i += 1) {
       const { question, itemResponse } = responseInput[i];
@@ -273,16 +263,11 @@ class ChatBot extends Component {
       };
     }
 
-
     respostas = {
       name,
       email,
       responses: responseInput.length ? responses : null
     }
-
-    //const respostas = [];
-    //console.log('LISTAAAAAAAAAAAAAAAAAA respostas: ', listaRespostas)
-
 
     console.log('LISTAAAAAAAAAAAAAAAAAA respostas DEPOIS: ', respostas)
     return respostas;
@@ -309,17 +294,13 @@ class ChatBot extends Component {
 
     console.log('DATA TRIGGER NEXT STEP: ', data)
     if(data && data.trigger && data.id === 'selecionaObjetivos' && data.message === 'lista_respostas'){
-      console.log('=======================SELEÇÃO DE OBJETIVOS=======================')
-      const itemResponses = {
-        question: question,
-        itemResponses: currentStep.value
-      }
-      respostas = Object.assign({}, itemResponses);
+      
+      //*respostas = Object.assign({}, currentStep.value);
 
-      responseInput.push(respostas);
+      listaRespostas.push(data.value);
 
-      console.log('LISTA RESPOSTAS OBJETIVOS FINANCEIROS', listaRespostas)
-      currentStep.trigger = this.getTriggeredRespostas(data.trigger, data.value);
+      console.log('---COM--- OBJETIVOS FINANCEIROS', listaRespostas)
+      //currentStep.trigger = this.getTriggeredRespostas(data.trigger, data.value);
       
     }
 

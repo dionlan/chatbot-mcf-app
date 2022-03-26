@@ -46,7 +46,7 @@ function SelecionaObjetivos (props) {
  
     if (position.target){ //para obter os valores inseridos pelo usuario no inputText "outros objetivos financeiros"
 
-      console.log('position', position)
+      //console.log('position', position)
       //pegar o valor da última posição da lista de objetivos e obter o valor correspondente "String outros objetivos digitados pelo usuario, ou manter: sem outros objetivos financeiros"
 
       setState({
@@ -80,15 +80,34 @@ function SelecionaObjetivos (props) {
   const personInput = props.respostas
 
   function cadastar() {
+    let { previousStep } = props;
+    const itemResponses = {
+      question: previousStep.id,
+      itemResponses: listaObjetivos
+    }
+    console.log('itemResponses SELECIONA OBJETIVOS: ', itemResponses)
+
+    personInput.responses.push(itemResponses)
+    
+    console.log('lista PERSONINPUT', personInput)
+
     pessoaService.atualizarPessoa(personInput)
+
+    console.log('Informações financeiras cadastradas com sucesso!')
+
+    props.triggerNextStep({id: 'selecionaObjetivos', message:'lista_respostas', value:personInput, trigger: '17' })
+
+    //console.log('CADASTRA OBJETIVOS FINANCEIROS', personInput)
+    //pessoaService.atualizarPessoa(personInput)
+    /*
     .then(response => {
       console.log('Informações financeiras cadastradas com sucesso!')
       props.triggerNextStep({id: 'selecionaObjetivos', message:'lista_respostas', value: listaObjetivos, trigger: 'q30' })
     }).catch(error => {
       console.log('ERRO!', error)
-    }) 
+    }) */
 
-    console.log('PROPS CADASTRA OBJETIVOS FINANCEIROS', personInput)
+    //console.log('PROPS CADASTRA OBJETIVOS FINANCEIROS', personInput)
   }
   
   return (
