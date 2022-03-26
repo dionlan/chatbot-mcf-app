@@ -296,11 +296,12 @@ class ChatBot extends Component {
     if(data && data.trigger && data.id === 'selecionaObjetivos' && data.message === 'lista_respostas'){
       
       //*respostas = Object.assign({}, currentStep.value);
+      console.log('DATA VALUE LISTA ATUAL', data.value)
+      /*listaRespostas.splice(0,listaRespostas.length)
+      listaRespostas.push(data.value)
 
-      listaRespostas.push(data.value);
-
-      console.log('---COM--- OBJETIVOS FINANCEIROS', listaRespostas)
-      //currentStep.trigger = this.getTriggeredRespostas(data.trigger, data.value);
+      console.log('---COM--- OBJETIVOS FINANCEIROS', listaRespostas) */
+      currentStep.trigger = this.getTriggeredRespostas(data.trigger, data.value);
       
     }
 
