@@ -95,7 +95,7 @@ function SelecionaObjetivos (props) {
 
     console.log('Informações financeiras cadastradas com sucesso!')
 
-    props.triggerNextStep({id: 'selecionaObjetivos', message:'lista_respostas', value:personInput, trigger: '17' })
+    props.triggerNextStep({id: 'selecionaObjetivos', message:'lista_respostas', value:itemResponses, trigger: '17' })
 
     //console.log('CADASTRA OBJETIVOS FINANCEIROS', personInput)
     //pessoaService.atualizarPessoa(personInput)

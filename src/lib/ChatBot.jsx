@@ -253,20 +253,11 @@ class ChatBot extends Component {
     const name = personInput[0]
     const email = personInput[1]
     let respostas = []
-    const responses = []
-
-    for (let i = 0, len = responseInput.length; i < len; i += 1) {
-      const { question, itemResponse } = responseInput[i];
-      responses[i] = {
-        question,
-        itemResponse
-      };
-    }
-
+    let responses = responseInput
     respostas = {
       name,
       email,
-      responses: responseInput.length ? responses : null
+      responses
     }
 
     console.log('LISTAAAAAAAAAAAAAAAAAA respostas DEPOIS: ', respostas)
@@ -292,33 +283,8 @@ class ChatBot extends Component {
       currentStep.hideExtraControl = data.hideExtraControl;
     }
 
-    console.log('DATA TRIGGER NEXT STEP: ', data)
-    if(data && data.trigger && data.id === 'selecionaObjetivos' && data.message === 'lista_respostas'){
-      
-      //*respostas = Object.assign({}, currentStep.value);
-      console.log('DATA VALUE LISTA ATUAL', data.value)
-      /*listaRespostas.splice(0,listaRespostas.length)
-      listaRespostas.push(data.value)
-
-      console.log('---COM--- OBJETIVOS FINANCEIROS', listaRespostas) */
-      currentStep.trigger = this.getTriggeredRespostas(data.trigger, data.value);
-      
-    }
-
     if (data && data.trigger) {
       console.log('DATA && DATA.TRIGGER: ', data && data.trigger)
-      /*
-      if(typeof currentStep.component.type === 'function'){
-        const resp = {
-          question: question,
-          respostaId: respostaId,
-          value: data.value
-        };
-        respostas = Object.assign({}, respostas, resp);
-        listaRespostas.push(respostas)
-        console.log('lista respostas: ', listaRespostas)
-        this.getRespostasById();
-      }*/
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
     }
   
@@ -343,9 +309,7 @@ class ChatBot extends Component {
         itemResponse: currentStep.value
       }
 
-      respostas = Object.assign({}, responses);
-
-      responseInput.push(respostas)
+      responseInput.push(responses)
       console.log('LISSSTA OPTIONSSSSSSSSSSSSSSSS / RESPONSE: ', responseInput)
 
       //respostas = Object.assign({}, respostas, resp);
@@ -360,6 +324,8 @@ class ChatBot extends Component {
       this.setState({
         currentStep,
         renderedSteps,
+        respostas,
+        responseInput,
         previousSteps,
       });
     } else if (currentStep.trigger) {
