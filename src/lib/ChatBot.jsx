@@ -306,7 +306,8 @@ class ChatBot extends Component {
 
       const responses = {
         question: question,
-        itemResponse: currentStep.value
+        itemResponse: currentStep.value,
+        resposta: currentStep.message
       }
 
       responseInput.push(responses)

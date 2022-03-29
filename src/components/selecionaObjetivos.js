@@ -31,7 +31,7 @@ function SelecionaObjetivos (props) {
       (obj, currentState, index) => {
         if (currentState === true) {
           //let newArr = setListaObjetivos({...obj, [listaObjetivos.objetivo]: ObjetivosFinanceiros[index].objetivo})
-          let newArr = [...obj, {itemObjetivo : ObjetivosFinanceiros[index].id}]
+          let newArr = [...obj, ObjetivosFinanceiros[index]]
           return newArr
           /*return setStateObjetivo((prevProps) => ({
             ...prevProps,
@@ -50,7 +50,7 @@ function SelecionaObjetivos (props) {
       //pegar o valor da última posição da lista de objetivos e obter o valor correspondente "String outros objetivos digitados pelo usuario, ou manter: sem outros objetivos financeiros"
 
       setState({
-        itemObjetivo: position.target.value //? position.target.value : 'sem outros objetivos'
+        itemObjetivo: 'Outros Objetivos: ' + position.target.value //? position.target.value : 'sem outros objetivos'
       })
       /*
       setState({

@@ -12,10 +12,16 @@ function ResumoPessoa(props){
   const service = new DiagnisticoFinanceiroService();
 
   useEffect(() => {
-    const _respostas = [...Object.values(props.respostas).filter(b => !Array.isArray(b.resposta))]
-    const _objetivosFinanceiros = [...Object.values(props.respostas).map(a => a.resposta).filter(b => Array.isArray(b))[0]]
+    console.log('PROPS respostas RESUMO: ', props.respostas)
+    console.log('PROPS props.respostas.responses RESUMO: ', props.respostas.responses.filter(b => !Array.isArray(b.itemResponses)))
+    const _respostas = props.respostas.responses.filter(b => !Array.isArray(b.itemResponses))
+    //[...Object.values(props.respostas.responses).filter(b => !Array.isArray(b.responses))]
+    
+    console.log('PROPS _respostas RESUMO: ', _respostas)
+    const _objetivosFinanceiros = props.respostas.responses.filter(b => Array.isArray(b.itemResponses))
+    console.log('PROPS _objetivosFinanceiros RESUMO: ', _objetivosFinanceiros[0].itemResponses)
     setRespostas(_respostas)
-    setObjetiosFinanceiros(_objetivosFinanceiros)
+    setObjetiosFinanceiros(_objetivosFinanceiros[0].itemResponses)
   }, []) 
 
   const onCellEditComplete = (e) => {
@@ -56,11 +62,12 @@ function ResumoPessoa(props){
 
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
-          <Column field="respostaId" header="Id Resposta" > </Column>
-          <Column field="questionId" header="Id Questão" />
+          <Column field="itemResponse" header="Id Resposta" > </Column>
+          <Column field="question" header="Id Questão" />
           <Column field="resposta" header="Resposta" editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} />
         </DataTable>
         <DataTable value={objetivosFinanceiros} responsiveLayout="scroll">
+            <Column field="itemObjetivo" header="Id Objetivo" />
             <Column field="objetivo" header="Objetivos Financeiros" editor={(options) => cellEditor(options)} onCellEditComplete={onCellEditComplete} ></Column>
         </DataTable>
 

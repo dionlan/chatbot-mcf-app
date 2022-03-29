@@ -1,55 +1,55 @@
-const ObjetivosFinanceiros = [
+const itemObjetivo = [
     {
-      id: 1,
+      itemObjetivo: 1,
       objetivo: "Aumentar as receitas"
     },
     {
-      id: 2,
+      itemObjetivo: 2,
       objetivo: "Aprender a gerenciar o meu orçamento, receitas e despesas"
     },
     {
-      id: 3,
+      itemObjetivo: 3,
       objetivo: "Consumir de forma mais consciente"
     },
     {
-      id: 4,
+      itemObjetivo: 4,
       objetivo: "Quitar as minhas dívidas"
     },
     {
-      id: 5,
+      itemObjetivo: 5,
       objetivo: "Definir e ter mais clareza dos meus objetivos financeiros"
     },
     {
-      id: 6,
+      itemObjetivo: 6,
       objetivo: "Montar minha reserva de segurança"
     },
     {
-      id: 7,
+      itemObjetivo: 7,
       objetivo: "Juntar dinheiro para a minha aposentadoria"
     },
     {
-      id: 8,
+      itemObjetivo: 8,
       objetivo: "Investir melhor para alcançar os meus objetivos"
     },
     {
-      id: 9,
+      itemObjetivo: 9,
       objetivo: "Estar mais protegido contra acidentes e imprevistos"
     },
     {
-      id: 10,
+      itemObjetivo: 10,
       objetivo: "Melhorar a minha educação financeira"
     },
     {
-      id: 11,
+      itemObjetivo: 11,
       objetivo: "Melhorar meus pensamentos e emoções relacionadas ao dinheiro"
     },
     {
-      id: 12,
+      itemObjetivo: 12,
       objetivo: "Comprar algum bem pessoal ou imóvel"
     },
     {
-      id: 13,
+      itemObjetivo: 13,
       objetivo: "Outros"
     }
   ];
-  export default ObjetivosFinanceiros
+  export default itemObjetivo
