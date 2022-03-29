@@ -18,8 +18,12 @@ class ApiService{
 
     put(url, objeto){
         const requestUrl = `${this.apiUrl}${url}`
-        //console.log('URL: ', requestUrl)
         return httpClient.put(requestUrl, objeto);
+    }
+
+    get(url){
+        const requestUrl = `${this.apiUrl}${url}`
+        return httpClient.get(requestUrl);
     }
 }
 export default ApiService;

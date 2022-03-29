@@ -2,6 +2,7 @@ import ResumoPessoa from './resumoPessoa';
 import CadastraPessoa from './cadastraPessoa';
 import SelecionaObjetivos from './selecionaObjetivos';
 import CadastraRespostasFinanceiras from './cadastraRespostasFinanceiras';
+import PreDiagnostico from './preDiagnostico';
 
 const Steps = [
     {
@@ -507,7 +508,15 @@ const Steps = [
     {
       id: 'agendamento',
       message: 'Agendamento realizado com sucesso, um especialista entrará em contato.',
-      trigger: 'finaliza',
+      trigger: 'preDiagnostico',
+    },
+
+    {
+      id: 'preDiagnostico',
+      component: <PreDiagnostico />,
+      waitAction: true,
+      asMessage: true,
+      trigger: 'finaliza'
     },
     
     {
