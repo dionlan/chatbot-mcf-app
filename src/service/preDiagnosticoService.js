@@ -9,4 +9,4 @@ class PreDiagnosticoService extends ApiService{
         return this.get(`/${email}`)
     }
 }
-export default PessoaService
+export default PreDiagnosticoService

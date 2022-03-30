@@ -3,13 +3,11 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import './components.css'
-import DiagnisticoFinanceiroService from '../service/pessoaService';
 
 function ResumoPessoa(props){
 
   const[respostas, setRespostas] = useState([])
   const[objetivosFinanceiros, setObjetiosFinanceiros] = useState([]) 
-  const service = new DiagnisticoFinanceiroService();
 
   useEffect(() => {
     console.log('PROPS respostas RESUMO: ', props.respostas)
@@ -47,6 +45,7 @@ function ResumoPessoa(props){
 
   function salvar() {
     console.log('Diagnóstico cadastro com sucesso! ')
+    props.triggerNextStep({id: 'resumo', message:'resumo_pessoa', trigger: 'finaliza' })
     /*
     const resultadoDiagnostico = [...Object.values(props.respostas)]
     service.cadastrarDiagnosticoFinanceiro(resultadoDiagnostico)

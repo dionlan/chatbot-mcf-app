@@ -57,6 +57,10 @@ function SelecionaObjetivos (props) {
         id: parseInt(position.target.id),
         objetivo: position.target.value //? position.target.value : 'sem outros objetivos'
       })*/
+    }else{
+      setState({
+        itemObjetivo: 'Sem Outros Objetivos.' //? position.target.value : 'sem outros objetivos'
+      })
     }
 
     

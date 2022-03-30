@@ -494,7 +494,7 @@ const Steps = [
       asMessage: true,
     },
     {
-      id: 'q32',
+      id: '32',
       message: 'Você gostaria de receber o contato de um profissional para agendar uma reunião gratuita com uma análise da sua situação financeira?',
       trigger: 'r32',
     },
@@ -515,8 +515,7 @@ const Steps = [
       id: 'preDiagnostico',
       component: <PreDiagnostico />,
       waitAction: true,
-      asMessage: true,
-      trigger: 'finaliza'
+      asMessage: true
     },
     
     {
