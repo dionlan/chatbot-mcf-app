@@ -3,6 +3,8 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import './components.css'
+import PessoaService from '../service/pessoaService';
+import PreDiagnosticoService from '../service/preDiagnosticoService'
 
 function ResumoPessoa(props){
 
@@ -44,15 +46,23 @@ function ResumoPessoa(props){
   }
 
   function salvar() {
-    console.log('Diagnóstico cadastro com sucesso! ')
-    props.triggerNextStep({id: 'resumo', message:'resumo_pessoa', trigger: 'finaliza' })
-    /*
-    const resultadoDiagnostico = [...Object.values(props.respostas)]
-    service.cadastrarDiagnosticoFinanceiro(resultadoDiagnostico)
-    props.triggerNextStep({id: 'resumo', trigger: 'q32' }) 
-    */
-  }
+    const pessoaService = new PessoaService();
+    const preDiagnosticService = new PreDiagnosticoService();
+    const responseInput = props.respostas
+    pessoaService.atualizarPessoa(responseInput)
+    .then(response => {
+      let personId = {
+        personId: response.data.id
+      }
+      console.log('RESPONSE RESUMO PORSONID! ', personId)
+      preDiagnosticService.salvarPreDiagnostico(personId)
+      console.log('Pre Diagnóstico cadastro com sucesso! ', response)
+      props.triggerNextStep({id: 'resumo', message:'resumo_pessoa', trigger: '32' })
+    }).catch(error => {
+      console.log('ERRO!', error)
+    }) 
     
+  }
 
   return (
     <>

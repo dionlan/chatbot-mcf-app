@@ -359,6 +359,15 @@ class ChatBot extends Component {
  
       console.log('LISTA RESPOSTAS MONTADA NO OPTIONS: ', listaRespostas)
       }
+
+      if(currentStep.trigger === 'preDiagnostico'){         
+        console.log('=======================RESUMO=======================')
+        let { respostas } = this.state
+
+        respostas = Object.assign({}, currentStep.value);
+   
+        console.log('RESUMO: ', respostas)
+        }
       
       if (nextStep.message) {
         nextStep.message = this.getStepMessage(nextStep.message);

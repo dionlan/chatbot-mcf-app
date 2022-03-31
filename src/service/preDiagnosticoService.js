@@ -2,10 +2,14 @@ import ApiService from './apiService'
 
 class PreDiagnosticoService extends ApiService{
     constructor(){
-        super('/api/diagnostico')
+        super('/api/previadiagnostico')
     }
 
-    buscarResultadoPrevio (email) {
+    salvarPreDiagnostico(preDiagnostico) {
+        return this.post('/salvar', preDiagnostico)
+    }
+
+    buscarResultadoPrevio(email) {
         return this.get(`/${email}`)
     }
 }

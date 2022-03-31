@@ -502,7 +502,7 @@ const Steps = [
       id: 'r32',
       options: [
         { value: 'sim', label: 'Sim', trigger: 'agendamento' },
-        { value: 'nao', label: 'Não', trigger: 'finaliza' },
+        { value: 'nao', label: 'Não', trigger: 'preDiagnostico' },
       ],
     },
     {
@@ -520,7 +520,7 @@ const Steps = [
     
     {
       id: 'finaliza',
-      message: 'Muito Obrigado! Aguarde que enviaremos em breve o resultado do seu Diagnóstico Financeiro.',
+      message: 'Muito Obrigado! Uma análise prévia e totalmente gratuita foi encaminhada no seu e-amail.',
       end: true
     }
     /*,
