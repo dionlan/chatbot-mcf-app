@@ -2,7 +2,7 @@ import ApiService from './apiService'
 
 class PreDiagnosticoService extends ApiService{
     constructor(){
-        super('/api/previadiagnostico')
+        super('/api/previa-diagnostico')
     }
 
     salvarPreDiagnostico(preDiagnostico) {

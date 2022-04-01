@@ -272,7 +272,6 @@ class ChatBot extends Component {
     let { currentStep, previousStep, respostas } = this.state;
     const isEnd = currentStep.end;
     const question = previousStep.id
-    const respostaId = currentStep.id;
 
     if (data && data.value) {
       currentStep.value = data.value;

@@ -9,7 +9,7 @@ const PreDiagnostico = (props) => {
 
   useEffect(() => {
     console.log('PROPS USERCONTEXT USER: ', personInput)
-    service.buscarResultadoPrevio(personInput.email)
+    service.buscarResultadoPrevio(personInput.id)
     .then(response => {
       const lista = response.data
         if(lista.length < 1){

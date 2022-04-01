@@ -52,12 +52,9 @@ const ResumoPessoa = (props) => {
     const responseInput = props.respostas
     pessoaService.atualizarPessoa(responseInput)
     .then(response => {
-      const personId = {
-        personId: response.data.id
-      }
-      console.log('ID: ', personId)
-      preDiagnosticService.salvarPreDiagnostico(personId)
-      console.log('Prévia do Diagnóstico cadadastrada com sucesso!')
+      console.log('RESPONSE RESUMO PESSOA: ', responseInput)
+      preDiagnosticService.salvarPreDiagnostico(responseInput)
+      console.log('Prévia do Diagnóstico cadadastrada com sucesso!', response)
       props.triggerNextStep({id: 'resumo', message:'resumo_pessoa', trigger: '32' })
     }).catch(error => {
       console.log('ERRO!', error)

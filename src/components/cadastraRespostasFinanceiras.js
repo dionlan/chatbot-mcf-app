@@ -7,7 +7,6 @@ function CadastraRespostasFinanceiras(props) {
   const responseInput = props.respostas
   
   useEffect(() => {
-    
     pessoaService.atualizarPessoa(responseInput)
     .then(response => {
       console.log('Informações financeiras cadastradas com sucesso!', response)
@@ -15,27 +14,13 @@ function CadastraRespostasFinanceiras(props) {
     }).catch(error => {
       console.log('ERRO!', error)
     }) 
-
     console.log('PROPS CADASTRA RESPOSTAS FINANCEIRAS', responseInput)
   }, [])
   
-  //props.triggerNextStep({id: 'salvaPessoa', trigger: 'q29' })
-  //props.triggerNextStep()
-  /*
-  pessoaService.salvarPessoa(personInput)
-  .then(response => {
-    props.triggerNextStep()
-
-    console.log('dados pessoais salvos com sucesso!')
-   
-  }).catch(error => {
-    console.log('ERRO!')
-  }) */
   return(
     <div>
       Ótimo, {responseInput.name} 👏
     </div>
   )
-  
 }
 export default CadastraRespostasFinanceiras;

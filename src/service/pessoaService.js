@@ -5,15 +5,15 @@ class PessoaService extends ApiService{
         super('/api/diagnostico')
     }
 
-    salvarPessoa (personInput) {
+    salvarPessoa(personInput) {
         return this.post('/salvar', personInput)
     }
 
-    atualizarPessoa (personInput) {
-        return this.put(`/${personInput.email}`, personInput)
+    atualizarPessoa(personInput) {
+        return this.put(`/${personInput.id}`, personInput)
     }
 
-    buscarResultadoPrevio (email) {
+    buscarResultadoPrevio(email) {
         return this.get(`/${email}`)
     }
 }
