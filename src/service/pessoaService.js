@@ -12,5 +12,9 @@ class PessoaService extends ApiService{
     atualizarPessoa (personInput) {
         return this.put(`/${personInput.email}`, personInput)
     }
+
+    buscarResultadoPrevio (email) {
+        return this.get(`/${email}`)
+    }
 }
 export default PessoaService

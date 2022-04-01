@@ -10,10 +10,14 @@ function CadastraPessoa(props) {
   useEffect(() => {
     pessoaService.salvarPessoa(personInput)
     .then(response => {
-      console.log('Informações pessoais cadastradas com sucesso!')
-      props.triggerNextStep({id: 'cadastraPessoa', message:'cadastra_pessoa', trigger: '1' })
+      const personId = {
+        personId: response.data.id
+      }
+      props.respostas.id = response.data.id
+      console.log('Informações pessoais cadastradas com sucesso!', props.respostas)
+      props.triggerNextStep({id: 'cadastraPessoa', message:'cadastra_pessoa', value:props.respostas, trigger: '1' })
     }).catch(error => {
-      console.log('ERRO!')
+      console.log('ERRO!', error)
     }) 
     console.log('PROPS CADASTRA PESSOA: ', props.respostas)
   }, [])

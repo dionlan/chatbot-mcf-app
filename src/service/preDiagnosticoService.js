@@ -9,8 +9,8 @@ class PreDiagnosticoService extends ApiService{
         return this.post('/salvar', preDiagnostico)
     }
 
-    buscarResultadoPrevio(email) {
-        return this.get(`/${email}`)
+    buscarResultadoPrevio(id) {
+        return this.get(`/${id}`)
     }
 }
 export default PreDiagnosticoService

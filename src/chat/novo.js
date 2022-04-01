@@ -4,7 +4,6 @@ import ChatBot from '../lib/index';
 import '../chat/chatbot.css'
 import Steps from '../components/steps'
 
-
 function Novo() {
   const theme = {
     background: '#f5f8fb',
@@ -20,9 +19,8 @@ function Novo() {
   return (
     <ThemeProvider theme={theme}>
         <ChatBot headerTitle="Meu Diagnóstico Financeiro" placeholder="Vamos conversar..." 
-        steps={Steps} botDelay={500} customDelay={500} />
+          steps={Steps} botDelay={500} customDelay={500} />
     </ThemeProvider>
   );
 }
-
 export default Novo;

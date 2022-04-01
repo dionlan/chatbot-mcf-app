@@ -252,15 +252,17 @@ class ChatBot extends Component {
     const { listaRespostas, personInput, responseInput } = this.state;
     const name = personInput[0]
     const email = personInput[1]
+    const id = personInput[2]
     let respostas = []
     let responses = responseInput
     respostas = {
+      id, 
       name,
       email,
       responses
     }
 
-    console.log('LISTAAAAAAAAAAAAAAAAAA respostas DEPOIS: ', respostas)
+    console.log('LISTA respostas DEPOIS: ', respostas)
     return respostas;
   };
 
@@ -273,8 +275,12 @@ class ChatBot extends Component {
     const respostaId = currentStep.id;
 
     if (data && data.value) {
-      console.log('data.message: ', data.message)
       currentStep.value = data.value;
+      if(currentStep.id === 'cadastraPessoa'){
+        let { id } = currentStep.value
+        console.log('DATA VALUE ID PERSON: ', id)
+        personInput.push(id)
+      }
     }
     if (data && data.hideInput) {
       currentStep.hideInput = data.hideInput;
@@ -288,7 +294,6 @@ class ChatBot extends Component {
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
     }
   
-
     if (isEnd) {
       this.handleEnd();
     } else if (currentStep.options && data) {
@@ -359,15 +364,6 @@ class ChatBot extends Component {
  
       console.log('LISTA RESPOSTAS MONTADA NO OPTIONS: ', listaRespostas)
       }
-
-      if(currentStep.trigger === 'preDiagnostico'){         
-        console.log('=======================RESUMO=======================')
-        let { respostas } = this.state
-
-        respostas = Object.assign({}, currentStep.value);
-   
-        console.log('RESUMO: ', respostas)
-        }
       
       if (nextStep.message) {
         nextStep.message = this.getStepMessage(nextStep.message);

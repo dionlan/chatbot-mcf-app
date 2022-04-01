@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import './components.css'
 import PessoaService from '../service/pessoaService';
 import PreDiagnosticoService from '../service/preDiagnosticoService'
+export const UserContext = createContext()
 
-function ResumoPessoa(props){
+const ResumoPessoa = (props) => {
 
   const[respostas, setRespostas] = useState([])
   const[objetivosFinanceiros, setObjetiosFinanceiros] = useState([]) 
@@ -51,23 +52,21 @@ function ResumoPessoa(props){
     const responseInput = props.respostas
     pessoaService.atualizarPessoa(responseInput)
     .then(response => {
-      let personId = {
+      const personId = {
         personId: response.data.id
       }
-      console.log('RESPONSE RESUMO PORSONID! ', personId)
+      console.log('ID: ', personId)
       preDiagnosticService.salvarPreDiagnostico(personId)
-      console.log('Pre Diagnóstico cadastro com sucesso! ', response)
+      console.log('Prévia do Diagnóstico cadadastrada com sucesso!')
       props.triggerNextStep({id: 'resumo', message:'resumo_pessoa', trigger: '32' })
     }).catch(error => {
       console.log('ERRO!', error)
     }) 
-    
   }
-
   return (
     <>
-    { console.log('respostas: ', respostas ) }
-    { console.log('objetivosFinanceiros: ', objetivosFinanceiros) }
+    { /* console.log('respostas: ', respostas ) */}
+    { /*console.log('objetivosFinanceiros: ', objetivosFinanceiros) */}
 
       <h5>Resultado do Diagnóstico Financeiro</h5>
         <DataTable value={respostas} editMode="cell" responsiveLayout="scroll" >
@@ -89,4 +88,4 @@ function ResumoPessoa(props){
     </>
   )
 }
-export default ResumoPessoa;
+export default ResumoPessoa ;
