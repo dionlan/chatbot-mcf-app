@@ -27,16 +27,18 @@ const PreDiagnostico = (props) => {
     <>
       <div>
         <h5>Muito obrigado, {personInput.name}!</h5> 
-        <p>Sua nota parcial foi de <strong>{JSON.stringify(previaDiagnostico.finalNote)}</strong> pontos. </p>
+        <p>Segue uma prévia da sua saúde financeira atual.</p>
+        <p>Sua nota parcial foi de <strong>{previaDiagnostico.finalNote}</strong> pontos. </p>
         
-        Isso significa que seu diagnóstico atual é classificado como: <strong> {JSON.stringify(previaDiagnostico.classification)} </strong>
+        Isso significa que o seu diagnóstico está classificado como: <strong>{previaDiagnostico.classification}</strong>.
+        Mas não se preocupe, estamos aqui pra te ajudar.
         <br/>
         <br/>
       </div>
       
       <div>
       <ReactStoreIndicator 
-        value={previaDiagnostico.finalNote}
+        value={previaDiagnostico.finalNote.toFixed(0)}
         textStyle={{bottom: '45px'}}
         maxValue={100}
         lineWidth={40}
@@ -51,8 +53,7 @@ const PreDiagnostico = (props) => {
                             previaDiagnostico.classification === 'Favorável' ? "success" : 
                             previaDiagnostico.classification === 'Mediano' ? "info" : 
                             previaDiagnostico.classification === 'Alerta' ? "warn" : "error"}
-        
-        text={previaDiagnostico.classification}></Message>
+                  text={previaDiagnostico.classification}/>
       </div>
     </>
   )
