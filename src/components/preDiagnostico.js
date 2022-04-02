@@ -38,7 +38,7 @@ const PreDiagnostico = (props) => {
       <ReactStoreIndicator 
         value={previaDiagnostico.finalNote}
         textStyle={{bottom: '45px'}}
-        maxValue={1000}
+        maxValue={100}
         lineWidth={40}
         lineGap={2} 
         fadedOpacity={20}
@@ -47,7 +47,12 @@ const PreDiagnostico = (props) => {
       </div>
 
       <div style={{ display: "flex", justifyContent: 'center'}}>
-        <Message severity="warn" text={previaDiagnostico.classification}></Message>
+        <Message severity={previaDiagnostico.classification === 'Bem Estar Financeiro' ? "success" : 
+                            previaDiagnostico.classification === 'Favorável' ? "success" : 
+                            previaDiagnostico.classification === 'Mediano' ? "info" : 
+                            previaDiagnostico.classification === 'Alerta' ? "warn" : "error"}
+        
+        text={previaDiagnostico.classification}></Message>
       </div>
     </>
   )
