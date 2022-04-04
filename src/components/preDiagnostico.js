@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import PreDiagnosticoService from '../service/preDiagnosticoService'
+import React from 'react';
 import { Message } from 'primereact/message';
 import ReactStoreIndicator from 'react-score-indicator'
 import { userDetailContext } from '../chat/novo';

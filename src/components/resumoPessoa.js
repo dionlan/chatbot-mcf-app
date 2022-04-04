@@ -27,6 +27,7 @@ const ResumoPessoa = (props) => {
   })
 
   const buscarPreviaDiagnostico = (id) => {
+    console.log('ID BUSCA PREVIA DIAGNOSTICO: ', id)
     preDiagnosticService.buscarResultadoPrevio(id)
     .then(response => {
       console.log('RESPONSE DA BUSCA RESOLTADO PREVIO: ', response)
@@ -84,14 +85,20 @@ const ResumoPessoa = (props) => {
 
   function salvar() {
     pessoaService.atualizarPessoa(responseInput)
-    .then(response => {
-      console.log('RESPONSE RESUMO PESSOA: ', responseInput)
-      preDiagnosticService.salvarPreDiagnostico(responseInput)
-      console.log('Prévia do Diagnóstico cadadastrada com sucesso!', response.data)
-      buscarPreviaDiagnostico(response.data.id)
+    .then(responseInput => {
+      console.log('Dados Pessoais e Financeiros Atualizados com Sucesso!!', responseInput.data)
 
-      
-      //console.data('BUSCA PREVIA DIANOTISCO NO SALVAR', handUserDetails)
+    }).catch(error => {
+      console.log('ERRO!', error)
+    })
+
+    preDiagnosticService.salvarPreDiagnostico(responseInput)
+    .then(responsePrevia => {
+      console.log('PRÉVIA DO DIAGNÓSTICO CADASTRADA COM SUCESSO', responsePrevia.data)
+      //preDiagnosticService.salvarPreDiagnostico(responseInput)
+      console.log('Prévia do Diagnóstico cadadastrada com sucesso!', responsePrevia.data)
+      buscarPreviaDiagnostico(responsePrevia.data.id)
+
       return (
         <userDetailContext.Provider value={{ handUserDetails }}>
           <PreDiagnostico />
