@@ -149,7 +149,7 @@ const ResumoPessoa = (props) => {
         <br/>
         <div>
           { /* Respostas {JSON.stringify(respostas)} <br/> */}
-          <Button className="p-button-success p-button-sm"  onClick={salvar}> 
+          <Button className="p-button-success p-button-sm" onClick={salvar}> 
             Prosseguir </Button>
         </div>
     </>
