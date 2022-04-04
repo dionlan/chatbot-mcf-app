@@ -22,9 +22,6 @@ function SelecionaObjetivos (props) {
       index === position ? !item : item
     );
 
-    /*
-      verificar se o inputText está true, depois pegar o position.target.value e setar no setState
-    */
     setCheckedState(updatedCheckedState);
 
     const totalObjetivos = updatedCheckedState.reduce(
@@ -52,19 +49,11 @@ function SelecionaObjetivos (props) {
       setState({
         itemObjetivo: 'Outros Objetivos: ' + position.target.value //? position.target.value : 'sem outros objetivos'
       })
-      /*
-      setState({
-        id: parseInt(position.target.id),
-        objetivo: position.target.value //? position.target.value : 'sem outros objetivos'
-      })*/
     }else{
       setState({
         itemObjetivo: 'Sem Outros Objetivos.' //? position.target.value : 'sem outros objetivos'
       })
     }
-
-    
-    //console.log('Objetivos: ', state)
     setListaObjetivos([...totalObjetivos, state])
 
     const notaFinalAtualizada = updatedCheckedState.reduce(
@@ -142,17 +131,17 @@ function SelecionaObjetivos (props) {
             </li>
           );
         })}
+        {/* 
         <div>
           <label><strong>Objetivos Selecionados:  </strong>{JSON.stringify(listaObjetivos)}</label>
           <label><strong>Outros:  </strong>{JSON.stringify(state)}</label>
         </div>
         <div>
-          <label><strong>Nota Final: </strong>{`${notaFinal.toFixed(2)}`}</label> { /** código javascript em HTML {`${javascript}`} */}
+          <label><strong>Nota Final: </strong>{`${notaFinal.toFixed(2)}`}</label>  código javascript em HTML {`${javascript}`} 
         </div>
-
+      */}
         <br/>
         <Button className="p-button-success p-button-sm" onClick={cadastar}> Prosseguir </Button>
-      
     </>
   );
 }

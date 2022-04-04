@@ -249,7 +249,7 @@ class ChatBot extends Component {
   };
 
   getRespostasById = () => {
-    const { listaRespostas, personInput, responseInput } = this.state;
+    const { personInput, responseInput } = this.state;
     const name = personInput[0]
     const email = personInput[1]
     const id = personInput[2]
@@ -261,8 +261,7 @@ class ChatBot extends Component {
       email,
       responses
     }
-
-    console.log('LISTA respostas DEPOIS: ', respostas)
+    //console.log('LISTA respostas DEPOIS: ', respostas)
     return respostas;
   };
 
@@ -277,7 +276,6 @@ class ChatBot extends Component {
       currentStep.value = data.value;
       if(currentStep.id === 'cadastraPessoa'){
         let { id } = currentStep.value
-        console.log('DATA VALUE ID PERSON: ', id)
         personInput.push(id)
       }
     }
@@ -289,7 +287,6 @@ class ChatBot extends Component {
     }
 
     if (data && data.trigger) {
-      console.log('DATA && DATA.TRIGGER: ', data && data.trigger)
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
     }
   
@@ -306,19 +303,15 @@ class ChatBot extends Component {
         message: option.label,
         trigger
       });
-      //personInput.length = 0
 
       const responses = {
         question: question,
         itemResponse: currentStep.value,
         resposta: currentStep.message
       }
-
       responseInput.push(responses)
-      console.log('LISSSTA OPTIONSSSSSSSSSSSSSSSS / RESPONSE: ', responseInput)
-
+      //console.log('LISSSTA OPTIONSSSSSSSSSSSSSSSS / RESPONSE: ', responseInput)
       //respostas = Object.assign({}, respostas, resp);
-      
       renderedSteps.pop();
       previousSteps.pop();
 
@@ -358,10 +351,7 @@ class ChatBot extends Component {
       
       if(currentStep.trigger === 'cadastraFinanceiro'){         
       console.log('=======================FINANCEIRO=======================')
-
       listaRespostas.push({responses: responseInput});
- 
-      console.log('LISTA RESPOSTAS MONTADA NO OPTIONS: ', listaRespostas)
       }
       
       if (nextStep.message) {
@@ -556,8 +546,6 @@ class ChatBot extends Component {
         listaRespostas.push(respostas)
         console.log('LISTA PESSOA CADASTRA: ', listaRespostas)
       }
-
-      
 
       renderedSteps.push(currentStep);
       previousSteps.push(currentStep);
