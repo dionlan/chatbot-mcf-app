@@ -21,7 +21,7 @@ const PreDiagnostico = () => {
       </div>
       <div>
         <ReactStoreIndicator 
-          value={parseInt(contextData.userDetails.finalNote)}
+          value={Math.round(contextData.userDetails.finalNote)}
           textStyle={{bottom: '45px'}}
           maxValue={100}
           lineWidth={40}
