@@ -2,27 +2,35 @@ import React from 'react';
 import { Message } from 'primereact/message';
 import ReactStoreIndicator from 'react-score-indicator'
 import { userDetailContext } from '../chat/novo';
-import { renderToString } from 'react-dom/server'
+import domtoimage from 'dom-to-image';
 
 const PreDiagnostico = () => {
   const contextData = React.useContext(userDetailContext);
-  ///console.log('USER CONTEXT PRE DIAGNOSTICO: ', contextData)
 
   function canvas(){
-    var canvas = document.getElementsByClassName('tyles_scoreWrapper__2ELf-');
-    console.log('canvas: ', canvas)
-    var dataUrl = canvas[0].toDataURL("image/png");
-    console.log('dataUrl: ', dataUrl)
-    const w = window.open('about:blank', 'image from canvas');
-    w.document.write("<img src='"+dataUrl+"' alt='from canvas'/>");
-    console.log('Saved!');
+    var resultado = document.getElementsByClassName('styles_scoreWrapper__2ELf-')[0]
+    console.log('RESULTADO: ', resultado)
+    
+    function filter (node) {
+      return (node.tagName !== 'i');
+    }
+  
+    domtoimage.toSvg(resultado, {filter: filter})
+    .then(function (dataUrl) {
+        var img = new Image();
+        img.src = dataUrl;
+        console.log('IMG: ', img)
+        const w = window.open('about:blank', 'image from canvas');
+        //w.document.write(''+img+'');
+        w.document.body.append(img);
+    })
+    .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
   }
 
-  
-  
   return (
     <>
-    
       <div>
         <h5>Muito obrigado, {contextData.userDetails.name}!</h5> 
         <p>Segue uma prévia da sua saúde financeira atual.</p>
@@ -33,7 +41,6 @@ const PreDiagnostico = () => {
         <br/>
         <br/>
       </div>
-      <div>
         <ReactStoreIndicator 
           value={Math.round(contextData.userDetails.finalNote)}
           textStyle={{bottom: '45px'}}
@@ -43,7 +50,6 @@ const PreDiagnostico = () => {
           fadedOpacity={20}
           borderWidth={100}
           maxAngle={180}/>
-      </div>
       
       <div style={{ display: "flex", justifyContent: 'center'}}>
         <Message severity={contextData.userDetails.classification === 'Bem Estar Financeiro' ? "success" : 
