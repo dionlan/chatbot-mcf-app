@@ -21,6 +21,7 @@ const ResumoPessoa = (props) => {
   const handUserDetails = (info) => setUserDetails({
     id: info.id,
     name: responseInput.name,
+    email: responseInput.email,
     finalNote: info.finalNote,
     classification: info.classification
 

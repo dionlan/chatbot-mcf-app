@@ -3,10 +3,12 @@ import { Message } from 'primereact/message';
 import ReactStoreIndicator from 'react-score-indicator'
 import { userDetailContext } from '../chat/novo';
 import domtoimage from 'dom-to-image';
+import EmailService from '../service/emailService';
 
 const PreDiagnostico = () => {
   const contextData = React.useContext(userDetailContext);
-
+  const emailService = new EmailService();
+  
   function canvas(){
     var resultado = document.getElementsByClassName('styles_scoreWrapper__2ELf-')[0]
     console.log('RESULTADO: ', resultado)
@@ -14,18 +16,25 @@ const PreDiagnostico = () => {
     function filter (node) {
       return (node.tagName !== 'i');
     }
-  
-    domtoimage.toSvg(resultado, {filter: filter})
+    var img = new Image();
+    domtoimage.toPng(resultado, {filter: filter})
     .then(function (dataUrl) {
-        var img = new Image();
         img.src = dataUrl;
-        console.log('IMG: ', img)
-        const w = window.open('about:blank', 'image from canvas');
-        //w.document.write(''+img+'');
+        console.log('dataUrl: ', img.src)
+        const w = window.open('about:blank', 'Prévia do Diagnóstico Financeiro');
         w.document.body.append(img);
+
+        const email = {
+          ownerRef: contextData.userDetails.name,
+          emailFrom: "chatbotmcf@gmail.com",
+          emailTo: contextData.userDetails.email,
+          file64: img.src
+        }
+        console.log('Dados do Email: ', email)
+        emailService.salvarEmail(email)
     })
     .catch(function (error) {
-        console.error('oops, something went wrong!', error);
+        console.error('oops, aconteceu algum erro!', error);
     });
   }
 
@@ -34,10 +43,10 @@ const PreDiagnostico = () => {
       <div>
         <h5>Muito obrigado, {contextData.userDetails.name}!</h5> 
         <p>Segue uma prévia da sua saúde financeira atual.</p>
-        <p>Sua nota parcial foi de <strong>{contextData.userDetails.finalNote}</strong> pontos. </p>
+        <p>Sua nota parcial foi de <strong>95</strong> pontos. </p>
         
         Isso significa que o seu diagnóstico está classificado como: <strong>{contextData.userDetails.classification}</strong>.
-        Mas não se preocupe, estamos aqui pra te ajudar.
+        <p>Parabéns por sua prosperidade financeira.</p>
         <br/>
         <br/>
       </div>
@@ -53,10 +62,10 @@ const PreDiagnostico = () => {
       
       <div style={{ display: "flex", justifyContent: 'center'}}>
         <Message severity={contextData.userDetails.classification === 'Bem Estar Financeiro' ? "success" : 
-                            contextData.userDetails.classification === 'Favorável' ? "success" : 
-                            contextData.userDetails.classification === 'Mediano' ? "info" : 
-                            contextData.userDetails.classification === 'Alerta' ? "warn" : "error"}
-                  text={contextData.userDetails.classification}/>
+                           contextData.userDetails.classification === 'Favorável' ? "success" : 
+                           contextData.userDetails.classification === 'Mediano' ? "info" : 
+                           contextData.userDetails.classification === 'Alerta' ? "warn" : "error"}
+                     text={contextData.userDetails.classification}/>
       </div>
       <button onClick={canvas}>Canva</button>
     </>
