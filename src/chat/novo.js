@@ -23,7 +23,8 @@ function Novo() {
     id: null,
     name: null,
     finalNote: null,
-    classification: null
+    classification: null,
+    personId: null
   })
 
   return (

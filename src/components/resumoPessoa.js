@@ -23,7 +23,8 @@ const ResumoPessoa = (props) => {
     name: responseInput.name,
     email: responseInput.email,
     finalNote: info.finalNote,
-    classification: info.classification
+    classification: info.classification,
+    personId: responseInput.id
 
   })
 

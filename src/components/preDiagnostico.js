@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Message } from 'primereact/message';
 import ReactStoreIndicator from 'react-score-indicator'
 import { userDetailContext } from '../chat/novo';
@@ -8,6 +8,10 @@ import EmailService from '../service/emailService';
 const PreDiagnostico = () => {
   const contextData = React.useContext(userDetailContext);
   const emailService = new EmailService();
+
+  useEffect(() => {
+    canvas()
+  }, [])
   
   function canvas(){
     var resultado = document.getElementsByClassName('styles_scoreWrapper__2ELf-')[0]
@@ -28,7 +32,8 @@ const PreDiagnostico = () => {
           ownerRef: contextData.userDetails.name,
           emailFrom: "chatbotmcf@gmail.com",
           emailTo: contextData.userDetails.email,
-          file64: img.src
+          file64: img.src,
+          personId: contextData.userDetails.id
         }
         console.log('Dados do Email: ', email)
         emailService.salvarEmail(email)
@@ -67,7 +72,7 @@ const PreDiagnostico = () => {
                            contextData.userDetails.classification === 'Alerta' ? "warn" : "error"}
                      text={contextData.userDetails.classification}/>
       </div>
-      <button onClick={canvas}>Canva</button>
+      {/*<button onClick={canvas}>Canva</button> */}
     </>
   )
 }
