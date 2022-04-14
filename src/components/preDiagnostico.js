@@ -25,18 +25,18 @@ const PreDiagnostico = () => {
     .then(function (dataUrl) {
         img.src = dataUrl;
         console.log('dataUrl: ', img.src)
-        const w = window.open('about:blank', 'Prévia do Diagnóstico Financeiro');
-        w.document.body.append(img);
+        //const w = window.open('about:blank', 'Prévia do Diagnóstico Financeiro');
+        //w.document.body.append(img);
 
         const email = {
           ownerRef: contextData.userDetails.name,
-          emailFrom: "chatbotmcf@gmail.com",
+          //emailFrom: "chatbotmcf@gmail.com",
           emailTo: contextData.userDetails.email,
           file64: img.src,
           personId: contextData.userDetails.id
         }
         console.log('Dados do Email: ', email)
-        emailService.salvarEmail(email)
+        //emailService.salvarEmail(email)
     })
     .catch(function (error) {
         console.error('oops, aconteceu algum erro!', error);
@@ -72,7 +72,7 @@ const PreDiagnostico = () => {
                            contextData.userDetails.classification === 'Alerta' ? "warn" : "error"}
                      text={contextData.userDetails.classification}/>
       </div>
-      {/*<button onClick={canvas}>Canva</button> */}
+      <button onClick={canvas}>Canva</button>
     </>
   )
 }
