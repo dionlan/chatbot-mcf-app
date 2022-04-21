@@ -6,7 +6,7 @@ import { InputText } from 'primereact/inputtext';
 import './components.css'
 import PessoaService from '../chat/service/pessoaService';
 
-function SelecionaObjetivos (props) {
+export default function SelecionaObjetivos (props) {
   
   const [checkedState, setCheckedState] = useState(
     new Array(ObjetivosFinanceiros.length).fill(false)
@@ -145,4 +145,3 @@ function SelecionaObjetivos (props) {
     </>
   );
 }
-export default SelecionaObjetivos

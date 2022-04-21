@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PessoaService from '../chat/service/pessoaService';
 
-function CadastraRespostasFinanceiras(props) {
+export default function CadastraRespostasFinanceiras(props) {
 
   const pessoaService = new PessoaService();
   const responseInput = props.respostas
@@ -23,4 +23,3 @@ function CadastraRespostasFinanceiras(props) {
     </div>
   )
 }
-export default CadastraRespostasFinanceiras;

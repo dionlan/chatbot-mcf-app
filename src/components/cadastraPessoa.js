@@ -23,5 +23,4 @@ export default function CadastraPessoa(props) {
       Ótimo 👏
     </div>
   )
-  
 }

@@ -9,7 +9,7 @@ import ChildComponent from '../teste/userEffect/ChildComponent';
 import PreDiagnostico from './preDiagnostico';
 import { userDetailContext } from '../chat/novo';
 
-const ResumoPessoa = (props) => { 
+export const ResumoPessoa = (props) => { 
 
   const[respostas, setRespostas] = useState([])
   const[objetivosFinanceiros, setObjetiosFinanceiros] = useState([]) 
@@ -158,4 +158,3 @@ const ResumoPessoa = (props) => {
     
   )
 }
-export default ResumoPessoa ;
