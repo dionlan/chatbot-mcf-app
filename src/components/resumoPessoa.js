@@ -3,13 +3,13 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import './components.css'
-import PessoaService from '../chat/service/pessoaService';
-import PreDiagnosticoService from '../chat/service/preDiagnosticoService'
+import PessoaService from '../service/pessoaService';
+import PreDiagnosticoService from '../service/preDiagnosticoService'
 import ChildComponent from '../teste/userEffect/ChildComponent';
 import PreDiagnostico from './preDiagnostico';
 import { userDetailContext } from '../chat/novo';
 
-export const ResumoPessoa = (props) => { 
+const ResumoPessoa = (props) => { 
 
   const[respostas, setRespostas] = useState([])
   const[objetivosFinanceiros, setObjetiosFinanceiros] = useState([]) 
@@ -158,3 +158,4 @@ export const ResumoPessoa = (props) => {
     
   )
 }
+export default ResumoPessoa ;

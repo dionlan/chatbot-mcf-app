@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import PessoaService from '../chat/service/pessoaService';
+import PessoaService from '../service/pessoaService';
 
-export default function CadastraPessoa(props) {
+function CadastraPessoa(props) {
 
   const pessoaService = new PessoaService();
 
@@ -23,4 +23,6 @@ export default function CadastraPessoa(props) {
       Ótimo 👏
     </div>
   )
+  
 }
+export default CadastraPessoa;

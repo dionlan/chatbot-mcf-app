@@ -4,9 +4,9 @@ import ObjetivosFinanceiros from '../utils/objetivosFinanceiros';
 import { Checkbox } from 'primereact/checkbox';
 import { InputText } from 'primereact/inputtext';
 import './components.css'
-import PessoaService from '../chat/service/pessoaService';
+import PessoaService from '../service/pessoaService';
 
-export default function SelecionaObjetivos (props) {
+function SelecionaObjetivos (props) {
   
   const [checkedState, setCheckedState] = useState(
     new Array(ObjetivosFinanceiros.length).fill(false)
@@ -145,3 +145,4 @@ export default function SelecionaObjetivos (props) {
     </>
   );
 }
+export default SelecionaObjetivos

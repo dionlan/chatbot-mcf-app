@@ -3,9 +3,11 @@ import { Message } from 'primereact/message';
 import ReactStoreIndicator from 'react-score-indicator'
 import { userDetailContext } from '../chat/novo';
 import domtoimage from 'dom-to-image';
+import EmailService from '../service/emailService';
 
 const PreDiagnostico = () => {
   const contextData = React.useContext(userDetailContext);
+  const emailService = new EmailService();
 
   useEffect(() => {
     canvas()
