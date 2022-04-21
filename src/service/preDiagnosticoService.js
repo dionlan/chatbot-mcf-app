@@ -1,4 +1,4 @@
-import ApiService from 'src/service/apiService.js'
+import ApiService from './apiService.js'
 
 class PreDiagnosticoService extends ApiService{
     constructor(){
