@@ -1,6 +1,6 @@
-/*import ApiService from './apiService.js'
+import apiService from './apiService.js'
 
-class PreDiagnosticoService extends ApiService{
+class PreDiagnosticoService extends apiService{
     constructor(){
         super('/api/previa-diagnostico')
     }
@@ -13,4 +13,4 @@ class PreDiagnosticoService extends ApiService{
         return this.get(`/${id}`)
     }
 }
-export default PreDiagnosticoService*/
+export default PreDiagnosticoService
