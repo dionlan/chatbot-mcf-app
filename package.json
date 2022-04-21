@@ -2,7 +2,7 @@
   "name": "chatbot-mcf-app",
   "version": "0.1.0",
   "engines": {
-    "node": "^16.13.1"
+    "node": "16.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
