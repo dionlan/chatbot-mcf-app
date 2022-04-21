@@ -34,9 +34,9 @@
     "react-test-renderer": "^16.0.0",
     "sinon": "^7.1.0",
     "styled-components": "^4.1.3",
-    "webpack": "^4.46.0",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-cli": "^3.1.2",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.1.0",
     "webpack-dev-server": "^3.11.3",
     "webpack-merge": "^5.8.0"
   },
@@ -67,6 +67,8 @@
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
+    "@types/react": "^18.0.5",
+    "@types/react-dom": "^18.0.1",
     "react-score-indicator": "2.2.1",
     "styled-components": "^4.0.0"
   },
@@ -84,7 +86,8 @@
     "extension": [
       ".jsx",
       "",
-      ".js"
+      ".js",
+      ".cjs"
     ]
   },
   "scripts": {
