@@ -1,4 +1,4 @@
-import ApiService from './apiService.js'
+/*import ApiService from './apiService.js'
 
 class PreDiagnosticoService extends ApiService{
     constructor(){
@@ -13,4 +13,4 @@ class PreDiagnosticoService extends ApiService{
         return this.get(`/${id}`)
     }
 }
-export default PreDiagnosticoService
+export default PreDiagnosticoService*/

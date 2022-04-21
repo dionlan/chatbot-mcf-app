@@ -1,4 +1,5 @@
-import ApiService from './apiService.js'
+/*import ApiService from './apiService.js'
+
 
 class EmailService extends ApiService{
     constructor(){
@@ -10,4 +11,4 @@ class EmailService extends ApiService{
         return this.post('/sending-email', emailInput)
     }
 }
-export default EmailService
+export default EmailService*/

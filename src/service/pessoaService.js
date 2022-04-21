@@ -1,4 +1,4 @@
-import ApiService from './apiService.js'
+/*import ApiService from './apiService.js'
 
 class PessoaService extends ApiService{
     constructor(){
@@ -17,4 +17,4 @@ class PessoaService extends ApiService{
         return this.get(`/${email}`)
     }
 }
-export default PessoaService
+export default PessoaService*/
