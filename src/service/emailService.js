@@ -1,4 +1,4 @@
-import ApiService from './ApiService.js'
+import ApiService from 'src/service/apiService.js'
 
 class EmailService extends ApiService{
     constructor(){
