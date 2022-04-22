@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "private": true,
-  "homepage": "/chat/novo",
+  "homepage": "./src/chat/novo.js",
   "engines": {
     "node": "16.x"
   },
@@ -33,12 +33,6 @@
     "styled-components": "^4.0.0",
     "theme-provider": "^1.0.8",
     "web-vitals": "^2.1.4"
-  },
-  "peerDependencies": {
-    "@types/react": "^18.0.5",
-    "@types/react-dom": "^18.0.1",
-    "react-score-indicator": "2.2.1",
-    "styled-components": "^4.0.0"
   },
   "scripts": {
     "start": "node server.js",
