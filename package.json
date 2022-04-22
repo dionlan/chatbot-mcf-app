@@ -1,7 +1,7 @@
 {
   "name": "chatbot-mcf-app",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "main": "./src/chat/novo.js",
   "private": true,
   "homepage": "./src/chat/novo.js",
   "engines": {
