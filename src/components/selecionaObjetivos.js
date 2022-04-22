@@ -4,7 +4,7 @@ import ObjetivosFinanceiros from '../utils/objetivosFinanceiros';
 import { Checkbox } from 'primereact/checkbox';
 import { InputText } from 'primereact/inputtext';
 import './components.css'
-import PessoaService from '../service/pessoaService';
+import PessoaService from '../service/PessoaService';
 
 function SelecionaObjetivos (props) {
   

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PessoaService from '../service/pessoaService';
+import PessoaService from '../service/PessoaService';
 
 function CadastraRespostasFinanceiras(props) {
 
