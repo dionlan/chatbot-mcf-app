@@ -4,7 +4,7 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import './components.css'
 import { PessoaService } from '/service/pessoaService';
-import PreDiagnosticoService from '../service/preDiagnosticoService'
+import PreDiagnosticoService from '/service/preDiagnosticoService'
 import ChildComponent from '../teste/userEffect/ChildComponent';
 import PreDiagnostico from './preDiagnostico';
 import { userDetailContext } from '../chat/novo';
