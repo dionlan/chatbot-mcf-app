@@ -3,8 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import ChatBot from '../lib/index';
 import '../chat/chatbot.css'
 import Steps from '../components/steps'
-import PreDiagnostico from '../components/preDiagnostico';
-import ResumoPessoa from '../components/resumoPessoa';
 export const userDetailContext = createContext(null);
 
 function Novo() {
@@ -30,7 +28,7 @@ function Novo() {
   return (
     <ThemeProvider theme={theme}>
       <userDetailContext.Provider value={{userDetails, setUserDetails}}>
-          <ChatBot headerTitle="Meu Diagnóstico Financeiro" placeholder="Vamos conversar..." 
+          <ChatBot headerTitle="Meu Diagnóstico Financeiro - Teste Heroku!" placeholder="Vamos conversar..." 
             steps={Steps} botDelay={500} customDelay={500} />
       </userDetailContext.Provider>
     </ThemeProvider>
