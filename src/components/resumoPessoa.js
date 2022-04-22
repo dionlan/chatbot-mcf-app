@@ -3,7 +3,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import './components.css'
-import PessoaService from '../service/pessoaService';
+import PessoaService from '../service/PessoaService';
 import PreDiagnosticoService from '../service/preDiagnosticoService'
 import ChildComponent from '../teste/userEffect/ChildComponent';
 import PreDiagnostico from './preDiagnostico';
