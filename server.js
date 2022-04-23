@@ -12,6 +12,9 @@ app.get('/ping', function(req, res) {
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+app.get('/cors', (req, res) => {
+  res.send('This has CORS enabled 🎈')
+})
 app.listen(port, () => {
-   console.log('Server is UP!');
+   console.log('Server is UP! Port: ', port);
 });
