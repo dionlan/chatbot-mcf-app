@@ -145,7 +145,7 @@ const Steps = [
     {
       id: '5',
       message: 'Possui fontes de rendas extras?',
-      trigger: 'preDiagnostico',
+      trigger: 'renda_extra',
     },
     {
       id:'renda_extra',
