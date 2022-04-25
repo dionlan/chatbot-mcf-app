@@ -14,7 +14,7 @@ const PreDiagnostico = () => {
   }, [])
   
   function canvas(){
-    var resultado = document.getElementsByClassName('styles_scoreWrapper__2ELf-')[0]
+    var resultado = document.querySelectorAll('[class^="styles_scoreWrapper"]')[0]
     console.log('RESULTADO: ', resultado)
     
     function filter (node) {
