@@ -10,6 +10,7 @@ app.get('/ping', function(req, res) {
  return res.send('pong');
 });
 app.get('/*', function (req, res) {
+  res.set('Access-Control-Allow-Origin', 'https://financial-diagnosis-api.herokuapp.com/');
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.get('/cors', (req, res) => {
