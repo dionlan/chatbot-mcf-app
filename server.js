@@ -13,9 +13,7 @@ app.get('/*', function (req, res) {
   res.set('Access-Control-Allow-Origin', 'https://financial-diagnosis-api.herokuapp.com/');
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-app.get('/cors', (req, res) => {
-  res.send('This has CORS enabled 🎈')
-})
+
 app.listen(port, () => {
    console.log('Server is UP! Port: ', port);
 });

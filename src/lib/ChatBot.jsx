@@ -251,14 +251,18 @@ class ChatBot extends Component {
   getRespostasById = () => {
     const { personInput, responseInput } = this.state;
     const name = personInput[0]
-    const email = personInput[1]
-    const id = personInput[2]
+    const age = personInput[1]
+    const email = personInput[2]
+    const phone = personInput[3]
+    const id = personInput[4]
     let respostas = []
     let responses = responseInput
     respostas = {
       id, 
       name,
+      age,
       email,
+      phone,
       responses
     }
     //console.log('LISTA respostas DEPOIS: ', respostas)
@@ -538,7 +542,9 @@ class ChatBot extends Component {
   
         const person = { 
           name: personInput[0],
-          email: personInput[1] 
+          age: personInput[1],
+          email: personInput[2],
+          phone: personInput[3] 
         }
         
         respostas = Object.assign({}, respostas, person);

@@ -3,9 +3,11 @@ import { Message } from 'primereact/message';
 import ReactStoreIndicator from 'react-score-indicator'
 import { userDetailContext } from '../chat/novo';
 import domtoimage from 'dom-to-image';
+import EmailService from '../service/emailService'
 
 const PreDiagnostico = () => {
   const contextData = React.useContext(userDetailContext);
+  const emailService = new EmailService();
 
   useEffect(() => {
     canvas()
@@ -34,7 +36,7 @@ const PreDiagnostico = () => {
           personId: contextData.userDetails.id
         }
         console.log('Dados do Email: ', email)
-        //emailService.salvarEmail(email)
+        emailService.salvarEmail(email)
     })
     .catch(function (error) {
         console.error('oops, aconteceu algum erro!', error);
@@ -46,10 +48,9 @@ const PreDiagnostico = () => {
       <div>
         <h5>Muito obrigado, {contextData.userDetails.name}!</h5> 
         <p>Segue uma prévia da sua saúde financeira atual.</p>
-        <p>Sua nota parcial foi de <strong>95</strong> pontos. </p>
+        <p>Sua nota parcial foi de <strong>{contextData.userDetails.finalNote}</strong> pontos. </p>
         
         Isso significa que o seu diagnóstico está classificado como: <strong>{contextData.userDetails.classification}</strong>.
-        <p>Parabéns por sua prosperidade financeira.</p>
         <br/>
         <br/>
       </div>
@@ -70,7 +71,7 @@ const PreDiagnostico = () => {
                            contextData.userDetails.classification === 'Alerta' ? "warn" : "error"}
                      text={contextData.userDetails.classification}/>
       </div>
-      <button onClick={canvas}>Canva</button>
+      {/** <button onClick={canvas}>Canva</button> */}
     </>
   )
 }

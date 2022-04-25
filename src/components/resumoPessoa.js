@@ -99,7 +99,8 @@ const ResumoPessoa = (props) => {
       console.log('PRÉVIA DO DIAGNÓSTICO CADASTRADA COM SUCESSO', responsePrevia.data)
       //preDiagnosticService.salvarPreDiagnostico(responseInput)
       console.log('Prévia do Diagnóstico cadadastrada com sucesso!', responsePrevia.data)
-      buscarPreviaDiagnostico(responsePrevia.data.id)
+      handUserDetails(responsePrevia.data)
+      //buscarPreviaDiagnostico(responsePrevia.data.id)
 
       return (
         <userDetailContext.Provider value={{ handUserDetails }}>
@@ -109,7 +110,7 @@ const ResumoPessoa = (props) => {
     }).catch(error => {
       console.log('ERRO!', error)
     }).finally(
-      props.triggerNextStep({id: 'resumo', message:'resumo_pessoa', trigger: '32' })
+      props.triggerNextStep({id: 'resumo', message:'resumo_pessoa', trigger: '30' })
     )
 /*
     preDiagnosticService.buscarResultadoPrevio(responseInput.id)
