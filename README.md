@@ -7,6 +7,9 @@ no qual corresponde à saúde financeira, se aproximando do Suitability para um 
 Nesse contexto, ao final, é enviado um e-mail para esse usuário, para a equipe de negócios e a partir desse momento pode-se estabelecer um pré-atendimento dos serviços 
 de planejamento financeiro. 
 
+### Home do chatbot
+<img src="https://github.com/dionlan/chatbot-mcf-app/blob/master/src/assets/to_readme/screenshot.PNG" alt="Home do chatbot"/>
+
 ### Modelo conceitual
 <img src="https://github.com/dionlan/chatbot-mcf-app/blob/master/src/assets/to_readme/Modelo%20Conceitual.png" alt="Modelo conceitual"/>
 
