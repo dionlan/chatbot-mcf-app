@@ -65,7 +65,7 @@ const PreDiagnostico = () => {
           maxAngle={180}/>
       
       <div style={{ display: "flex", justifyContent: 'center'}}>
-        <Message severity={contextData.userDetails.classification === 'Bem Estar Financeiro' ? "success" : 
+        <Message severity={contextData.userDetails.classification === 'Bem estar financeiro' ? "success" : 
                            contextData.userDetails.classification === 'Favorável' ? "success" : 
                            contextData.userDetails.classification === 'Mediano' ? "info" : 
                            contextData.userDetails.classification === 'Alerta' ? "warn" : "error"}
